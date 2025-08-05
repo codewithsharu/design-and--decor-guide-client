@@ -41,7 +41,7 @@ const UserLayout = () => {
 
         {/* WhatsApp button */}
         <a
-          href="https://wa.me/+919235401677" 
+          href="https://wa.me/+91" 
           target="_blank"
           rel="noopener noreferrer"
           className={`fixed bottom-8 right-8 w-12 h-12 bg-green-500 text-white rounded-full shadow-lg
