@@ -15,11 +15,13 @@ const Home = () => {
     <div className="min-h-screen">
       <Hero />
 
-      <PortfolioCarousel/>
+    
 
       <Aboutus1/>
   
   <Category/>
+
+  
 
     </div>
   );
