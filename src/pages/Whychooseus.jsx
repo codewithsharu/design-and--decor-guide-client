@@ -39,21 +39,6 @@ const WhyChooseUs = () => {
       }}
     >
       {/* Heading */}
-      <span
-        style={{
-          display: "inline-block",
-          background: beige,
-          color: gold,
-          fontSize: 13,
-          fontWeight: 600,
-          borderRadius: 16,
-          padding: "4px 18px",
-          marginBottom: 16,
-          letterSpacing: 1,
-        }}
-      >
-        • Why Choose Us
-      </span>
       <h1 style={{ fontSize: 38, fontWeight: 700, margin: 0, color: gold }}>
         Why Choose Us ?
       </h1>
@@ -72,15 +57,7 @@ const WhyChooseUs = () => {
       </p>
 
       {/* Cards */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: 24,
-          marginTop: 40,
-        }}
-      >
+      <div className="whychooseus-grid">
         {statsData.map((stat, idx) => (
           <div
             key={idx}
@@ -88,12 +65,14 @@ const WhyChooseUs = () => {
               position: "relative",
               borderRadius: 18,
               overflow: "hidden",
-              width: 250,
+              width: "100%",
               height: 340,
               cursor: "pointer",
               transition: "transform 0.3s ease",
               background: "#2B2C2E",
               border: `2px solid ${beige}`,
+              maxWidth: 250,
+              margin: "0 auto",
             }}
             className="card"
           >
@@ -123,7 +102,6 @@ const WhyChooseUs = () => {
                 alignItems: "center",
                 backdropFilter: "blur(2px)",
                 background: cardOverlayBg,
-               
               }}
             >
               <div>
@@ -174,13 +152,30 @@ const WhyChooseUs = () => {
         ))}
       </div>
 
-      {/* Hover effect */}
+      {/* Hover effect and responsive grid */}
       <style>
         {`
           .card:hover {
             transform: translateY(-6px) scale(1.03);
             box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.18);
             border-color: ${gold};
+          }
+          .whychooseus-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            justify-content: center;
+            align-items: stretch;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          @media (min-width: 700px) {
+            .whychooseus-grid {
+              grid-template-columns: repeat(4, 1fr);
+              max-width: 1100px;
+            }
           }
         `}
       </style>

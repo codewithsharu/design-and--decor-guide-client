@@ -10,11 +10,12 @@ import PortfolioCarousel from './PortfolioCarousel';
 
 import Services from './Services';
 
-import WhyChooseUs from './Whychooseus';
 
 import Showcase from './Showcase'
 
 import Reviews from './Reviews'
+
+import WhyChooseUs from './Whychooseus';
 
 
 const Home = () => {
@@ -25,10 +26,11 @@ const Home = () => {
 
       <Aboutus1/>
       <Category/>
-      <WhyChooseUs/>
+
       <Showcase/>
       
       <Services/>
+      <WhyChooseUs/>
       <Reviews/>
     </div>
   );
