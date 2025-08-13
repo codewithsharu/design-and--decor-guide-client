@@ -123,7 +123,7 @@ const WhyChooseUs = () => {
                 alignItems: "center",
                 backdropFilter: "blur(2px)",
                 background: cardOverlayBg,
-                borderTop: `2px solid ${gold}`,
+               
               }}
             >
               <div>
