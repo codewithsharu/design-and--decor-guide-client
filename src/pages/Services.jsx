@@ -137,8 +137,8 @@ const Services = () => {
           font-family: ${fontStack};
         }
         .services-title {
-          font-size: 2.5rem;
-          font-weight: 700;
+          font-size: 2rem;
+          font-weight: 500;
           text-align: center;
           margin-bottom: 2.5rem;
           color: #181818;
@@ -263,7 +263,7 @@ const Services = () => {
         }
       `}</style>
       <div className="services-container">
-        <h2 className="services-title">Our Services</h2>
+        <h1 className="services-title">Our Services</h1>
         <ul className="services-grid">
           {visibleServices.map((service, index) => (
             <li key={index} className="service-item">
