@@ -8,6 +8,8 @@ import Category from './Category';
 
 import PortfolioCarousel from './PortfolioCarousel';
 
+import Services from './Services';
+
 
 const Home = () => {
 
@@ -20,6 +22,8 @@ const Home = () => {
       <Aboutus1/>
   
   <Category/>
+<Services/>
+  
 
   
 
