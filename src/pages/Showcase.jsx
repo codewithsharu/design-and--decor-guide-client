@@ -31,14 +31,14 @@ const Showcase = () => {
           <h1 className="l-hero__headings-title">
             Inspiring Spaces
           </h1>
-          <p className="l-hero__headings-description">
+          {/* <p className="l-hero__headings-description">
             Explore our creative interiors.
           </p>
           <div className="l-hero__headings-cta">
             <a href="#" className="l-hero__headings-link">
               View Portfolio
             </a>
-          </div>
+          </div> */}
         </div>
         <div className="l-hero__marquee">
           <div className="l-hero__marquee-track">
@@ -104,6 +104,11 @@ const Showcase = () => {
           font-family: var(--font-custom);
           font-size: 72px;
           text-align: center;
+        }
+        @media (max-width: 600px) {
+          .l-hero__headings-title {
+            font-size: 36px;
+          }
         }
         .l-hero__headings-description {
           width: var(--container-width);

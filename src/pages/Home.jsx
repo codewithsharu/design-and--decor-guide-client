@@ -14,6 +14,8 @@ import WhyChooseUs from './Whychooseus';
 
 import Showcase from './Showcase'
 
+import Reviews from './Reviews'
+
 
 const Home = () => {
 
@@ -21,20 +23,13 @@ const Home = () => {
     <div className="min-h-screen">
       <Hero />
 
-    
-
       <Aboutus1/>
-  
-  <Category/>
-  <WhyChooseUs/>
-  <Showcase/>
-
-<Services/>
-
-  
-
-  
-
+      <Category/>
+      <WhyChooseUs/>
+      <Showcase/>
+      
+      <Services/>
+      <Reviews/>
     </div>
   );
 };
