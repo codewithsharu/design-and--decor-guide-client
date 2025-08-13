@@ -1,94 +1,201 @@
-import React from 'react';
-import { IoLogoInstagram } from 'react-icons/io';
-import { RiTwitterXLine } from 'react-icons/ri';
-import { TbBrandMeta } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
-import { MdPhone } from 'react-icons/md';
+import React from "react";
 
 const Footer = () => {
+  // Colors and font to match Navbar
+  const goldenColor = "#FFD700";
+  const beige = "#F5E6C5";
+  const black = "#111";
+  const dark = "#222";
+
   return (
-
-
-    
-    // <footer className='border-t py-8 sm:py-12 bg-gray-100 display-none '>
-    //   <div className='container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 lg:px-0 lg:ml-5'>
-    //     {/* Newsletter Section */}
-    //     <div className='text-center sm:text-left'>
-    //       <h3 className='text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3'>Newsletter</h3>
-    //       <p className='text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4'>
-    //         Be the first to hear about new products, exclusive events, and online offers.
-    //       </p>
-    //       <p className='font-medium text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6'>Signup and get 10% off on your first order.</p>
-    //       <form className='flex max-w-md mx-auto sm:mx-0'>
-    //         <input
-    //           type='email'
-    //           placeholder='Enter your email'
-    //           className='p-2 sm:p-3 w-full text-xs sm:text-sm border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all'
-    //           required
-    //         />
-    //         <button
-    //           type='submit'
-    //           className='bg-black text-white px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-r-md hover:bg-gray-800 transition-all whitespace-nowrap'
-    //         >
-    //           Subscribe
-    //         </button>
-    //       </form>
-    //     </div>
-
-    //     {/* Shop Links */}
-    //     <div className='text-center sm:text-left'>
-    //       <h3 className='text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3'>Shop</h3>
-    //       <ul className='space-y-1.5 sm:space-y-2 text-gray-600 text-sm'>
-    //         <li><Link to='#' className='hover:text-gray-800 transition-colors'>Men's Top Wear</Link></li>
-    //         <li><Link to='#' className='hover:text-gray-800 transition-colors'>Women's Top Wear</Link></li>
-    //         <li><Link to='#' className='hover:text-gray-800 transition-colors'>Men's Bottom Wear</Link></li>
-    //         <li><Link to='#' className='hover:text-gray-800 transition-colors'>Women's Bottom Wear</Link></li>
-    //       </ul>
-    //     </div>
-
-    //     {/* Support Links */}
-    //     <div className='text-center sm:text-left'>
-    //       <h3 className='text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3'>Support</h3>
-    //       <ul className='space-y-1.5 sm:space-y-2 text-gray-600 text-sm'>
-    //         <li><Link to='/support/terms' className='hover:text-gray-800 transition-colors'>Terms and Conditions</Link></li>
-    //         <li><Link to='/support/privacy' href='/support/privacy' className='hover:text-gray-800 transition-colors'>Privacy Policy</Link></li>
-    //         <li><Link to='/support/shipping' href='/support/shipping' className='hover:text-gray-800 transition-colors'>Shipping and Delivery</Link></li>
-    //         <li><Link to='/support/contact' href='/support/contact' className='hover:text-gray-800 transition-colors'>Contact Us</Link></li>
-    //         <li><Link to='/support/cancellation' href='/support/cancellation' className='hover:text-gray-800 transition-colors'>Cancellation & Refund</Link></li>
-    //       </ul>
-    //     </div>
-
-    //     {/* Social Media & Contact */}
-    //     <div className='text-center sm:text-left'>
-    //       <h3 className='text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3'>Follow Us</h3>
-    //       <div className='flex items-center justify-center sm:justify-start space-x-4 mb-4'>
-    //         <a href='https://www.facebook.com' target='_blank' rel='noopener noreferrer' className='text-gray-600 hover:text-gray-900 transition'>
-    //           <TbBrandMeta className='h-5 w-5 sm:h-6 sm:w-6' />
-    //         </a>
-    //         <a href='https://www.instagram.com' target='_blank' rel='noopener noreferrer' className='text-gray-600 hover:text-gray-900 transition'>
-    //           <IoLogoInstagram className='h-5 w-5 sm:h-6 sm:w-6' />
-    //         </a>
-    //         <a href='https://www.twitter.com' target='_blank' rel='noopener noreferrer' className='text-gray-600 hover:text-gray-900 transition'>
-    //           <RiTwitterXLine className='h-5 w-5 sm:h-6 sm:w-6' />
-    //         </a>
-    //       </div>
-    //       <p className='text-gray-600 font-medium text-sm'>Call Us</p>
-    //       <p className='text-gray-800 flex items-center justify-center sm:justify-start gap-2 text-sm'>
-    //         <MdPhone className='h-4 w-4 sm:h-5 sm:w-5' /> +91
-    //       </p>
-    //     </div>
-    //   </div>
-    //   {/* Footer Bottom */}
-    //   <div className="container mx-auto mt-6 sm:mt-8 px-6 lg:px-0 border-t border-gray-200 pt-4 sm:pt-6">
-    //     <p className='text-gray-500 text-xs sm:text-sm tracking-tighter text-center'>
-    //       ©2025, D&DG TEES All Rights Reserved.
-    //     </p>
-    //   </div>
-    // </footer>
-
-    <></>
-
-
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&family=Inter:wght@400;600&display=swap');
+        .footer-navbar-theme {
+          background: ${black};
+          color: ${beige};
+          font-family: 'Work Sans', 'Inter', sans-serif;
+          border-top: 2px solid ${goldenColor};
+          border-radius: 40px 40px 0 0;
+          box-shadow: 0 -4px 16px rgba(0,0,0,0.10);
+          padding: 48px 0 0 0;
+        }
+        .footer-container {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 24px 24px 24px;
+        }
+        .footer-row {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 32px;
+        }
+        .footer-col-navbar {
+          flex: 1 1 220px;
+          min-width: 200px;
+          margin-bottom: 24px;
+        }
+        .footer-col-navbar h4 {
+          font-size: 1.1rem;
+          color: ${beige};
+          font-weight: 600;
+          margin-bottom: 18px;
+          letter-spacing: 0.01em;
+          position: relative;
+          font-family: 'Work Sans', 'Inter', sans-serif;
+        }
+        .footer-col-navbar h4::after {
+          content: '';
+          display: block;
+          width: 36px;
+          height: 2.5px;
+          background: ${goldenColor};
+          border-radius: 2px;
+          margin-top: 8px;
+        }
+        .footer-col-navbar p,
+        .footer-col-navbar li,
+        .footer-col-navbar a,
+        .footer-col-navbar address {
+          color: ${beige};
+          font-size: 15px;
+          font-family: 'Inter', 'Work Sans', sans-serif;
+          font-weight: 400;
+          margin: 0 0 8px 0;
+          text-decoration: none;
+          line-height: 1.7;
+        }
+        .footer-col-navbar ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .footer-social-links {
+          margin-top: 8px;
+        }
+        .footer-social-links a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 32px;
+          width: 32px;
+          background: ${beige};
+          color: ${black};
+          border-radius: 50%;
+          margin-right: 8px;
+          font-size: 16px;
+          border: 2px solid ${goldenColor};
+          transition: background 0.2s, color 0.2s, border 0.2s;
+          box-shadow: 0 2px 8px rgba(34,34,34,0.08);
+        }
+        .footer-social-links a:hover {
+          background: ${goldenColor};
+          color: ${black};
+          border: 2px solid ${beige};
+        }
+        .footer-bottom {
+          border-top: 1.5px solid ${dark};
+          margin-top: 32px;
+          padding: 18px 0 0 0;
+          text-align: center;
+          color: ${beige};
+          font-size: 0.98rem;
+          font-family: 'Inter', 'Work Sans', sans-serif;
+          opacity: 0.85;
+        }
+        @media (max-width: 900px) {
+          .footer-row {
+            gap: 18px;
+          }
+        }
+        @media (max-width: 768px) {
+          .footer-row {
+            flex-direction: column;
+            gap: 0;
+          }
+          .footer-col-navbar {
+            min-width: unset;
+            margin-bottom: 18px;
+          }
+        }
+      `}</style>
+      <footer className="footer-navbar-theme">
+        <div className="footer-container">
+          <div className="footer-row">
+            <div className="footer-col-navbar">
+              <h4>Get In Touch</h4>
+              <p>
+                You can use a few enticing words and flaunt your capabilities that will attract future clients and encourage them to hire you right away.
+              </p>
+            </div>
+            <div className="footer-col-navbar">
+              <h4>Contact Details</h4>
+              <ul>
+                <li>
+                  <strong>Phone</strong><br />
+                  +91 1234567890
+                </li>
+                <li>
+                  <strong>Email</strong><br />
+                  mailmehereonearth@gmail.com
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col-navbar">
+              <h4>My Location</h4>
+              <address style={{ fontStyle: "normal" }}>
+                17-34, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Visakhapatnam, Andhra Pradesh - 530013
+              </address>
+              <div style={{ marginTop: "18px" }}>
+                <span style={{ fontWeight: 600, fontSize: "1rem", color: beige }}>Follow Me</span>
+                <div className="footer-social-links" style={{ marginTop: 8 }}>
+                  <a href="#" aria-label="Facebook">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="none"/>
+                      <path d="M15.5 8.5H14V7.5C14 7.22 14.22 7 14.5 7H15.5V5H14.5C13.12 5 12 6.12 12 7.5V8.5H11V10.5H12V17H14V10.5H15.5L16 8.5H14Z" fill={black}/>
+                    </svg>
+                  </a>
+                  <a href="#" aria-label="Twitter">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="none"/>
+                      <path d="M19 7.5c-.5.22-1.04.37-1.6.44A2.77 2.77 0 0 0 18.5 6c-.54.32-1.13.56-1.77.68A2.75 2.75 0 0 0 7.5 9.5c0 .22.02.44.07.65A7.8 7.8 0 0 1 5 7.8a2.75 2.75 0 0 0 .85 3.67c-.44-.01-.85-.13-1.2-.33v.03c0 1.3.93 2.38 2.16 2.63-.23.06-.47.09-.72.09-.18 0-.34-.02-.51-.05.34 1.06 1.33 1.84 2.5 1.86A5.5 5.5 0 0 1 5 17.5c-.36 0-.71-.02-1.06-.07A7.77 7.77 0 0 0 9.29 19c6.29 0 9.74-5.21 9.74-9.74 0-.15 0-.29-.01-.44A7.1 7.1 0 0 0 21 6.5a7.1 7.1 0 0 1-2 .55z" fill={black}/>
+                    </svg>
+                  </a>
+                  <a href="#" aria-label="Instagram">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="none"/>
+                      <rect x="7" y="7" width="10" height="10" rx="3" stroke={black} strokeWidth="1.5"/>
+                      <circle cx="12" cy="12" r="3" stroke={black} strokeWidth="1.5"/>
+                      <circle cx="16" cy="8" r="0.8" fill={black}/>
+                    </svg>
+                  </a>
+                  <a href="#" aria-label="LinkedIn">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="none"/>
+                      <rect x="7" y="9" width="2" height="6" fill={black}/>
+                      <rect x="11" y="11" width="2" height="4" fill={black}/>
+                      <rect x="15" y="11" width="2" height="4" fill={black}/>
+                      <circle cx="8" cy="7" r="1" fill={black}/>
+                    </svg>
+                  </a>
+                  <a href="#" aria-label="YouTube">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="none"/>
+                      <rect x="7" y="9" width="10" height="6" rx="2" fill={black}/>
+                      <polygon points="12,11 15,13 12,15" fill={beige}/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </>
   );
 };
 

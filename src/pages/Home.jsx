@@ -10,6 +10,10 @@ import PortfolioCarousel from './PortfolioCarousel';
 
 import Services from './Services';
 
+import WhyChooseUs from './Whychooseus';
+
+import Showcase from './Showcase'
+
 
 const Home = () => {
 
@@ -22,7 +26,11 @@ const Home = () => {
       <Aboutus1/>
   
   <Category/>
+  <WhyChooseUs/>
+  <Showcase/>
+
 <Services/>
+
   
 
   

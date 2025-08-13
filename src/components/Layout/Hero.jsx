@@ -88,7 +88,7 @@ const Hero = () => {
               </p> */}
               <div className="flex justify-center">
                 <Link 
-                  to="/collections/all?size=&material=&brand=&maxPrice=100"
+                  to=""
                   className="group inline-flex items-center gap-2 text-white/90 hover:text-white transition-opacity duration-300"
                 >
                   <span className="text-sm tracking-wider uppercase">EXPLORE</span>

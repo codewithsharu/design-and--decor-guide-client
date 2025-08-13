@@ -104,29 +104,31 @@ const Navbar = () => {
             >
               Pricing
             </a>
-            {/* Show Contact Us as a menu item on mobile */}
-            {window.innerWidth <= 768 && (
-              <a
-                href="#contact"
-                className="nav-link"
-                onClick={handleNavLinkClick}
-                style={{
-                  color: "#111",
-                  background: "#F5E6C5",
-                  borderRadius: 30,
-                  padding: "8px 28px",
-                  fontWeight: 600,
-                  fontFamily: "'Inter', 'Work Sans', sans-serif",
-                  textAlign: "center",
-                  marginTop: 8,
-                  border: `2px solid ${goldenColor}`,
-                  boxShadow: "0 2px 8px rgba(34,34,34,0.08)",
-                  display: "inline-block",
-                }}
-              >
-                Contact Us
-              </a>
-            )}
+            {/* Add Contact Us as a menu item always */}
+            <a
+              href="#contact"
+              className="nav-link"
+              onClick={handleNavLinkClick}
+              style={
+                window.innerWidth <= 768
+                  ? {
+                      color: "#111",
+                      background: "#F5E6C5",
+                      borderRadius: 30,
+                      padding: "8px 28px",
+                      fontWeight: 600,
+                      fontFamily: "'Inter', 'Work Sans', sans-serif",
+                      textAlign: "center",
+                      marginTop: 8,
+                      border: `2px solid ${goldenColor}`,
+                      boxShadow: "0 2px 8px rgba(34,34,34,0.08)",
+                      display: "inline-block",
+                    }
+                  : { color: "#F5E6C5" }
+              }
+            >
+              Contact Us
+            </a>
           </div>
           {/* Show Contact Us as a button on desktop */}
           {window.innerWidth > 768 && (
@@ -225,6 +227,7 @@ const Navbar = () => {
           transition: background 0.2s, color 0.2s;
           box-shadow: 0 2px 8px rgba(34,34,34,0.08);
         }
+          
         .navbar-button:hover {
           background: #F5E6C5; /* beige */
           color: #111; /* black */

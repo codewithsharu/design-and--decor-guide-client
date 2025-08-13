@@ -78,7 +78,7 @@ const NewArrivals = () => {
         .newarrivals-contentRight .newarrivals-content h4{
             font-size: 22px;
             font-weight: 400;
-            color: #d35400;
+            color: #111;
         }
         .newarrivals-contentRight .newarrivals-content h2{
             font-size: 40px;
@@ -97,7 +97,7 @@ const NewArrivals = () => {
             letter-spacing: 1px;
             padding: 13px 30px;
             color: #fff;
-            background: #d35400;
+            background: #111;
             border-radius: 8px;
             user-select: none;
         }
