@@ -4,24 +4,8 @@ import { category } from "../Data/data";
 // Use the same smooth font stack as NewArrivals.jsx
 const fontStack = "'Poppins', 'Work Sans', 'Inter', sans-serif";
 
-const golden = "#FFD700";
-const darkBg = "#181818";
-const cardBg = "rgba(255,255,255,0.92)";
-const shadow =
-  "0 4px 24px 0 rgba(31, 38, 135, 0.10), 0 1.5px 8px 0 rgba(34, 34, 34, 0.06)";
-
-/**
- * WHY THE GAP?
- * 
- * The gap in the second row (as seen in the screenshot) is caused by the way the data is structured:
- * - One of the category items (id: 3) contains an `imgs` array with two sub-categories (Kids Room, Kitchen).
- * - The current code renders these two sub-categories as two stacked cards inside a single grid cell (one column).
- * - This makes that grid cell much taller than the others, causing the next row to "wrap" around it, leaving a visible gap.
- * 
- * HOW TO FIX:
- * - Flatten the data so each card (including sub-categories) is a separate grid item.
- * - This way, every card occupies its own cell, and the grid will be filled row by row, with no gaps.
- */
+// Import the arrow image (place the image in your public or assets folder as needed)
+const rightArrow = "https://upload.wikimedia.org/wikipedia/commons/c/ce/Font_Awesome_5_solid_arrow-circle-right.svg";
 
 const flattenCategories = (categories) => {
   const result = [];
@@ -34,7 +18,7 @@ const flattenCategories = (categories) => {
       });
     }
     if (cat.imgs && Array.isArray(cat.imgs)) {
-      cat.imgs.forEach((sub) => { 
+      cat.imgs.forEach((sub) => {
         result.push({
           id: sub.id,
           img: sub.img,
@@ -51,101 +35,125 @@ const flatCategory = flattenCategories(category);
 const Category = () => {
   return (
     <div className="w-full md:w-10/12 px-2 py-8 m-auto" style={{ fontFamily: fontStack }}>
-      
-    <h2
-      className="text-2xl md:text-3xl font-semibold mb-8 text-center"
-      style={{ color: "#181818", fontWeight: 600, letterSpacing: "0.01em" }}
-    >
-      Our Categories
-    </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      {flatCategory.map((cat, key) => (
+      <h2
+        className="text-2xl md:text-3xl font-semibold mb-8 text-center"
+        style={{ color: "#181818", fontWeight: 600, letterSpacing: "0.01em" }}
+      >
+        Our Categories
+      </h2>
+      {/* 2 columns on mobile, 3 on md+ */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+        {flatCategory.map((cat, key) => (
           <div
-            className="flex flex-col"
             key={cat.id || key}
-            style={{
-              minWidth: 0,
-              fontFamily: fontStack,
-            }}
+            className="flex flex-col items-center w-full"
+            style={{ fontFamily: fontStack }}
           >
-            <div className="m-2">
-              <div
-                className="relative overflow-hidden rounded-xl mb-6 group category-card-square"
-                style={{
-                  background: cardBg,
-                  boxShadow: shadow,
-                  transition: "box-shadow 0.3s",
-                  aspectRatio: "1 / 1",
-                  borderRadius: 18,
-                  fontFamily: fontStack,
-                }}
-              >
+            <div
+              className="relative w-full group category-modern-card bg-white shadow-xl overflow-hidden rounded-3xl flex flex-col"
+              style={{
+                aspectRatio: "1 / 1",
+                maxWidth: 370,
+                width: "100%",
+                margin: "auto",
+                borderRadius: 28,
+                boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.13), 0 2px 12px 0 rgba(34, 34, 34, 0.08)",
+                transition: "box-shadow 0.3s",
+                background: "#fff",
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div style={{ position: "relative", width: "100%", height: "100%", flex: 1 }}>
                 <img
                   src={cat.img}
                   alt={cat.name}
-                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover rounded-3xl transition-transform duration-700 group-hover:scale-105"
                   style={{
-                    filter:
-                      "brightness(0.97) saturate(1.08) contrast(1.04)",
-                    transition: "filter 0.3s, transform 0.7s",
+                    borderRadius: 28,
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    borderRadius: 18,
+                    filter: "brightness(0.92) saturate(1.08) contrast(1.04)",
+                    transition: "filter 0.3s, transform 0.7s",
+                    display: "block",
+                    aspectRatio: "1 / 1",
                   }}
                 />
+                {/* Overlay for name+arrow on desktop, only arrow on mobile */}
                 <div
-                  className="absolute left-0 bottom-0 w-full flex items-center"
+                  className="absolute bottom-0 left-0 w-full px-6 flex flex-col justify-end"
                   style={{
-                    background:
-                      "linear-gradient(90deg, #fffbe6 80%, #ffe066 100%)",
-                    borderBottomLeftRadius: 18,
-                    borderBottomRightRadius: 18,
-                    boxShadow: "0 2px 8px rgba(34,34,34,0.04)",
-                    padding: "0.75em 1.25em",
+                    height: "30%",
+                    minHeight: 0,
+                    maxHeight: "none",
+                    background: "linear-gradient(0deg, rgba(24,24,24,0.32) 70%, rgba(24,24,24,0.08) 100%)",
+                    borderBottomLeftRadius: 28,
+                    borderBottomRightRadius: 28,
+                    backdropFilter: "blur(1.5px)",
+                    WebkitBackdropFilter: "blur(2px)",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    paddingBottom: 28,
+                    paddingTop: 0,
+                    zIndex: 2,
                   }}
                 >
-                  <span
-                    className="text-lg md:text-xl font-semibold capitalize"
+                  {/* Desktop: name + arrow, Mobile: only arrow icon in white circle */}
+                  <button
+                    className="mt-6 w-full py-3 rounded-full bg-white text-gray-900 font-semibold text-base shadow-md hover:bg-gray-100 transition flex items-center justify-between px-6 category-btn"
                     style={{
-                      color: darkBg,
-                      letterSpacing: "0.01em",
                       fontFamily: fontStack,
+                      boxShadow: "0 2px 12px 0 rgba(34, 34, 34, 0.08)",
+                      paddingLeft: 24,
+                      paddingRight: 24,
                     }}
                   >
-                    {cat.name}
-                  </span>
-                </div>
-                <div
-                  className="absolute top-4 right-4"
-                  style={{
-                    background: golden,
-                    borderRadius: "50%",
-                    width: 32,
-                    height: 32,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 2px 8px rgba(255,215,0,0.10)",
-                  }}
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="12" cy="12" r="8" fill="#fffbe6" />
-                    <path
-                      d="M12 7v5l3 3"
-                      stroke={golden}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                    <span className="hidden md:inline">{cat.name}</span>
+                    <span
+                      className="category-arrow-icon"
+                      style={{
+                        marginLeft: 8,
+                        display: "flex",
+                        alignItems: "center",
+                        height: 28,
+                        width: 28,
+                        minWidth: 28,
+                        minHeight: 28,
+                        justifyContent: "center",
+                        background: "transparent",
+                        padding: 0,
+                      }}
+                    >
+                      <img
+                        src={rightArrow}
+                        alt="Right Arrow"
+                        style={{
+                          width: 28,
+                          height: 28,
+                          display: "block",
+                          objectFit: "contain",
+                          background: "transparent",
+                          margin: 0,
+                          padding: 0,
+                        }}
+                      />
+                    </span>
+                  </button>
                 </div>
               </div>
+            </div>
+            {/* Category name below the card on mobile only */}
+            <div className="category-name-below mt-3 text-center font-semibold text-base md:hidden" style={{
+              fontFamily: fontStack,
+              color: "#181818",
+              letterSpacing: "0.01em",
+              lineHeight: 1.2,
+              wordBreak: "break-word"
+            }}>
+              {cat.name}
             </div>
           </div>
         ))}
@@ -159,27 +167,62 @@ const Category = () => {
         .group:active img {
           filter: brightness(0.96) saturate(1.05) contrast(1.01);
         }
-        /* Ensure square aspect ratio for cards if aspect-ratio is not supported */
-        .category-card-square {
-          aspect-ratio: 1 / 1;
-          width: 100%;
-          min-width: 0;
+        .category-modern-card {
+          transition: box-shadow 0.3s, transform 0.3s;
         }
-        @supports not (aspect-ratio: 1 / 1) {
-          .category-card-square {
-            position: relative;
-            width: 100%;
+        .category-modern-card:hover {
+          box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.18), 0 4px 16px 0 rgba(34, 34, 34, 0.10);
+          transform: translateY(-4px) scale(1.025);
+        }
+        /* Force 2 columns per row and perfect squares on mobile */
+        @media (max-width: 639px) {
+          .grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           }
-          .category-card-square::before {
-            content: "";
-            display: block;
-            padding-top: 100%;
+          .category-modern-card {
+            aspect-ratio: 1 / 1 !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-width: 100% !important;
           }
-          .category-card-square > *:not(style) {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%;
-            height: 100%;
+          /* Hide name in button, show only arrow on mobile */
+          .category-btn span:first-child {
+            display: none !important;
+          }
+          /* On mobile, make the button only the icon, but with white bg in a circle */
+          .category-btn {
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            min-width: 0 !important;
+            width: auto !important;
+            height: auto !important;
+            border-radius: 50% !important;
+            justify-content: center !important;
+          }
+          .category-btn .category-arrow-icon {
+            margin-left: 0 !important;
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            background: #fff !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 2px 8px 0 rgba(34,34,34,0.10) !important;
+            padding: 0 !important;
+          }
+          .category-btn img {
+            width: 28px !important;
+            height: 28px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 50% !important;
+            display: block !important;
           }
         }
       `}</style>
