@@ -35,12 +35,50 @@ const flatCategory = flattenCategories(category);
 const Category = () => {
   return (
     <div className="w-full md:w-10/12 px-2 py-8 m-auto" style={{ fontFamily: fontStack }}>
-      <h2
-        className="text-2xl md:text-3xl font-semibold mb-8 text-center"
-        style={{ color: "#181818", fontWeight: 600, letterSpacing: "0.01em" }}
-      >
-        Our Categories
-      </h2>
+      <header className="l-hero">
+        <div className="l-hero__headings">
+          <div className="l-hero__headings-baseline">
+            Our Categories
+          </div>
+        </div>
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+          :root {
+            --font-principal: "Poppins", sans-serif;
+            --font-custom: "Playfair Display", serif;
+            --color-light: white;
+            --color-dark: #323232;
+            --color-1: #ffda79;
+            --color-2: #ffabe7;
+            --color-3: #d2bcf3;
+            --color-4: #edf3d8;
+            --container-width: min(90%, 769px);
+          }
+
+          .l-hero__headings {
+            padding: 80px 32px;
+          }
+
+          .l-hero__headings-baseline {
+            width: max-content;
+            margin: 0 auto 40px;
+            padding: 12px 24px;
+            border-radius: 9999999px;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            background-color: var(--color-1);
+          }
+
+          @media (max-width: 600px) {
+            .l-hero__headings-title {
+              font-size: 36px;
+            }
+          }
+        `}</style>
+      </header>
       {/* 2 columns on mobile, 3 on md+ */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
         {flatCategory.map((cat, key) => (

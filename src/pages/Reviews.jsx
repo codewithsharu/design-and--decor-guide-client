@@ -153,9 +153,57 @@ export default function Reviews() {
   return (
     <div className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-16 px-4 md:px-12">
       <div className="max-w-4xl mx-auto text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-3 tracking-tight">
-          Customer Reviews
-        </h2>
+        <div className="l-hero__headings">
+          <div className="l-hero__headings-baseline">
+            Customer Reviews
+          </div>
+        </div>
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+          :root {
+            --font-principal: "Poppins", sans-serif;
+            --font-custom: "Playfair Display", serif;
+            --color-light: white;
+            --color-dark: #323232;
+            --color-1: #ffda79;
+            --color-2: #ffabe7;
+            --color-3: #d2bcf3;
+            --color-4: #edf3d8;
+            --container-width: min(90%, 769px);
+          }
+
+          .l-hero__headings {
+            padding: 80px 32px 0 32px;
+          }
+
+          .l-hero__headings-baseline {
+            width: max-content;
+            margin: 0 auto 40px;
+            padding: 12px 24px;
+            border-radius: 9999999px;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            background-color: var(--color-1);
+            font-family: var(--font-principal);
+            letter-spacing: 0.04em;
+          }
+
+          @media (max-width: 600px) {
+            .l-hero__headings-title {
+              font-size: 36px;
+            }
+            .l-hero__headings {
+              padding: 48px 12px 0 12px;
+            }
+            .l-hero__headings-baseline {
+              font-size: 16px;
+              padding: 10px 16px;
+            }
+          }
+        `}</style>
         <p className="text-lg text-gray-500">
           Hear what our customers have to say about <span className="bg-orange-100 px-2 rounded text-orange-600 font-semibold">D&DG</span>
         </p>
