@@ -32,51 +32,58 @@ import ShippingAndDelivery from "./components/support/ShippingAndDelivery";
 import PrivacyPolicy from "./components/support/PrivacyPolicy";
 import ContactUs from "./components/support/ContactUs";
 import CancellationAndRefund from "./components/support/CancellationAndRefund";
+import Gallery from "./pages/gallery";
+
+// Import the ServicesById page
+import ServicesById from "./pages/servicesbyid";
+
 const App = () => {
   return (
     <Provider store={store}>
-    <BrowserRouter>
-      <Toaster position="top-right" />
-      <Routes>
-  <Route path='/' element={<UserLayout />}>
-    <Route index element={<Home/>} />
-    <Route path='/login' element={<Login/>}/>
-    <Route path='/register' element={<Register/>}/>
-    <Route path='/support/terms' element={<TermsAndConditions />} />
-    <Route path='/support/shipping' element={<ShippingAndDelivery />} />
-    <Route path='/support/privacy' element={<PrivacyPolicy />} />
-    <Route path='/support/contact' element={<ContactUs />} />
-    <Route path='/support/cancellation' element={<CancellationAndRefund />} />
-    
-    <Route path='/profile' element={<Profile/>}/>
-    <Route path='/checkout' element={<Checkout/>}/>
-    <Route path='/collections/:collection' element={<CollectionPage />}/>
-    <Route path='/product/:id' element={<ProductDetails />}/>
-    <Route path="/checkout/razorpay" element={<RazorpayCheckout />} />
-    <Route path='/order-confirmation' element={<OrderConfirmationPage />}/>
-    <Route path='/order/:id' element={<OrderDetailsPage />}/>
-    <Route path="/invoice/:id" element={<InvoicePage />} />
-    <Route path="/wishlist" element={<Wishlist />} />
+      <BrowserRouter>
+        <Toaster position="top-right" />
+        <Routes>
+          <Route path='/' element={<UserLayout />}>
+            <Route index element={<Home/>} />
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
+            <Route path='/support/terms' element={<TermsAndConditions />} />
+            <Route path='/support/shipping' element={<ShippingAndDelivery />} />
+            <Route path='/support/privacy' element={<PrivacyPolicy />} />
+            <Route path='/support/contact' element={<ContactUs />} />
+            <Route path='/support/cancellation' element={<CancellationAndRefund />} />
+            <Route path='/profile' element={<Profile/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/collections/:collection' element={<CollectionPage />}/>
+            <Route path='/product/:id' element={<ProductDetails />}/>
+            <Route path="/checkout/razorpay" element={<RazorpayCheckout />} />
+            <Route path='/order-confirmation' element={<OrderConfirmationPage />}/>
+            <Route path='/order/:id' element={<OrderDetailsPage />}/>
+            <Route path="/invoice/:id" element={<InvoicePage />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path='/my-orders' element={<MyOrdersPage />}/>
+            <Route path='/forgot-password' element={<ForgotPassword />}/>
+            <Route path="/gallery" element={<Gallery />}/>
+            <Route path="/gallery/:id" element={<Gallery />} />
 
-    <Route path='/my-orders' element={<MyOrdersPage />}/>
-    <Route path='/forgot-password' element={<ForgotPassword />}/>
-  </Route>
+            {/* Render the ServicesById page at /servicesbyid */}
+            <Route path="/servicesbyid" element={<ServicesById />} />
+            <Route path="/servicesbyid/:id" element={<ServicesById />} />
+          </Route>
 
-  {/* Admin Routes - Fixed */}
-  
-  <Route path='/admin' element={<ProtectedRoute role="admin"><AdminLayout /></ProtectedRoute>}>
-    <Route index element={<AdminHomePage />} />
-    <Route path='users' element={<UserManagement />}/>
-    <Route path='products' element={<ProductManagement />}/>
-    <Route path='products/:id/edit' element={<EditProductPage />}/>
-    <Route path='orders' element={<OrderManagement />}/>
-    <Route path='orders/:id' element={<AdminOrdersDetailPage />}/>
-    <Route path='add-product' element={<AddProductPage />}/>
-    {/* <Route path="/invoice/:id" element={<InvoicePage />} /> */}
-  </Route>
-</Routes>
-
-    </BrowserRouter>
+          {/* Admin Routes - Fixed */}
+          <Route path='/admin' element={<ProtectedRoute role="admin"><AdminLayout /></ProtectedRoute>}>
+            <Route index element={<AdminHomePage />} />
+            <Route path='users' element={<UserManagement />}/>
+            <Route path='products' element={<ProductManagement />}/>
+            <Route path='products/:id/edit' element={<EditProductPage />}/>
+            <Route path='orders' element={<OrderManagement />}/>
+            <Route path='orders/:id' element={<AdminOrdersDetailPage />}/>
+            <Route path='add-product' element={<AddProductPage />}/>
+            {/* <Route path="/invoice/:id" element={<InvoicePage />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Provider>
   );
 };

@@ -15,6 +15,7 @@ const flattenCategories = (categories) => {
         id: cat.id,
         img: cat.img,
         name: cat.name,
+        url: cat.url, // include url
       });
     }
     if (cat.imgs && Array.isArray(cat.imgs)) {
@@ -23,6 +24,7 @@ const flattenCategories = (categories) => {
           id: sub.id,
           img: sub.img,
           name: sub.name,
+          url: sub.url, // include url if present
         });
       });
     }
@@ -79,8 +81,8 @@ const Category = () => {
           }
         `}</style>
       </header>
-      {/* 2 columns on mobile, 3 on md+ */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+      {/* 2 columns on mobile, 4 on md+ */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
         {flatCategory.map((cat, key) => (
           <div
             key={cat.id || key}
@@ -140,46 +142,95 @@ const Category = () => {
                   }}
                 >
                   {/* Desktop: name + arrow, Mobile: only arrow icon in white circle */}
-                  <button
-                    className="mt-6 w-full py-3 rounded-full bg-white text-gray-900 font-semibold text-base shadow-md hover:bg-gray-100 transition flex items-center justify-between px-6 category-btn"
-                    style={{
-                      fontFamily: fontStack,
-                      boxShadow: "0 2px 12px 0 rgba(34, 34, 34, 0.08)",
-                      paddingLeft: 24,
-                      paddingRight: 24,
-                    }}
-                  >
-                    <span className="hidden md:inline">{cat.name}</span>
-                    <span
-                      className="category-arrow-icon"
+                  {cat.url ? (
+                    <a
+                      href={cat.url}
+                      className="mt-6 w-full py-3 rounded-full bg-white text-gray-900 font-semibold text-base shadow-md hover:bg-gray-100 transition flex items-center justify-between px-6 category-btn"
                       style={{
-                        marginLeft: 8,
-                        display: "flex",
-                        alignItems: "center",
-                        height: 28,
-                        width: 28,
-                        minWidth: 28,
-                        minHeight: 28,
-                        justifyContent: "center",
-                        background: "transparent",
-                        padding: 0,
+                        fontFamily: fontStack,
+                        boxShadow: "0 2px 12px 0 rgba(34, 34, 34, 0.08)",
+                        paddingLeft: 24,
+                        paddingRight: 24,
+                        textDecoration: "none",
+                        outline: "none",
+                        border: "none",
+                        cursor: "pointer",
                       }}
                     >
-                      <img
-                        src={rightArrow}
-                        alt="Right Arrow"
+                      <span className="hidden md:inline">{cat.name}</span>
+                      <span
+                        className="category-arrow-icon"
                         style={{
-                          width: 28,
+                          marginLeft: 8,
+                          display: "flex",
+                          alignItems: "center",
                           height: 28,
-                          display: "block",
-                          objectFit: "contain",
+                          width: 28,
+                          minWidth: 28,
+                          minHeight: 28,
+                          justifyContent: "center",
                           background: "transparent",
-                          margin: 0,
                           padding: 0,
                         }}
-                      />
-                    </span>
-                  </button>
+                      >
+                        <img
+                          src={rightArrow}
+                          alt="Right Arrow"
+                          style={{
+                            width: 28,
+                            height: 28,
+                            display: "block",
+                            objectFit: "contain",
+                            background: "transparent",
+                            margin: 0,
+                            padding: 0,
+                          }}
+                        />
+                      </span>
+                    </a>
+                  ) : (
+                    <button
+                      className="mt-6 w-full py-3 rounded-full bg-white text-gray-900 font-semibold text-base shadow-md hover:bg-gray-100 transition flex items-center justify-between px-6 category-btn"
+                      style={{
+                        fontFamily: fontStack,
+                        boxShadow: "0 2px 12px 0 rgba(34, 34, 34, 0.08)",
+                        paddingLeft: 24,
+                        paddingRight: 24,
+                      }}
+                      disabled
+                    >
+                      <span className="hidden md:inline">{cat.name}</span>
+                      <span
+                        className="category-arrow-icon"
+                        style={{
+                          marginLeft: 8,
+                          display: "flex",
+                          alignItems: "center",
+                          height: 28,
+                          width: 28,
+                          minWidth: 28,
+                          minHeight: 28,
+                          justifyContent: "center",
+                          background: "transparent",
+                          padding: 0,
+                        }}
+                      >
+                        <img
+                          src={rightArrow}
+                          alt="Right Arrow"
+                          style={{
+                            width: 28,
+                            height: 28,
+                            display: "block",
+                            objectFit: "contain",
+                            background: "transparent",
+                            margin: 0,
+                            padding: 0,
+                          }}
+                        />
+                      </span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

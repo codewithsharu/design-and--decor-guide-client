@@ -19,7 +19,7 @@ import WorkProcess from './WorkProcess';
 
 import WhyChooseUs from './Whychooseus';
 
-import Hiw  from './Hiw';
+import Hiw  from './Hiw1';
 
 
 const Home = () => {
@@ -33,9 +33,9 @@ const Home = () => {
 
       <Showcase/>
       
-      <Services/>
-      <WorkProcess/>
-      {/* <Hiw/> */}
+      {/* <Services/> */}
+      {/* <WorkProcess/> */}
+      <Hiw/>
       {/* <WhyChooseUs/> */}
       <Reviews/>
     </div>
