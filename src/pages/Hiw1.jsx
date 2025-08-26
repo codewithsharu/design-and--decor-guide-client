@@ -1,33 +1,91 @@
 import React from "react";
-import { FaRocket, FaUsers, FaCog, FaHeart, FaGlobe } from "react-icons/fa";
+
+// Premium SVG icons (replace with your own SVGs or from a premium icon set)
+const PremiumIcons = [
+  // 1. Chat/Consultation (Talk To Us)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#ffe6b0"/>
+      <path d="M20 24c0-2.21 2.24-4 5-4h14c2.76 0 5 1.79 5 4v8c0 2.21-2.24 4-5 4H25l-7 6v-6c-2.76 0-5-1.79-5-4v-8c0-2.21 2.24-4 5-4h2" stroke="#ffb300" strokeWidth="2" strokeLinejoin="round"/>
+      <circle cx="28" cy="32" r="2" fill="#ffb300"/>
+      <circle cx="34" cy="32" r="2" fill="#ffb300"/>
+      <circle cx="40" cy="32" r="2" fill="#ffb300"/>
+    </svg>
+  ),
+  // 2. Design (Pencil & Ruler)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#e0d7fa"/>
+      <rect x="18" y="38" width="28" height="6" rx="2" fill="#7c5dfa"/>
+      <rect x="24" y="20" width="6" height="24" rx="2" fill="#7c5dfa"/>
+      <rect x="34" y="20" width="6" height="24" rx="2" fill="#7c5dfa"/>
+      <rect x="20" y="18" width="24" height="6" rx="2" fill="#7c5dfa"/>
+      <path d="M32 18v28" stroke="#4b2fc9" strokeWidth="2"/>
+      <path d="M18 32h28" stroke="#4b2fc9" strokeWidth="2"/>
+    </svg>
+  ),
+  // 3. Drawings (Blueprint/Document)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#d2f3e5"/>
+      <rect x="18" y="16" width="28" height="32" rx="4" fill="#2ecc71"/>
+      <rect x="22" y="22" width="20" height="2" rx="1" fill="#fff"/>
+      <rect x="22" y="28" width="20" height="2" rx="1" fill="#fff"/>
+      <rect x="22" y="34" width="12" height="2" rx="1" fill="#fff"/>
+      <rect x="22" y="40" width="8" height="2" rx="1" fill="#fff"/>
+    </svg>
+  ),
+  // 4. Execution (Construction/Helmet)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#ffe0e6"/>
+      <ellipse cx="32" cy="38" rx="16" ry="10" fill="#ff5e7b"/>
+      <rect x="20" y="28" width="24" height="10" rx="5" fill="#ffb3c6"/>
+      <rect x="28" y="18" width="8" height="10" rx="4" fill="#ffb3c6"/>
+      <path d="M32 18v10" stroke="#ff5e7b" strokeWidth="2"/>
+      <path d="M24 28v-4a8 8 0 0 1 16 0v4" stroke="#ff5e7b" strokeWidth="2"/>
+    </svg>
+  ),
+  // 5. Hand Over (Trophy/Medal)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#d6f3ff"/>
+      <ellipse cx="32" cy="36" rx="12" ry="10" fill="#00b8d9"/>
+      <rect x="28" y="46" width="8" height="6" rx="2" fill="#00b8d9"/>
+      <circle cx="32" cy="28" r="10" fill="#fff"/>
+      <circle cx="32" cy="28" r="7" fill="#00b8d9"/>
+      <path d="M25 24l3 3 7-7" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  ),
+];
 
 const timelineData = [
   {
-    icon: <FaRocket aria-hidden="true" />,
+    icon: PremiumIcons[0],
     title: "Talk To Us",
     description:
       "Reach out to our team to discuss your vision, requirements, and expectations. We listen carefully to understand your needs and provide expert guidance from the very first conversation.",
   },
   {
-    icon: <FaUsers aria-hidden="true" />,
+    icon: PremiumIcons[1],
     title: "Design",
     description:
       "Our creative team collaborates with you to develop a tailored design concept. We focus on aesthetics, functionality, and your unique preferences to ensure the design aligns perfectly with your goals.",
   },
   {
-    icon: <FaCog aria-hidden="true" />,
+    icon: PremiumIcons[2],
     title: "Drawings",
     description:
       "We prepare detailed drawings and plans, turning the design concept into actionable blueprints. These drawings help visualize the project and serve as a roadmap for the next steps.",
   },
   {
-    icon: <FaHeart aria-hidden="true" />,
+    icon: PremiumIcons[3],
     title: "Execution",
     description:
       "Our skilled professionals bring the plans to life with precision and care. We manage every aspect of the execution phase, ensuring quality workmanship and timely progress.",
   },
   {
-    icon: <FaGlobe aria-hidden="true" />,
+    icon: PremiumIcons[4],
     title: "Hand Over",
     description:
       "After a thorough quality check, we hand over the completed project to you. We ensure everything meets your expectations and provide ongoing support for a seamless transition.",
