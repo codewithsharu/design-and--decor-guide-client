@@ -180,7 +180,8 @@ export default function ServicesById() {
   return (
     <main>
       <section className="servicesbyid-header">
-        <h1 className="servicesbyid-title">{service.title}</h1>
+      <br />
+      <br />
       </section>
       <section id="product-cards-wrapper">
         {/* Display the title at the top of the gallery */}

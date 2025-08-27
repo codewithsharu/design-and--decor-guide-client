@@ -4,21 +4,23 @@ import { category } from "../Data/data";
 // Use the same smooth font stack as NewArrivals.jsx
 const fontStack = "'Poppins', 'Work Sans', 'Inter', sans-serif";
 
-// Arrow icon: dark arrow on light glassy background
-const arrowIcon = (
+// Elegant, modern gallery icon with subtle highlight
+const galleryIcon = (
   <span
+    className="gallery-icon-elegant"
     style={{
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      marginRight: 8,
-      width: 28,
-      height: 28,
+      marginRight: 10,
+      width: 32,
+      height: 32,
       borderRadius: "50%",
-      background: "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,218,121,0.25) 100%)",
-      boxShadow: "0 2px 8px 0 rgba(255, 218, 121, 0.18)",
-      backdropFilter: "blur(8px)",
-      WebkitBackdropFilter: "blur(8px)",
+      background: "linear-gradient(135deg, #fffbe6 0%, #ffda79 100%)",
+      boxShadow: "0 2px 8px 0 rgba(255, 218, 121, 0.13)",
+      position: "relative",
+      zIndex: 2,
+      transition: "box-shadow 0.3s, transform 0.3s",
     }}
   >
     <svg
@@ -29,15 +31,28 @@ const arrowIcon = (
       style={{ display: "block" }}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="9" cy="9" r="8.5" fill="none" />
-      <path
-        d="M6.5 9h5m0 0l-2-2m2 2l-2 2"
-        stroke="#23272f"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      {/* Gallery/Mosaic icon */}
+      <rect x="2.5" y="2.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
+      <rect x="10.5" y="2.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
+      <rect x="2.5" y="10.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
+      <rect x="10.5" y="10.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
+      <ellipse cx="9" cy="9" rx="8" ry="8" stroke="#ffda79" strokeWidth="1.1" opacity="0.5" />
     </svg>
+    {/* Subtle highlight */}
+    <span
+      style={{
+        position: "absolute",
+        top: 4,
+        left: 8,
+        width: 16,
+        height: 8,
+        background: "linear-gradient(90deg, #fffbe6 0%, rgba(255,255,255,0.0) 100%)",
+        borderRadius: "50%",
+        opacity: 0.7,
+        filter: "blur(1px)",
+        pointerEvents: "none",
+      }}
+    />
   </span>
 );
 
@@ -173,7 +188,7 @@ const Category = () => {
                   {cat.url ? (
                     <a
                       href={cat.url}
-                      className="category-explore-btn"
+                      className="category-explore-btn pulse"
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
@@ -216,7 +231,7 @@ const Category = () => {
                         aria-hidden="true"
                       />
                       <span style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center" }}>
-                        {arrowIcon}
+                        {galleryIcon}
                         <span className="category-explore-btn-text" style={{
                           fontFamily: fontStack,
                           fontWeight: 500,
@@ -229,7 +244,7 @@ const Category = () => {
                     </a>
                   ) : (
                     <button
-                      className="category-explore-btn"
+                      className="category-explore-btn pulse"
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
@@ -274,7 +289,7 @@ const Category = () => {
                         aria-hidden="true"
                       />
                       <span style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center" }}>
-                        {arrowIcon}
+                        {galleryIcon}
                         <span className="category-explore-btn-text" style={{
                           fontFamily: fontStack,
                           fontWeight: 500,
@@ -318,10 +333,7 @@ const Category = () => {
         .category-modern-card {
           transition: box-shadow 0.3s, transform 0.3s;
         }
-        .category-modern-card:hover {
-          box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.18), 0 4px 16px 0 rgba(34, 34, 34, 0.10);
-          transform: translateY(-4px) scale(1.025);
-        }
+        
         .category-explore-btn:hover, .category-explore-btn:focus {
           background: linear-gradient(90deg, rgba(255,218,121,0.32) 0%, rgba(255,171,231,0.22) 100%);
           color: #fff !important;
@@ -339,6 +351,33 @@ const Category = () => {
         .category-explore-btn .category-explore-btn-text {
           position: relative;
           z-index: 2;
+        }
+        /* Pulse animation for the explore button - only box-shadow, no scale */
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255,218,121,0.32), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+          20% {
+            box-shadow: 0 0 0 10px rgba(255,218,121,0.10), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+          40% {
+            box-shadow: 0 0 0 16px rgba(255,218,121,0.07), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+          55% {
+            box-shadow: 0 0 0 20px rgba(255,218,121,0.04), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+          70% {
+            box-shadow: 0 0 0 16px rgba(255,218,121,0.07), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+          85% {
+            box-shadow: 0 0 0 10px rgba(255,218,121,0.10), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255,218,121,0.32), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+          }
+        }
+        .pulse {
+          animation: pulse 2.2s cubic-bezier(0.45,0,0.55,1) infinite;
         }
         /* Responsive adjustments */
         @media (max-width: 639px) {
