@@ -404,7 +404,7 @@ const Category = () => {
             border-radius: 14px !important;
             color: #fff !important;
             min-width: 0 !important;
-            box-shadow: 0 2px 8px 0 rgba(51,51,51,0.13), 0 1px 6px 0 rgba(34,34,34,0.08) !important;
+            box-shadow: 0 2px 8px 0 rgba(51,51,51,0.13), 0 1px 6px 0 rgba(34,34,34,0.08);
           }
           .gallery-icon-elegant {
             width: 20px !important;
