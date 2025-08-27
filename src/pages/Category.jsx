@@ -4,7 +4,7 @@ import { category } from "../Data/data";
 // Use the same smooth font stack as NewArrivals.jsx
 const fontStack = "'Poppins', 'Work Sans', 'Inter', sans-serif";
 
-// Modern arrow-right icon SVG (gradient, glassy)
+// Arrow icon: dark arrow on light glassy background
 const arrowIcon = (
   <span
     style={{
@@ -15,8 +15,10 @@ const arrowIcon = (
       width: 28,
       height: 28,
       borderRadius: "50%",
-      background: "linear-gradient(135deg, #ffda79 0%, #ffabe7 100%)",
+      background: "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,218,121,0.25) 100%)",
       boxShadow: "0 2px 8px 0 rgba(255, 218, 121, 0.18)",
+      backdropFilter: "blur(8px)",
+      WebkitBackdropFilter: "blur(8px)",
     }}
   >
     <svg
@@ -30,7 +32,7 @@ const arrowIcon = (
       <circle cx="9" cy="9" r="8.5" fill="none" />
       <path
         d="M6.5 9h5m0 0l-2-2m2 2l-2 2"
-        stroke="#222"
+        stroke="#23272f"
         strokeWidth="1.7"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -181,7 +183,7 @@ const Category = () => {
                         borderRadius: 32,
                         background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,218,121,0.18) 100%)",
                         boxShadow: "0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
-                        color: "#222",
+                        color: "#fff",
                         fontWeight: 600,
                         fontSize: 22,
                         fontFamily: fontStack,
@@ -199,15 +201,31 @@ const Category = () => {
                         overflow: "hidden",
                       }}
                     >
-                      {arrowIcon}
-                      <span style={{
-                        fontFamily: fontStack,
-                        fontWeight: 500,
-                        fontSize: 20,
-                        letterSpacing: 0.01,
-                        color: "#222",
-                        textShadow: "0 1px 8px rgba(255,255,255,0.12)"
-                      }}>Explore</span>
+                      {/* Black fade overlay for button text visibility */}
+                      <span
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          top: 0,
+                          width: "100%",
+                          height: "100%",
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.32) 100%)",
+                          zIndex: 1,
+                          pointerEvents: "none",
+                        }}
+                        aria-hidden="true"
+                      />
+                      <span style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center" }}>
+                        {arrowIcon}
+                        <span className="category-explore-btn-text" style={{
+                          fontFamily: fontStack,
+                          fontWeight: 500,
+                          fontSize: 20,
+                          letterSpacing: 0.01,
+                          color: "#fff",
+                          textShadow: "0 2px 12px rgba(0,0,0,0.22), 0 1px 8px rgba(0,0,0,0.18)"
+                        }}>Explore</span>
+                      </span>
                     </a>
                   ) : (
                     <button
@@ -221,7 +239,7 @@ const Category = () => {
                         borderRadius: 32,
                         background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,218,121,0.18) 100%)",
                         boxShadow: "0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
-                        color: "#222",
+                        color: "#fff",
                         fontWeight: 600,
                         fontSize: 22,
                         fontFamily: fontStack,
@@ -241,15 +259,31 @@ const Category = () => {
                       }}
                       disabled
                     >
-                      {arrowIcon}
-                      <span style={{
-                        fontFamily: fontStack,
-                        fontWeight: 500,
-                        fontSize: 20,
-                        letterSpacing: 0.01,
-                        color: "#222",
-                        textShadow: "0 1px 8px rgba(255,255,255,0.12)"
-                      }}>Explore</span>
+                      {/* Black fade overlay for button text visibility */}
+                      <span
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          top: 0,
+                          width: "100%",
+                          height: "100%",
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.32) 100%)",
+                          zIndex: 1,
+                          pointerEvents: "none",
+                        }}
+                        aria-hidden="true"
+                      />
+                      <span style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center" }}>
+                        {arrowIcon}
+                        <span className="category-explore-btn-text" style={{
+                          fontFamily: fontStack,
+                          fontWeight: 500,
+                          fontSize: 20,
+                          letterSpacing: 0.01,
+                          color: "#fff",
+                          textShadow: "0 2px 12px rgba(0,0,0,0.22), 0 1px 8px rgba(0,0,0,0.18)"
+                        }}>Explore</span>
+                      </span>
                     </button>
                   )}
                 </div>
@@ -290,13 +324,21 @@ const Category = () => {
         }
         .category-explore-btn:hover, .category-explore-btn:focus {
           background: linear-gradient(90deg, rgba(255,218,121,0.32) 0%, rgba(255,171,231,0.22) 100%);
-          color: #222;
+          color: #fff !important;
           box-shadow: 0 6px 24px 0 rgba(255,218,121,0.18);
           border: 1.5px solid #ffda79;
         }
         .category-explore-btn:active {
           background: linear-gradient(90deg, rgba(255,218,121,0.22) 0%, rgba(255,171,231,0.18) 100%);
-          color: #222;
+          color: #fff !important;
+        }
+        /* Add black fade for button text visibility */
+        .category-explore-btn {
+          position: relative;
+        }
+        .category-explore-btn .category-explore-btn-text {
+          position: relative;
+          z-index: 2;
         }
         /* Responsive adjustments */
         @media (max-width: 639px) {
@@ -317,8 +359,14 @@ const Category = () => {
           .category-explore-btn {
             height: 42px !important;
             padding: 0 18px !important;
-            font-size: 16px !important;
+            font-size: 14px !important;
             border-radius: 20px !important;
+            color: #fff !important;
+          }
+          .category-explore-btn-text {
+            font-size: 14px !important;
+            color: #fff !important;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.22) !important;
           }
           .category-name-below {
             font-size: 16px !important;
