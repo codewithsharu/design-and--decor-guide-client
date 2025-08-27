@@ -21,6 +21,7 @@ import WhyChooseUs from './Whychooseus';
 
 import Hiw  from './Hiw1';
 
+import hiw  from './hiw';
 
 const Home = () => {
 
@@ -36,6 +37,7 @@ const Home = () => {
       {/* <Services/> */}
       {/* <WorkProcess/> */}
       <Hiw/>
+      <hiw/>
       {/* <WhyChooseUs/> */}
       <Reviews/>
     </div>

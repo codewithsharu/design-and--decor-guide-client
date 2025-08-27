@@ -1,0 +1,628 @@
+import React from "react";
+
+// Premium SVG icons (replace with your own SVGs or from a premium icon set)
+const timelineData = [
+  {
+    title: "Talk To Us",
+    description:
+      "Contact us to share your ideas.\nWe listen and guide you from the start.",
+  },
+  {
+    title: "Design",
+    description:
+      "We create a design just for you.\nYour style and needs come first.",
+  },
+  {
+    title: "Drawings",
+    description:
+      "We turn designs into clear plans.\nSee your project before it begins.",
+  },
+  {
+    title: "Execution",
+    description:
+      "Our team builds your project.\nWe focus on quality and progress.",
+  },
+  {
+    title: "Hand Over",
+    description:
+      "We check everything carefully.\nYour finished project is ready for you.",
+  },
+];
+
+export default function Hiw() {
+  return (
+    <div
+      className="hiw-outer"
+      style={{
+        fontFamily: "'Poppins', 'Playfair Display', Tahoma, sans-serif",
+        padding: "40px 0",
+        width: "100vw",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        background: "#fff", /* Changed background to original style */
+        color: "#111",    /* Changed text color to original style */
+      }}
+    >
+      <header className="l-hero">
+        <div className="l-hero__headings">
+          <div className="l-hero__headings-baseline"
+            style={{
+              backgroundColor: "var(--color-1)", /* Reverted to original */
+              color: "#111", /* Reverted to original */
+            }}
+          >
+            How It Works ?
+          </div>
+        </div>
+      </header>
+      <div class="roadmap">
+        {timelineData.map((item, idx) => (
+          <div class="point" key={idx}>
+            <div class="point-index">{idx + 1}</div>
+            <div class="point-label">{item.title}</div>
+            <div class="point-text">{item.description}</div>
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        :root {
+          --font-principal: "Poppins", sans-serif;
+          --font-custom: "Playfair Display", serif;
+          --color-light: white;
+          --color-dark: #323232;
+          --color-1: #ffda79;
+          --color-2: #ffabe7;
+          --color-3: #d2bcf3;
+          --color-4: #edf3d8;
+          --container-width: min(90%, 769px);
+        }
+
+        body {
+          background: #fff;
+          color: #111;
+        }
+
+        .l-hero__headings {
+          padding: 80px 32px 0 32px;
+        }
+
+        .l-hero__headings-baseline {
+          width: max-content;
+          margin: 0 auto 40px;
+          padding: 12px 24px;
+          border-radius: 9999999px;
+          font-size: 18px;
+          font-weight: 500;
+          text-transform: uppercase;
+          background-color: var(--color-1);
+          font-family: var(--font-principal);
+          letter-spacing: 1px;
+        }
+
+        .roadmap {
+          padding: 30px 50px;
+        }
+
+        .roadmap .point {
+          display: flex;
+          flex-direction: column;
+          padding: 10px 50px;
+          position: relative;
+        }
+
+        .roadmap .point:first-child .point-index {
+          top: auto;
+          bottom: 0;
+          transform: translate(-50%, 2px) !important;
+        }
+
+        .roadmap .point:last-child .point-index {
+          top: 0;
+          transform: translate(50%, -2px) !important;
+        }
+
+        .roadmap .point:not(:last-child) {
+          border-bottom: 2px solid #111;
+        }
+
+        .roadmap .point:nth-child(odd) {
+          align-items: flex-start;
+        }
+
+        .roadmap .point:nth-child(odd):not(:first-child) {
+          border-left: 2px solid #111;
+        }
+
+        .roadmap .point:nth-child(odd) .point-index {
+          left: 0;
+          transform: translate(-50%, -50%);
+        }
+
+        .roadmap .point:nth-child(even) {
+          align-items: flex-end;
+        }
+
+        .roadmap .point:nth-child(even):not(:last-child) {
+          border-right: 2px solid #111;
+        }
+
+        .roadmap .point:nth-child(even) .point-index {
+          right: 0;
+          transform: translate(50%, -50%);
+        }
+
+        .roadmap .point .point-index {
+          position: absolute;
+          top: 50%;
+          width: 40px;
+          height: 40px;
+          background: #fff;
+          border: 2px solid #111;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 23px;
+          font-weight: bold;
+        }
+
+        .roadmap .point .point-label {
+          flex: 1 0 100%;
+          width: 100%;
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+
+        @media (min-width: 641px) {
+          .roadmap .point .point-label {
+            flex: 1 0 50%;
+            width: 50%;
+          }
+        }
+
+        .roadmap .point .point-text {
+          flex: 1 0 100%;
+          width: 100%;
+          font-size: 12px;
+          color: #111;
+        }
+
+        @media (min-width: 641px) {
+          .roadmap .point .point-text {
+            flex: 1 0 50%;
+            width: 50%;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+import React from "react";
+
+// Premium SVG icons (replace with your own SVGs or from a premium icon set)
+const PremiumIcons = [
+  // 1. Chat/Consultation (Talk To Us)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#ffe6b0"/>
+      <path d="M20 24c0-2.21 2.24-4 5-4h14c2.76 0 5 1.79 5 4v8c0 2.21-2.24 4-5 4H25l-7 6v-6c-2.76 0-5-1.79-5-4v-8c0-2.21 2.24-4 5-4h2" stroke="#ffb300" strokeWidth="2" strokeLinejoin="round"/>
+      <circle cx="28" cy="32" r="2" fill="#ffb300"/>
+      <circle cx="34" cy="32" r="2" fill="#ffb300"/>
+      <circle cx="40" cy="32" r="2" fill="#ffb300"/>
+    </svg>
+  ),
+  // 2. Design (Pencil & Ruler)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#e0d7fa"/>
+      <rect x="18" y="38" width="28" height="6" rx="2" fill="#7c5dfa"/>
+      <rect x="24" y="20" width="6" height="24" rx="2" fill="#7c5dfa"/>
+      <rect x="34" y="20" width="6" height="24" rx="2" fill="#7c5dfa"/>
+      <rect x="20" y="18" width="24" height="6" rx="2" fill="#7c5dfa"/>
+      <path d="M32 18v28" stroke="#4b2fc9" strokeWidth="2"/>
+      <path d="M18 32h28" stroke="#4b2fc9" strokeWidth="2"/>
+    </svg>
+  ),
+  // 3. Drawings (Blueprint/Document)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#d2f3e5"/>
+      <rect x="18" y="16" width="28" height="32" rx="4" fill="#2ecc71"/>
+      <rect x="22" y="22" width="20" height="2" rx="1" fill="#fff"/>
+      <rect x="22" y="28" width="20" height="2" rx="1" fill="#fff"/>
+      <rect x="22" y="34" width="12" height="2" rx="1" fill="#fff"/>
+      <rect x="22" y="40" width="8" height="2" rx="1" fill="#fff"/>
+    </svg>
+  ),
+  // 4. Execution (Construction/Helmet)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#ffe0e6"/>
+      <ellipse cx="32" cy="38" rx="16" ry="10" fill="#ff5e7b"/>
+      <rect x="20" y="28" width="24" height="10" rx="5" fill="#ffb3c6"/>
+      <rect x="28" y="18" width="8" height="10" rx="4" fill="#ffb3c6"/>
+      <path d="M32 18v10" stroke="#ff5e7b" strokeWidth="2"/>
+      <path d="M24 28v-4a8 8 0 0 1 16 0v4" stroke="#ff5e7b" strokeWidth="2"/>
+    </svg>
+  ),
+  // 5. Hand Over (Trophy/Medal)
+  (
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#d6f3ff"/>
+      <ellipse cx="32" cy="36" rx="12" ry="10" fill="#00b8d9"/>
+      <rect x="28" y="46" width="8" height="6" rx="2" fill="#00b8d9"/>
+      <circle cx="32" cy="28" r="10" fill="#fff"/>
+      <circle cx="32" cy="28" r="7" fill="#00b8d9"/>
+      <path d="M25 24l3 3 7-7" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  ),
+];
+
+const timelineData = [
+  {
+    icon: PremiumIcons[0],
+    title: "Talk To Us",
+    description:
+      "Contact us to share your ideas.\nWe listen and guide you from the start.",
+  },
+  {
+    icon: PremiumIcons[1],
+    title: "Design",
+    description:
+      "We create a design just for you.\nYour style and needs come first.",
+  },
+  {
+    icon: PremiumIcons[2],
+    title: "Drawings",
+    description:
+      "We turn designs into clear plans.\nSee your project before it begins.",
+  },
+  {
+    icon: PremiumIcons[3],
+    title: "Execution",
+    description:
+      "Our team builds your project.\nWe focus on quality and progress.",
+  },
+  {
+    icon: PremiumIcons[4],
+    title: "Hand Over",
+    description:
+      "We check everything carefully.\nYour finished project is ready for you.",
+  },
+];
+
+export default function Hiw() {
+  return (
+    <div
+      className="hiw-outer"
+      style={{
+        fontFamily: "'Poppins', 'Playfair Display', Tahoma, sans-serif",
+        padding: "40px 0",
+        width: "100vw",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        background: "#fff",
+        color: "#111",
+      }}
+    >
+      <header className="l-hero">
+        <div className="l-hero__headings">
+          <div className="l-hero__headings-baseline">
+            How It Works ?
+          </div>
+        </div>
+      </header>
+      <div
+        className="main-timeline"
+        style={{
+          maxWidth: "900px",
+          width: "100%",
+          margin: "0 auto",
+        }}
+      >
+        {timelineData.map((item, idx) => (
+          <div className="timeline" key={idx}>
+            <a href="#" className="timeline-content">
+              <span className="timeline-year">{`Step ${idx + 1}`}</span>
+              <div className="timeline-icon">{item.icon}</div>
+              <div className="content">
+                <h3 className="title">{item.title}</h3>
+                <p className="description">{item.description}</p>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        :root {
+          --font-principal: "Poppins", sans-serif;
+          --font-custom: "Playfair Display", serif;
+          --color-light: white;
+          --color-dark: #323232;
+          --color-1: #ffda79;
+          --color-2: #ffabe7;
+          --color-3: #d2bcf3;
+          --color-4: #edf3d8;
+          --container-width: min(90%, 769px);
+        }
+
+        .l-hero__headings {
+          padding: 80px 32px 0 32px;
+        }
+
+        .l-hero__headings-baseline {
+          width: max-content;
+          margin: 0 auto 40px;
+          padding: 12px 24px;
+          border-radius: 9999999px;
+          font-size: 18px;
+          font-weight: 500;
+          text-transform: uppercase;
+          background-color: var(--color-1);
+          font-family: var(--font-principal);
+          letter-spacing: 1px;
+        }
+
+        .main-timeline {
+          font-family: var(--font-principal);
+          padding: 20px 0;
+          position: relative;
+          margin: 0 auto;
+          display: block;
+          box-sizing: border-box;
+        }
+        .main-timeline::before,
+        .main-timeline::after {
+          content: "";
+          height: 40px;
+          width: 40px;
+          background-color: #fff;
+          border-radius: 50%;
+          border: 10px solid #111;
+          transform: translatex(-50%);
+          position: absolute;
+          left: 50%;
+          top: -15px;
+          z-index: 2;
+        }
+        .main-timeline::after {
+          top: auto;
+          bottom: 15px;
+        }
+        .main-timeline .timeline {
+          padding: 35px 0;
+          margin-top: -30px;
+          position: relative;
+          z-index: 1;
+          width: 100%;
+        }
+        .main-timeline .timeline::before,
+        .main-timeline .timeline::after {
+          content: "";
+          height: 100%;
+          width: 50%;
+          border-radius: 110px 0 0 110px;
+          border: 15px solid #111;
+          border-right: none;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: -1;
+        }
+        .main-timeline .timeline::after {
+          height: calc(100% - 30px);
+          width: calc(50% - 12px);
+          border-color: #111;
+          left: 12px;
+          top: 15px;
+        }
+        .main-timeline .timeline-content {
+          display: inline-block; /* Reverted to inline-block */
+          align-items: center;
+          /* Removed justify-content: center; */
+          /* Removed width: 100%; */
+        }
+        .main-timeline .timeline-content:hover {
+          text-decoration: none;
+        }
+        .main-timeline .timeline-year {
+          color: #111;
+          font-size: 50px;
+          font-weight: 600;
+          display: inline-block; /* Re-added */
+          transform: translatey(-50%); /* Re-added */
+          position: absolute; /* Re-added */
+          top: 50%; /* Re-added */
+          left: 5%; /* Adjusted from 10% */
+          /* Removed margin-right: 20px; */
+          font-family: var(--font-custom);
+          /* Removed flex-shrink: 0; */
+        }
+        .main-timeline .timeline-icon {
+          color: #111;
+          font-size: 70px;
+          display: inline-block; /* Re-added */
+          transform: translateY(-50%); /* Re-added */
+          position: absolute; /* Re-added */
+          left: 25%; /* Adjusted from 34% */
+          top: 50%; /* Re-added */
+          /* Removed margin-right: 20px; */
+          /* Removed flex-shrink: 0; */
+        }
+        .main-timeline .content {
+          color: #111;
+          width: 50%; /* Reverted to 50% */
+          padding: 20px;
+          display: inline-block; /* Re-added */
+          float: right; /* Re-added */
+          /* Removed text-align: left; */
+        }
+        .main-timeline .title {
+          color: #111;
+          font-size: 20px;
+          font-weight: 600;
+          text-transform: uppercase;
+          margin: 0 0 5px 0;
+          font-family: var(--font-principal);
+        }
+        .main-timeline .description {
+          font-size: 16px;
+          margin: 0;
+          font-family: var(--font-principal);
+        }
+        .main-timeline .timeline:nth-child(even)::before {
+          left: auto;
+          right: 0;
+          border-radius: 0 110px 110px 0;
+          border: 15px solid #111;
+          border-left: none;
+        }
+        .main-timeline .timeline:nth-child(even)::after {
+          left: auto;
+          right: 12px;
+          border-radius: 0 100px 100px 0;
+          border: 15px solid #111;
+          border-left: none;
+        }
+        .main-timeline .timeline:nth-child(even) .content {
+          float: left; /* Re-added */
+          /* Removed text-align: right; */
+        }
+        .main-timeline .timeline:nth-child(even) .timeline-year {
+          left: auto; /* Re-added */
+          right: 5%; /* Adjusted from 10% */
+          /* Removed margin-left: 20px; */
+          /* Removed margin-right: 0; */
+        }
+        .main-timeline .timeline:nth-child(even) .timeline-icon {
+          left: auto; /* Re-added */
+          right: 25%; /* Adjusted from 32% */
+          /* Removed margin-left: 20px; */
+          /* Removed margin-right: 0; */
+        }
+
+        /* Responsive: Add left/right space and/or scale down for mobile */
+        @media screen and (max-width: 900px) {
+          .main-timeline {
+            max-width: 98vw;
+            padding-left: 2vw;
+            padding-right: 2vw;
+          }
+          /* Removed flexbox styles that conflict with original layout */
+          /* Removed .main-timeline .timeline-content flex-direction, text-align */
+          /* Removed .main-timeline .timeline-year, .main-timeline .timeline-icon margins */
+          /* Removed .main-timeline .content width, padding, text-align */
+          /* Removed .main-timeline .timeline:nth-child(even) .content text-align */
+          /* Removed .main-timeline .timeline:nth-child(even) .timeline-year, .main-timeline .timeline:nth-child(even) .timeline-icon margins */
+        }
+        @media screen and (max-width: 767px) {
+          .main-timeline {
+            max-width: 100vw;
+            padding-left: 10px;
+            padding-right: 10px;
+            transform: scale(0.97); 
+            transform-origin: top center;
+          }
+          .main-timeline .timeline {
+            margin-top: -19px;
+          }
+          .main-timeline .timeline:before {
+            border-radius: 50px 0 0 50px;
+            border-width: 10px;
+          }
+          .main-timeline .timeline:after {
+            height: calc(100% - 18px);
+            width: calc(50% - 9px);
+            border-radius: 43px 0 0 43px;
+            border-width:10px;
+            top: 9px;
+            left: 9px;
+          }
+          .main-timeline .timeline:nth-child(even):before {
+            border-radius: 0 50px 50px 0;
+            border-width: 10px;
+          }
+          .main-timeline .timeline:nth-child(even):after {
+            height: calc(100% - 18px);
+            width: calc(50% - 9px);
+            border-radius: 0 43px 43px 0;
+            border-width: 10px;
+            top: 9px;
+            right: 9px;
+          }
+          .main-timeline .timeline-icon{ font-size: 60px; }
+          .main-timeline .timeline-year{ font-size: 40px; }
+          .main-timeline .timeline-year {
+            left: 2%; /* Adjusted from 5% */
+          }
+          .main-timeline .timeline-icon {
+            left: 20%; /* Adjusted from 28% */
+          }
+          .main-timeline .content {
+            width: 60%; /* Adjusted from 50% */
+            padding: 10px;
+          }
+          .main-timeline .timeline:nth-child(even) .timeline-year {
+            right: 2%; /* Adjusted from 5% */
+          }
+          .main-timeline .timeline:nth-child(even) .timeline-icon {
+            right: 20%; /* Adjusted from 28% */
+          }
+        }
+        @media screen and (max-width: 479px) {
+          .main-timeline {
+            max-width: 100vw;
+            padding-left: 8px;
+            padding-right: 8px;
+            transform: scale(0.9); /* Adjusted from 0.93 */
+            transform-origin: top center;
+          }
+          .main-timeline .timeline-icon{
+            font-size: 40px; /* Adjusted from 44px */
+            transform:translateY(0);
+            top: 25%;
+            left: 5%; /* Adjusted from 10% */
+          }
+          .main-timeline .timeline-year{
+            font-size: 20px; /* Adjusted from 22px */
+            transform:translateY(0);
+            top: 65%;
+            left: 5%; /* Adjusted from 9% */
+          }
+          .main-timeline .content{
+            width: 75%; /* Adjusted from 68% */
+            padding: 8px;
+          }
+          .main-timeline .title{ font-size: 14px; /* Adjusted from 16px */ }
+          .main-timeline .timeline:nth-child(even) .timeline-icon{
+            right: 5%; /* Adjusted from 10% */
+          }
+          .main-timeline .timeline:nth-child(even) .timeline-year{
+            right: 5%; /* Adjusted from 9% */
+          }
+          .main-timeline .description{ font-size: 10px; /* Adjusted from 12px */ }
+        }
+      `}</style>
+    </div>
+  );
+}

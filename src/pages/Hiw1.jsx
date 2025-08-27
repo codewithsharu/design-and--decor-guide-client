@@ -1,98 +1,81 @@
 import React from "react";
 
-// Premium SVG icons (replace with your own SVGs or from a premium icon set)
-const PremiumIcons = [
-  // 1. Chat/Consultation (Talk To Us)
+// Beautiful SVG icons for each step
+const icons = [
+  // Talk To Us
   (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="32" r="32" fill="#ffe6b0"/>
-      <path d="M20 24c0-2.21 2.24-4 5-4h14c2.76 0 5 1.79 5 4v8c0 2.21-2.24 4-5 4H25l-7 6v-6c-2.76 0-5-1.79-5-4v-8c0-2.21 2.24-4 5-4h2" stroke="#ffb300" strokeWidth="2" strokeLinejoin="round"/>
-      <circle cx="28" cy="32" r="2" fill="#ffb300"/>
-      <circle cx="34" cy="32" r="2" fill="#ffb300"/>
-      <circle cx="40" cy="32" r="2" fill="#ffb300"/>
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="18" fill="#ffda79"/>
+      <path d="M12 24v-2a4 4 0 014-4h4a4 4 0 014 4v2" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="15" cy="15" r="2" fill="#111"/>
+      <circle cx="21" cy="15" r="2" fill="#111"/>
     </svg>
   ),
-  // 2. Design (Pencil & Ruler)
+  // Design
   (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="32" r="32" fill="#e0d7fa"/>
-      <rect x="18" y="38" width="28" height="6" rx="2" fill="#7c5dfa"/>
-      <rect x="24" y="20" width="6" height="24" rx="2" fill="#7c5dfa"/>
-      <rect x="34" y="20" width="6" height="24" rx="2" fill="#7c5dfa"/>
-      <rect x="20" y="18" width="24" height="6" rx="2" fill="#7c5dfa"/>
-      <path d="M32 18v28" stroke="#4b2fc9" strokeWidth="2"/>
-      <path d="M18 32h28" stroke="#4b2fc9" strokeWidth="2"/>
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="18" fill="#ffabe7"/>
+      <rect x="11" y="11" width="14" height="14" rx="3" stroke="#111" strokeWidth="2"/>
+      <path d="M14 14l8 8" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
     </svg>
   ),
-  // 3. Drawings (Blueprint/Document)
+  // Drawings
   (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="32" r="32" fill="#d2f3e5"/>
-      <rect x="18" y="16" width="28" height="32" rx="4" fill="#2ecc71"/>
-      <rect x="22" y="22" width="20" height="2" rx="1" fill="#fff"/>
-      <rect x="22" y="28" width="20" height="2" rx="1" fill="#fff"/>
-      <rect x="22" y="34" width="12" height="2" rx="1" fill="#fff"/>
-      <rect x="22" y="40" width="8" height="2" rx="1" fill="#fff"/>
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="18" fill="#d2bcf3"/>
+      <rect x="12" y="12" width="12" height="12" rx="2" stroke="#111" strokeWidth="2"/>
+      <path d="M12 16h12" stroke="#111" strokeWidth="2"/>
+      <path d="M16 12v12" stroke="#111" strokeWidth="2"/>
     </svg>
   ),
-  // 4. Execution (Construction/Helmet)
+  // Execution
   (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="32" r="32" fill="#ffe0e6"/>
-      <ellipse cx="32" cy="38" rx="16" ry="10" fill="#ff5e7b"/>
-      <rect x="20" y="28" width="24" height="10" rx="5" fill="#ffb3c6"/>
-      <rect x="28" y="18" width="8" height="10" rx="4" fill="#ffb3c6"/>
-      <path d="M32 18v10" stroke="#ff5e7b" strokeWidth="2"/>
-      <path d="M24 28v-4a8 8 0 0 1 16 0v4" stroke="#ff5e7b" strokeWidth="2"/>
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="18" fill="#edf3d8"/>
+      <path d="M13 23l5-10 5 10" stroke="#111" strokeWidth="2" strokeLinejoin="round"/>
+      <circle cx="18" cy="23" r="2" fill="#111"/>
     </svg>
   ),
-  // 5. Hand Over (Trophy/Medal)
+  // Hand Over
   (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle cx="32" cy="32" r="32" fill="#d6f3ff"/>
-      <ellipse cx="32" cy="36" rx="12" ry="10" fill="#00b8d9"/>
-      <rect x="28" y="46" width="8" height="6" rx="2" fill="#00b8d9"/>
-      <circle cx="32" cy="28" r="10" fill="#fff"/>
-      <circle cx="32" cy="28" r="7" fill="#00b8d9"/>
-      <path d="M25 24l3 3 7-7" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="18" fill="#ffda79"/>
+      <path d="M12 19l4 4 8-8" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
 ];
 
 const timelineData = [
   {
-    icon: PremiumIcons[0],
     title: "Talk To Us",
     description:
-      "Reach out to our team to discuss your vision, requirements, and expectations. We listen carefully to understand your needs and provide expert guidance from the very first conversation.",
+      "Contact us to share your ideas.\nWe listen and guide you from the start.",
   },
   {
-    icon: PremiumIcons[1],
     title: "Design",
     description:
-      "Our creative team collaborates with you to develop a tailored design concept. We focus on aesthetics, functionality, and your unique preferences to ensure the design aligns perfectly with your goals.",
+      "We create a design just for you.\nYour style and needs come first.",
   },
   {
-    icon: PremiumIcons[2],
     title: "Drawings",
     description:
-      "We prepare detailed drawings and plans, turning the design concept into actionable blueprints. These drawings help visualize the project and serve as a roadmap for the next steps.",
+      "We turn designs into clear plans.\nSee your project before it begins.",
   },
   {
-    icon: PremiumIcons[3],
     title: "Execution",
     description:
-      "Our skilled professionals bring the plans to life with precision and care. We manage every aspect of the execution phase, ensuring quality workmanship and timely progress.",
+      "Our team builds your project.\nWe focus on quality and progress.",
   },
   {
-    icon: PremiumIcons[4],
     title: "Hand Over",
     description:
-      "After a thorough quality check, we hand over the completed project to you. We ensure everything meets your expectations and provide ongoing support for a seamless transition.",
+      "We check everything carefully.\nYour finished project is ready for you.",
   },
 ];
 
 export default function Hiw() {
+  // No arrow, so no animation state needed
+
   return (
     <div
       className="hiw-outer"
@@ -111,29 +94,58 @@ export default function Hiw() {
     >
       <header className="l-hero">
         <div className="l-hero__headings">
-          <div className="l-hero__headings-baseline">
+          <div
+            className="l-hero__headings-baseline"
+            style={{
+              backgroundColor: "var(--color-1)",
+              color: "#111",
+            }}
+          >
             How It Works ?
           </div>
         </div>
       </header>
-      <div
-        className="main-timeline"
-        style={{
-          maxWidth: "900px",
-          width: "100%",
-          margin: "0 auto",
-        }}
-      >
+      <div className="roadmap roadmap-with-arrow">
+        {/* Steps */}
         {timelineData.map((item, idx) => (
-          <div className="timeline" key={idx}>
-            <a href="#" className="timeline-content">
-              <span className="timeline-year">{`Step ${idx + 1}`}</span>
-              <div className="timeline-icon">{item.icon}</div>
-              <div className="content">
-                <h3 className="title">{item.title}</h3>
-                <p className="description">{item.description}</p>
-              </div>
-            </a>
+          <div
+            className={
+              "point" +
+              (idx === timelineData.length - 1 ? " point-last" : "")
+            }
+            key={idx}
+          >
+            <div className="point-index">
+              <span className="point-icon">{icons[idx]}</span>
+              <span className="point-number">{idx + 1}</span>
+              {/* Pulse effect for all steps */}
+              <span className="pulse"></span>
+            </div>
+            <div
+              className="point-label"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontWeight: 700,
+                fontSize: "1.15rem",
+                color: "#222",
+                marginBottom: "4px",
+                letterSpacing: "1px",
+              }}
+            >
+              {item.title}
+            </div>
+            <div
+              className="point-text"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 400,
+                fontSize: "1rem",
+                color: "#444",
+                whiteSpace: "pre-line",
+              }}
+            >
+              {item.description}
+            </div>
           </div>
         ))}
       </div>
@@ -153,6 +165,11 @@ export default function Hiw() {
           --container-width: min(90%, 769px);
         }
 
+        body {
+          background: #fff;
+          color: #111;
+        }
+
         .l-hero__headings {
           padding: 80px 32px 0 32px;
         }
@@ -170,210 +187,163 @@ export default function Hiw() {
           letter-spacing: 1px;
         }
 
-        .main-timeline {
-          font-family: var(--font-principal);
-          padding: 20px 0;
+        .roadmap {
+          padding: 30px 50px;
           position: relative;
-          margin: 0 auto;
-          display: block;
-          box-sizing: border-box;
-        }
-        .main-timeline::before,
-        .main-timeline::after {
-          content: "";
-          height: 40px;
-          width: 40px;
-          background-color: #fff;
-          border-radius: 50%;
-          border: 10px solid #111;
-          transform: translatex(-50%);
-          position: absolute;
-          left: 50%;
-          top: -15px;
-          z-index: 2;
-        }
-        .main-timeline::after {
-          top: auto;
-          bottom: 15px;
-        }
-        .main-timeline .timeline {
-          padding: 35px 0;
-          margin-top: -30px;
-          position: relative;
-          z-index: 1;
-          width: 100%;
-        }
-        .main-timeline .timeline::before,
-        .main-timeline .timeline::after {
-          content: "";
-          height: 100%;
-          width: 50%;
-          border-radius: 110px 0 0 110px;
-          border: 15px solid #111;
-          border-right: none;
-          position: absolute;
-          left: 0;
-          top: 0;
-          z-index: -1;
-        }
-        .main-timeline .timeline::after {
-          height: calc(100% - 30px);
-          width: calc(50% - 12px);
-          border-color: #111;
-          left: 12px;
-          top: 15px;
-        }
-        .main-timeline .timeline-content {
-          display: flex;
-          align-items: center;
-          display: inline-block;
-        }
-        .main-timeline .timeline-content:hover {
-          text-decoration: none;
-        }
-        .main-timeline .timeline-year {
-          color: #111;
-          font-size: 50px;
-          font-weight: 600;
-          display: inline-block;
-          transform: translatey(-50%);
-          position: absolute;
-          top: 50%;
-          left: 10%;
-          font-family: var(--font-custom);
-        }
-        .main-timeline .timeline-icon {
-          color: #111;
-          font-size: 70px;
-          display: inline-block;
-          transform: translateY(-50%);
-          position: absolute;
-          left: 34%;
-          top: 50%;
-        }
-        .main-timeline .content {
-          color: #111;
-          width: 50%;
-          padding: 20px;
-          display: inline-block;
-          float: right;
-        }
-        .main-timeline .title {
-          color: #111;
-          font-size: 20px;
-          font-weight: 600;
-          text-transform: uppercase;
-          margin: 0 0 5px 0;
-          font-family: var(--font-principal);
-        }
-        .main-timeline .description {
-          font-size: 16px;
-          margin: 0;
-          font-family: var(--font-principal);
-        }
-        .main-timeline .timeline:nth-child(even)::before {
-          left: auto;
-          right: 0;
-          border-radius: 0 110px 110px 0;
-          border: 15px solid #111;
-          border-left: none;
-        }
-        .main-timeline .timeline:nth-child(even)::after {
-          left: auto;
-          right: 12px;
-          border-radius: 0 100px 100px 0;
-          border: 15px solid #111;
-          border-left: none;
-        }
-        .main-timeline .timeline:nth-child(even) .content {
-          float: left;
-        }
-        .main-timeline .timeline:nth-child(even) .timeline-year {
-          left: auto;
-          right: 10%;
-        }
-        .main-timeline .timeline:nth-child(even) .timeline-icon {
-          left: auto;
-          right: 32%;
         }
 
-        /* Responsive: Add left/right space and/or scale down for mobile */
-        @media screen and (max-width: 900px) {
-          .main-timeline {
-            max-width: 98vw;
-            padding-left: 2vw;
-            padding-right: 2vw;
+        /* Arrow container on the left of the roadmap */
+        .roadmap-with-arrow {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+        /* Remove arrow container and arrow styles */
+        .roadmap-arrow-container,
+        .roadmap-arrow {
+          display: none !important;
+        }
+
+        .roadmap .point {
+          display: flex;
+          flex-direction: column;
+          padding: 10px 50px;
+          position: relative;
+          min-height: 110px;
+        }
+
+        /* Use dotted lines instead of solid for roadmap connections */
+        .roadmap .point:nth-child(odd) {
+          align-items: flex-start;
+          border-bottom: 2px dotted #111;
+          border-left: 2px dotted #111;
+        }
+
+        .roadmap .point:nth-child(odd) .point-index {
+          left: 0;
+          transform: translate(-50%, -50%);
+        }
+
+        .roadmap .point:nth-child(even) {
+          align-items: flex-end;
+          border-bottom: 2px dotted #111;
+          border-right: 2px dotted #111;
+        }
+
+        .roadmap .point:nth-child(even) .point-index {
+          right: 0;
+          transform: translate(50%, -50%);
+        }
+
+        .roadmap .point:last-child {
+          border-bottom: none;
+        }
+
+        .roadmap .point .point-index {
+          position: absolute;
+          top: 50%;
+          width: 48px;
+          height: 48px;
+          background: #fff;
+          border: 2px solid #111;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 23px;
+          font-weight: bold;
+          z-index: 2;
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
+          overflow: visible;
+        }
+        .roadmap .point .point-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          margin-right: 0;
+        }
+        .roadmap .point .point-number {
+          position: absolute;
+          bottom: -8px;
+          right: -8px;
+          background: #fff;
+          color: #111;
+          border: 1.5px solid #ffda79;
+          border-radius: 50%;
+          width: 22px;
+          height: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 600;
+          box-shadow: 0 1px 4px 0 rgba(0,0,0,0.07);
+        }
+
+        /* Pulse effect for all steps */
+        .roadmap .point .pulse {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 60px;
+          height: 60px;
+          background: rgba(255,218,121,0.4);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          animation: pulse-anim 1.2s infinite;
+          pointer-events: none;
+        }
+        @keyframes pulse-anim {
+          0% {
+            opacity: 0.7;
+            transform: translate(-50%, -50%) scale(1);
+          }
+          70% {
+            opacity: 0.15;
+            transform: translate(-50%, -50%) scale(1.5);
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(2);
           }
         }
-        @media screen and (max-width: 767px) {
-          .main-timeline {
-            max-width: 100vw;
-            padding-left: 10px;
-            padding-right: 10px;
-            transform: scale(0.97);
-            transform-origin: top center;
-          }
-          .main-timeline .timeline {
-            margin-top: -19px;
-          }
-          .main-timeline .timeline:before {
-            border-radius: 50px 0 0 50px;
-            border-width: 10px;
-          }
-          .main-timeline .timeline:after {
-            height: calc(100% - 18px);
-            width: calc(50% - 9px);
-            border-radius: 43px 0 0 43px;
-            border-width:10px;
-            top: 9px;
-            left: 9px;
-          }
-          .main-timeline .timeline:nth-child(even):before {
-            border-radius: 0 50px 50px 0;
-            border-width: 10px;
-          }
-          .main-timeline .timeline:nth-child(even):after {
-            height: calc(100% - 18px);
-            width: calc(50% - 9px);
-            border-radius: 0 43px 43px 0;
-            border-width: 10px;
-            top: 9px;
-            right: 9px;
-          }
-          .main-timeline .timeline-icon{ font-size: 60px; }
-          .main-timeline .timeline-year{ font-size: 40px; }
+
+        .roadmap .point .point-label {
+          flex: 1 0 100%;
+          width: 100%;
+          font-size: 14px;
+          margin-bottom: 5px;
         }
-        @media screen and (max-width: 479px) {
-          .main-timeline {
-            max-width: 100vw;
-            padding-left: 8px;
-            padding-right: 8px;
-            transform: scale(0.93);
-            transform-origin: top center;
+
+        @media (min-width: 641px) {
+          .roadmap .point .point-label {
+            flex: 1 0 50%;
+            width: 50%;
           }
-          .main-timeline .timeline-icon{
-            font-size: 44px;
-            transform:translateY(0);
-            top: 25%;
-            left: 10%;
+        }
+
+        .roadmap .point .point-text {
+          flex: 1 0 100%;
+          width: 100%;
+          font-size: 12px;
+          color: #111;
+        }
+
+        @media (min-width: 641px) {
+          .roadmap .point .point-text {
+            flex: 1 0 50%;
+            width: 50%;
           }
-          .main-timeline .timeline-year{
-            font-size: 22px;
-            transform:translateY(0);
-            top: 65%;
-            left: 9%;
-          }
-          .main-timeline .content{
-            width: 68%;
-            padding: 8px;
-          }
-          .main-timeline .title{ font-size: 16px; }
-          .main-timeline .timeline:nth-child(even) .timeline-icon{
-            right: 10%;
-          }
-          .main-timeline .timeline:nth-child(even) .timeline-year{
-            right: 9%;
-          }
+        }
+
+        /* Highlight active step - keep for visual consistency */
+        .roadmap .point.point-active .point-index {
+          border-color: #ffda79;
+          box-shadow: 0 0 0 4px rgba(255,218,121,0.18);
         }
       `}</style>
     </div>
