@@ -21,7 +21,6 @@ const Showcase = () => {
     <div>
       {/* Navigation */}
 
-
       {/* Hero Section */}
       <header className="l-hero">
         <div className="l-hero__headings">
@@ -31,14 +30,6 @@ const Showcase = () => {
           <h1 className="l-hero__headings-title">
             Inspiring Spaces
           </h1>
-          {/* <p className="l-hero__headings-description">
-            Explore our creative interiors.
-          </p>
-          <div className="l-hero__headings-cta">
-            <a href="#" className="l-hero__headings-link">
-              View Portfolio
-            </a>
-          </div> */}
         </div>
         <div className="l-hero__marquee">
           <div className="l-hero__marquee-track">
@@ -56,7 +47,6 @@ const Showcase = () => {
       </header>
 
       {/* Section */}
-
 
       {/* CSS in JS for demo purposes */}
       <style>{`
@@ -83,7 +73,6 @@ const Showcase = () => {
           color: var(--color-dark);
         }
 
-       
         .l-hero__headings {
           padding: 80px 32px;
         }
@@ -157,10 +146,14 @@ const Showcase = () => {
         .l-hero__marquee-item {
           position: relative;
           display: flex;
-          height: 273px;
-          width: 340px;
-          border-radius: 32px;
+          height: 180px;
+          width: 220px;
+          border-radius: 24px;
           overflow: hidden;
+          /* Remove all hover/active/focus effects */
+          transition: none !important;
+          box-shadow: none !important;
+          border: none !important;
         }
         .l-hero__marquee-item img {
           position: absolute;
@@ -177,10 +170,16 @@ const Showcase = () => {
           font-size: 18px;
         }
 
-        .showcase-img-card:hover {
-          transform: translateY(-6px) scale(1.03);
-          box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.18);
-          border-color: var(--color-3);
+        /* Remove ALL hover effects from showcase cards and marquee items */
+        .showcase-img-card:hover,
+        .l-hero__marquee-item:hover,
+        .l-hero__marquee-item:active,
+        .l-hero__marquee-item:focus {
+          transform: none !important;
+          box-shadow: none !important;
+          border-color: initial !important;
+          filter: none !important;
+          z-index: initial !important;
         }
 
         @keyframes scroll {

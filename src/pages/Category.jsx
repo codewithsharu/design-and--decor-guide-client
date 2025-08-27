@@ -4,8 +4,40 @@ import { category } from "../Data/data";
 // Use the same smooth font stack as NewArrivals.jsx
 const fontStack = "'Poppins', 'Work Sans', 'Inter', sans-serif";
 
-// Import the arrow image (place the image in your public or assets folder as needed)
-const rightArrow = "https://upload.wikimedia.org/wikipedia/commons/c/ce/Font_Awesome_5_solid_arrow-circle-right.svg";
+// Modern arrow-right icon SVG (gradient, glassy)
+const arrowIcon = (
+  <span
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginRight: 8,
+      width: 28,
+      height: 28,
+      borderRadius: "50%",
+      background: "linear-gradient(135deg, #ffda79 0%, #ffabe7 100%)",
+      boxShadow: "0 2px 8px 0 rgba(255, 218, 121, 0.18)",
+    }}
+  >
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      style={{ display: "block" }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="9" cy="9" r="8.5" fill="none" />
+      <path
+        d="M6.5 9h5m0 0l-2-2m2 2l-2 2"
+        stroke="#222"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+);
 
 const flattenCategories = (categories) => {
   const result = [];
@@ -15,7 +47,7 @@ const flattenCategories = (categories) => {
         id: cat.id,
         img: cat.img,
         name: cat.name,
-        url: cat.url, // include url
+        url: cat.url,
       });
     }
     if (cat.imgs && Array.isArray(cat.imgs)) {
@@ -24,7 +56,7 @@ const flattenCategories = (categories) => {
           id: sub.id,
           img: sub.img,
           name: sub.name,
-          url: sub.url, // include url if present
+          url: sub.url,
         });
       });
     }
@@ -121,127 +153,120 @@ const Category = () => {
                     aspectRatio: "1 / 1",
                   }}
                 />
-                {/* Overlay for name+arrow on desktop, only arrow on mobile */}
+                {/* Centered glass "Explore" button, floating over image */}
                 <div
-                  className="absolute bottom-0 left-0 w-full px-6 flex flex-col justify-end"
+                  className="category-explore-btn-container"
                   style={{
-                    height: "30%",
-                    minHeight: 0,
-                    maxHeight: "none",
-                    background: "linear-gradient(0deg, rgba(24,24,24,0.32) 70%, rgba(24,24,24,0.08) 100%)",
-                    borderBottomLeftRadius: 28,
-                    borderBottomRightRadius: 28,
-                    backdropFilter: "blur(1.5px)",
-                    WebkitBackdropFilter: "blur(2px)",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    paddingBottom: 28,
-                    paddingTop: 0,
-                    zIndex: 2,
+                    position: "absolute",
+                    left: "50%",
+                    bottom: 32,
+                    transform: "translateX(-50%)",
+                    zIndex: 3,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
                   }}
                 >
-                  {/* Desktop: name + arrow, Mobile: only arrow icon in white circle */}
                   {cat.url ? (
                     <a
                       href={cat.url}
-                      className="mt-6 w-full py-3 rounded-full bg-white text-gray-900 font-semibold text-base shadow-md hover:bg-gray-100 transition flex items-center justify-between px-6 category-btn"
+                      className="category-explore-btn"
                       style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "0 32px",
+                        height: 54,
+                        borderRadius: 32,
+                        background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,218,121,0.18) 100%)",
+                        boxShadow: "0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
+                        color: "#222",
+                        fontWeight: 600,
+                        fontSize: 22,
                         fontFamily: fontStack,
-                        boxShadow: "0 2px 12px 0 rgba(34, 34, 34, 0.08)",
-                        paddingLeft: 24,
-                        paddingRight: 24,
                         textDecoration: "none",
+                        border: "1.5px solid rgba(255,218,121,0.32)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        transition: "background 0.2s, box-shadow 0.2s, color 0.2s, border 0.2s",
                         outline: "none",
-                        border: "none",
                         cursor: "pointer",
+                        gap: 10,
+                        letterSpacing: 0.01,
+                        margin: "0 auto",
+                        position: "relative",
+                        overflow: "hidden",
                       }}
                     >
-                      <span className="hidden md:inline">{cat.name}</span>
-                      <span
-                        className="category-arrow-icon"
-                        style={{
-                          marginLeft: 8,
-                          display: "flex",
-                          alignItems: "center",
-                          height: 28,
-                          width: 28,
-                          minWidth: 28,
-                          minHeight: 28,
-                          justifyContent: "center",
-                          background: "transparent",
-                          padding: 0,
-                        }}
-                      >
-                        <img
-                          src={rightArrow}
-                          alt="Right Arrow"
-                          style={{
-                            width: 28,
-                            height: 28,
-                            display: "block",
-                            objectFit: "contain",
-                            background: "transparent",
-                            margin: 0,
-                            padding: 0,
-                          }}
-                        />
-                      </span>
+                      {arrowIcon}
+                      <span style={{
+                        fontFamily: fontStack,
+                        fontWeight: 500,
+                        fontSize: 20,
+                        letterSpacing: 0.01,
+                        color: "#222",
+                        textShadow: "0 1px 8px rgba(255,255,255,0.12)"
+                      }}>Explore</span>
                     </a>
                   ) : (
                     <button
-                      className="mt-6 w-full py-3 rounded-full bg-white text-gray-900 font-semibold text-base shadow-md hover:bg-gray-100 transition flex items-center justify-between px-6 category-btn"
+                      className="category-explore-btn"
                       style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "0 32px",
+                        height: 54,
+                        borderRadius: 32,
+                        background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,218,121,0.18) 100%)",
+                        boxShadow: "0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
+                        color: "#222",
+                        fontWeight: 600,
+                        fontSize: 22,
                         fontFamily: fontStack,
-                        boxShadow: "0 2px 12px 0 rgba(34, 34, 34, 0.08)",
-                        paddingLeft: 24,
-                        paddingRight: 24,
+                        textDecoration: "none",
+                        border: "1.5px solid rgba(255,218,121,0.32)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        transition: "background 0.2s, box-shadow 0.2s, color 0.2s, border 0.2s",
+                        outline: "none",
+                        cursor: "not-allowed",
+                        gap: 10,
+                        letterSpacing: 0.01,
+                        margin: "0 auto",
+                        position: "relative",
+                        overflow: "hidden",
+                        opacity: 0.7,
                       }}
                       disabled
                     >
-                      <span className="hidden md:inline">{cat.name}</span>
-                      <span
-                        className="category-arrow-icon"
-                        style={{
-                          marginLeft: 8,
-                          display: "flex",
-                          alignItems: "center",
-                          height: 28,
-                          width: 28,
-                          minWidth: 28,
-                          minHeight: 28,
-                          justifyContent: "center",
-                          background: "transparent",
-                          padding: 0,
-                        }}
-                      >
-                        <img
-                          src={rightArrow}
-                          alt="Right Arrow"
-                          style={{
-                            width: 28,
-                            height: 28,
-                            display: "block",
-                            objectFit: "contain",
-                            background: "transparent",
-                            margin: 0,
-                            padding: 0,
-                          }}
-                        />
-                      </span>
+                      {arrowIcon}
+                      <span style={{
+                        fontFamily: fontStack,
+                        fontWeight: 500,
+                        fontSize: 20,
+                        letterSpacing: 0.01,
+                        color: "#222",
+                        textShadow: "0 1px 8px rgba(255,255,255,0.12)"
+                      }}>Explore</span>
                     </button>
                   )}
                 </div>
               </div>
             </div>
-            {/* Category name below the card on mobile only */}
-            <div className="category-name-below mt-3 text-center font-semibold text-base md:hidden" style={{
-              fontFamily: fontStack,
-              color: "#181818",
-              letterSpacing: "0.01em",
-              lineHeight: 1.2,
-              wordBreak: "break-word"
-            }}>
+            {/* Category name below the card, always visible */}
+            <div className="category-name-below mt-4 text-center font-semibold text-base"
+              style={{
+                fontFamily: fontStack,
+                color: "#181818",
+                letterSpacing: "0.01em",
+                lineHeight: 1.2,
+                wordBreak: "break-word",
+                fontSize: 18,
+                fontWeight: 500,
+                marginTop: 18,
+              }}>
               {cat.name}
             </div>
           </div>
@@ -263,7 +288,17 @@ const Category = () => {
           box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.18), 0 4px 16px 0 rgba(34, 34, 34, 0.10);
           transform: translateY(-4px) scale(1.025);
         }
-        /* Force 2 columns per row and perfect squares on mobile */
+        .category-explore-btn:hover, .category-explore-btn:focus {
+          background: linear-gradient(90deg, rgba(255,218,121,0.32) 0%, rgba(255,171,231,0.22) 100%);
+          color: #222;
+          box-shadow: 0 6px 24px 0 rgba(255,218,121,0.18);
+          border: 1.5px solid #ffda79;
+        }
+        .category-explore-btn:active {
+          background: linear-gradient(90deg, rgba(255,218,121,0.22) 0%, rgba(255,171,231,0.18) 100%);
+          color: #222;
+        }
+        /* Responsive adjustments */
         @media (max-width: 639px) {
           .grid {
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -274,44 +309,20 @@ const Category = () => {
             min-height: 0 !important;
             max-width: 100% !important;
           }
-          /* Hide name in button, show only arrow on mobile */
-          .category-btn span:first-child {
-            display: none !important;
+          .category-explore-btn-container {
+            left: 50% !important;
+            bottom: 16px !important;
+            transform: translateX(-50%) !important;
           }
-          /* On mobile, make the button only the icon, but with white bg in a circle */
-          .category-btn {
-            background: transparent !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-            min-width: 0 !important;
-            width: auto !important;
-            height: auto !important;
-            border-radius: 50% !important;
-            justify-content: center !important;
+          .category-explore-btn {
+            height: 42px !important;
+            padding: 0 18px !important;
+            font-size: 16px !important;
+            border-radius: 20px !important;
           }
-          .category-btn .category-arrow-icon {
-            margin-left: 0 !important;
-            width: 44px !important;
-            height: 44px !important;
-            min-width: 44px !important;
-            min-height: 44px !important;
-            background: #fff !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: 0 2px 8px 0 rgba(34,34,34,0.10) !important;
-            padding: 0 !important;
-          }
-          .category-btn img {
-            width: 28px !important;
-            height: 28px !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background: transparent !important;
-            box-shadow: none !important;
-            border-radius: 50% !important;
-            display: block !important;
+          .category-name-below {
+            font-size: 16px !important;
+            margin-top: 12px !important;
           }
         }
       `}</style>
