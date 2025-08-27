@@ -16,8 +16,8 @@ const galleryIcon = (
       width: 32,
       height: 32,
       borderRadius: "50%",
-      background: "linear-gradient(135deg, #fffbe6 0%, #ffda79 100%)",
-      boxShadow: "0 2px 8px 0 rgba(255, 218, 121, 0.13)",
+      background: "linear-gradient(135deg, #555555 0%, #000000 100%)",
+      boxShadow: "0 2px 8px 0 rgba(0, 0, 0, 0.2)",
       position: "relative",
       zIndex: 2,
       transition: "box-shadow 0.3s, transform 0.3s",
@@ -31,12 +31,14 @@ const galleryIcon = (
       style={{ display: "block" }}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Gallery/Mosaic icon */}
-      <rect x="2.5" y="2.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
-      <rect x="10.5" y="2.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
-      <rect x="2.5" y="10.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
-      <rect x="10.5" y="10.5" width="5" height="5" rx="1.2" fill="#fff" stroke="#23272f" strokeWidth="1.3"/>
-      <ellipse cx="9" cy="9" rx="8" ry="8" stroke="#ffda79" strokeWidth="1.1" opacity="0.5" />
+      {/* Gallery/Mosaic icon - replaced with a more modern photo icon */}
+      <path
+        d="M4 1C2.34315 1 1 2.34315 1 4V14C1 15.6569 2.34315 17 4 17H14C15.6569 17 17 15.6569 17 14V4C17 2.34315 15.6569 1 14 1H4Z"
+        stroke="#fff" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="6.5" cy="6.5" r="1.5" fill="#fff"/>
+      <path
+        d="M17 10L13.5 6.5L4 16H14C15.6569 16 17 14.6569 17 13V10Z"
+        fill="#fff"/>
     </svg>
     {/* Subtle highlight */}
     <span
@@ -46,7 +48,7 @@ const galleryIcon = (
         left: 8,
         width: 16,
         height: 8,
-        background: "linear-gradient(90deg, #fffbe6 0%, rgba(255,255,255,0.0) 100%)",
+        background: "linear-gradient(90deg, #e6e6e6 0%, rgba(255,255,255,0.0) 100%)",
         borderRadius: "50%",
         opacity: 0.7,
         filter: "blur(1px)",
@@ -101,7 +103,7 @@ const Category = () => {
             --font-custom: "Playfair Display", serif;
             --color-light: white;
             --color-dark: #323232;
-            --color-1: #ffda79;
+            --color-1: #333333; /* Changed from #ffda79 */
             --color-2: #ffabe7;
             --color-3: #d2bcf3;
             --color-4: #edf3d8;
@@ -196,14 +198,14 @@ const Category = () => {
                         padding: "0 32px",
                         height: 54,
                         borderRadius: 32,
-                        background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,218,121,0.18) 100%)",
-                        boxShadow: "0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
+                        background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(51,51,51,0.18) 100%)",
+                        boxShadow: "0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
                         color: "#fff",
                         fontWeight: 600,
                         fontSize: 22,
                         fontFamily: fontStack,
                         textDecoration: "none",
-                        border: "1.5px solid rgba(255,218,121,0.32)",
+                        border: "1.5px solid rgba(51,51,51,0.32)",
                         backdropFilter: "blur(10px)",
                         WebkitBackdropFilter: "blur(10px)",
                         transition: "background 0.2s, box-shadow 0.2s, color 0.2s, border 0.2s",
@@ -252,14 +254,14 @@ const Category = () => {
                         padding: "0 32px",
                         height: 54,
                         borderRadius: 32,
-                        background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,218,121,0.18) 100%)",
-                        boxShadow: "0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
+                        background: "linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(51,51,51,0.18) 100%)",
+                        boxShadow: "0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08)",
                         color: "#fff",
                         fontWeight: 600,
                         fontSize: 22,
                         fontFamily: fontStack,
                         textDecoration: "none",
-                        border: "1.5px solid rgba(255,218,121,0.32)",
+                        border: "1.5px solid rgba(51,51,51,0.32)",
                         backdropFilter: "blur(10px)",
                         WebkitBackdropFilter: "blur(10px)",
                         transition: "background 0.2s, box-shadow 0.2s, color 0.2s, border 0.2s",
@@ -335,13 +337,13 @@ const Category = () => {
         }
         
         .category-explore-btn:hover, .category-explore-btn:focus {
-          background: linear-gradient(90deg, rgba(255,218,121,0.32) 0%, rgba(255,171,231,0.22) 100%);
+          background: linear-gradient(90deg, rgba(51,51,51,0.32) 0%, rgba(85,85,85,0.22) 100%);
           color: #fff !important;
-          box-shadow: 0 6px 24px 0 rgba(255,218,121,0.18);
-          border: 1.5px solid #ffda79;
+          box-shadow: 0 6px 24px 0 rgba(51,51,51,0.18);
+          border: 1.5px solid #333333;
         }
         .category-explore-btn:active {
-          background: linear-gradient(90deg, rgba(255,218,121,0.22) 0%, rgba(255,171,231,0.18) 100%);
+          background: linear-gradient(90deg, rgba(51,51,51,0.22) 0%, rgba(85,85,85,0.18) 100%);
           color: #fff !important;
         }
         /* Add black fade for button text visibility */
@@ -355,25 +357,25 @@ const Category = () => {
         /* Pulse animation for the explore button - only box-shadow, no scale */
         @keyframes pulse {
           0% {
-            box-shadow: 0 0 0 0 rgba(255,218,121,0.32), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 0 rgba(51,51,51,0.32), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
           20% {
-            box-shadow: 0 0 0 10px rgba(255,218,121,0.10), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 10px rgba(51,51,51,0.10), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
           40% {
-            box-shadow: 0 0 0 16px rgba(255,218,121,0.07), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 16px rgba(51,51,51,0.07), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
           55% {
-            box-shadow: 0 0 0 20px rgba(255,218,121,0.04), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 20px rgba(51,51,51,0.04), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
           70% {
-            box-shadow: 0 0 0 16px rgba(255,218,121,0.07), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 16px rgba(51,51,51,0.07), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
           85% {
-            box-shadow: 0 0 0 10px rgba(255,218,121,0.10), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 10px rgba(51,51,51,0.10), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
           100% {
-            box-shadow: 0 0 0 0 rgba(255,218,121,0.32), 0 4px 24px 0 rgba(255,218,121,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
+            box-shadow: 0 0 0 0 rgba(51,51,51,0.32), 0 4px 24px 0 rgba(51,51,51,0.13), 0 2px 12px 0 rgba(34,34,34,0.08);
           }
         }
         .pulse {
@@ -402,7 +404,7 @@ const Category = () => {
             border-radius: 14px !important;
             color: #fff !important;
             min-width: 0 !important;
-            box-shadow: 0 2px 8px 0 rgba(255,218,121,0.13), 0 1px 6px 0 rgba(34,34,34,0.08) !important;
+            box-shadow: 0 2px 8px 0 rgba(51,51,51,0.13), 0 1px 6px 0 rgba(34,34,34,0.08) !important;
           }
           .gallery-icon-elegant {
             width: 20px !important;
