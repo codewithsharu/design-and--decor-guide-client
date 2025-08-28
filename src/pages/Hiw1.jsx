@@ -1,351 +1,219 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-// Beautiful SVG icons for each step
-const icons = [
-  // Talk To Us
-  (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="18" fill="#ffda79"/>
-      <path d="M12 24v-2a4 4 0 014-4h4a4 4 0 014 4v2" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-      <circle cx="15" cy="15" r="2" fill="#111"/>
-      <circle cx="21" cy="15" r="2" fill="#111"/>
-    </svg>
-  ),
-  // Design
-  (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="18" fill="#ffabe7"/>
-      <rect x="11" y="11" width="14" height="14" rx="3" stroke="#111" strokeWidth="2"/>
-      <path d="M14 14l8 8" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-  ),
-  // Drawings
-  (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="18" fill="#d2bcf3"/>
-      <rect x="12" y="12" width="12" height="12" rx="2" stroke="#111" strokeWidth="2"/>
-      <path d="M12 16h12" stroke="#111" strokeWidth="2"/>
-      <path d="M16 12v12" stroke="#111" strokeWidth="2"/>
-    </svg>
-  ),
-  // Execution
-  (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="18" fill="#edf3d8"/>
-      <path d="M13 23l5-10 5 10" stroke="#111" strokeWidth="2" strokeLinejoin="round"/>
-      <circle cx="18" cy="23" r="2" fill="#111"/>
-    </svg>
-  ),
-  // Hand Over
-  (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="18" fill="#ffda79"/>
-      <path d="M12 19l4 4 8-8" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  ),
+const timelineItems = [
+  { label: "Talk To Us & Get an Estimate", icon: "/workprocess/assets/img/icon/user-black.svg" },
+  { label: "Design & Finetuning", icon: "/workprocess/assets/img/icon/tp-work-icon02.svg" },
+  { label: "Detailed Drawing & Production", icon: "/workprocess/assets/img/icon/edit.svg" },
+  { label: "Execution & Handover", icon: "/workprocess/assets/img/icon/check-icon.svg" },
 ];
 
-const timelineData = [
-  {
-    title: "Talk To Us",
-    description:
-      "Contact us to share your ideas.\nWe listen and guide you from the start.",
-  },
-  {
-    title: "Design",
-    description:
-      "We create a design just for you.\nYour style and needs come first.",
-  },
-  {
-    title: "Drawings",
-    description:
-      "We turn designs into clear plans.\nSee your project before it begins.",
-  },
-  {
-    title: "Execution",
-    description:
-      "Our team builds your project.\nWe focus on quality and progress.",
-  },
-  {
-    title: "Hand Over",
-    description:
-      "We check everything carefully.\nYour finished project is ready for you.",
-  },
-];
+export default function Hiw1() {
+  const [animatedIndex, setAnimatedIndex] = useState(-1);
+  const [resetting, setResetting] = useState(false); // New state for resetting
 
-export default function Hiw() {
-  // No arrow, so no animation state needed
+  useEffect(() => {
+    let intervalRef; // To hold the interval ID
+
+    const runAnimationCycle = () => {
+      setResetting(true); // Start by enabling instant reset
+      setAnimatedIndex(-1); // Reset all lines instantly
+
+      // After a very brief moment, disable resetting and start animation
+      setTimeout(() => {
+        setResetting(false);
+        timelineItems.forEach((_, index) => {
+          setTimeout(() => {
+            setAnimatedIndex(index);
+          }, index * 150); // Further adjusted animation speed
+        });
+      }, 50); // Small delay to ensure CSS transition: none is applied
+    };
+
+    // Initial animation run
+    runAnimationCycle();
+
+    // Set up interval for continuous replay
+    // The delay should be longer than the total time for one animation cycle
+    const totalLineAnimationDuration = (timelineItems.length - 1) * 150 + 700; // Adjusted for new animation speed
+    const replayInterval = totalLineAnimationDuration + 1000; // Wait 1 second after animation finishes before restarting
+
+    intervalRef = setInterval(runAnimationCycle, replayInterval);
+
+    // Cleanup function
+    return () => {
+      clearInterval(intervalRef);
+    };
+  }, [timelineItems.length]); // Dependency array: only re-run if timelineItems length changes
 
   return (
-    <div
-      className="hiw-outer"
-      style={{
-        fontFamily: "'Poppins', 'Playfair Display', Tahoma, sans-serif",
-        padding: "40px 0",
-        width: "100vw",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        background: "#fff",
-        color: "#111",
-      }}
-    >
-      <header className="l-hero">
-        <div className="l-hero__headings">
-          <div
-            className="l-hero__headings-baseline"
-            style={{
-              backgroundColor: "var(--color-1)",
-              color: "#111",
-            }}
-          >
-            How It Works ?
-          </div>
-        </div>
-      </header>
-      <div className="roadmap roadmap-with-arrow">
-        {/* Steps */}
-        {timelineData.map((item, idx) => (
-          <div
-            className={
-              "point" +
-              (idx === timelineData.length - 1 ? " point-last" : "")
-            }
-            key={idx}
-          >
-            <div className="point-index">
-              <span className="point-icon">{icons[idx]}</span>
-              <span className="point-number">{idx + 1}</span>
-              {/* Pulse effect for all steps */}
-              <span className="pulse"></span>
-            </div>
-            <div
-              className="point-label"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontWeight: 700,
-                fontSize: "1.15rem",
-                color: "#222",
-                marginBottom: "4px",
-                letterSpacing: "1px",
-              }}
-            >
-              {item.title}
-            </div>
-            <div
-              className="point-text"
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 400,
-                fontSize: "1rem",
-                color: "#444",
-                whiteSpace: "pre-line",
-              }}
-            >
-              {item.description}
-            </div>
-          </div>
-        ))}
-      </div>
+    <div>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-
-        :root {
-          --font-principal: "Poppins", sans-serif;
-          --font-custom: "Playfair Display", serif;
-          --color-light: white;
-          --color-dark: #323232;
-          --color-1: #ffda79;
-          --color-2: #ffabe7;
-          --color-3: #d2bcf3;
-          --color-4: #edf3d8;
-          --container-width: min(90%, 769px);
-        }
-
         body {
           background: #fff;
-          color: #111;
         }
 
-        .l-hero__headings {
-          padding: 80px 32px 0 32px;
-        }
-
-        .l-hero__headings-baseline {
-          width: max-content;
-          margin: 0 auto 40px;
-          padding: 12px 24px;
-          border-radius: 9999999px;
-          font-size: 18px;
-          font-weight: 500;
+        h1 {
+          text-align: center;
           text-transform: uppercase;
-          background-color: var(--color-1);
-          font-family: var(--font-principal);
-          letter-spacing: 1px;
+          margin-bottom: 40px;
         }
 
-        .roadmap {
-          padding: 30px 50px;
+        .container {
+          width: 1200px;
+          margin: 24px auto;
+        }
+
+        .timeline {
+          counter-reset: test 0; /* Start counter from 1 */
           position: relative;
+          padding: 0;
+          margin: 40px 0;
         }
 
-        /* Arrow container on the left of the roadmap */
-        .roadmap-with-arrow {
+        .timeline li {
+          list-style: none;
+          float: left;
+          width: 25%; /* Adjusted for 4 steps */
+          position: relative;
+          text-align: center;
           display: flex;
           flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 150px; /* Give some space for labels above/below */
+          padding: 0 5px;
+          color: black; /* Revert text color to black */
+        }
+
+        .timeline li .timeline-icon {
+          width: 50px;
+          height: 50px;
+          border: 3px solid #3366CC; /* Blue border */
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          background: #fff; /* Revert to white background */
+          /* color: #CC3333; */ /* Not applicable for img */
+          /* font-size: 1.5rem; */ /* Not applicable for img */
           position: relative;
-        }
-        /* Remove arrow container and arrow styles */
-        .roadmap-arrow-container,
-        .roadmap-arrow {
-          display: none !important;
-        }
-
-        .roadmap .point {
-          display: flex;
-          flex-direction: column;
-          padding: 10px 50px;
-          position: relative;
-          min-height: 110px;
-        }
-
-        /* Use dotted lines instead of solid for roadmap connections */
-        .roadmap .point:nth-child(odd) {
-          align-items: flex-start;
-          border-bottom: 2px dotted #111;
-          border-left: 2px dotted #111;
-        }
-
-        .roadmap .point:nth-child(odd) .point-index {
-          left: 0;
-          transform: translate(-50%, -50%);
-        }
-
-        .roadmap .point:nth-child(even) {
-          align-items: flex-end;
-          border-bottom: 2px dotted #111;
-          border-right: 2px dotted #111;
-        }
-
-        .roadmap .point:nth-child(even) .point-index {
-          right: 0;
-          transform: translate(50%, -50%);
-        }
-
-        .roadmap .point:last-child {
-          border-bottom: none;
-        }
-
-        .roadmap .point .point-index {
-          position: absolute;
-          top: 50%;
-          width: 48px;
-          height: 48px;
-          background: #fff;
-          border: 2px solid #111;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 23px;
-          font-weight: bold;
-          z-index: 2;
-          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
-          overflow: visible;
-        }
-        .roadmap .point .point-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          margin-right: 0;
-        }
-        .roadmap .point .point-number {
-          position: absolute;
-          bottom: -8px;
-          right: -8px;
-          background: #fff;
-          color: #111;
-          border: 1.5px solid #ffda79;
-          border-radius: 50%;
-          width: 22px;
-          height: 22px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-          font-family: 'Poppins', sans-serif;
-          font-weight: 600;
-          box-shadow: 0 1px 4px 0 rgba(0,0,0,0.07);
-        }
-
-        /* Pulse effect for all steps */
-        .roadmap .point .pulse {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 60px;
-          height: 60px;
-          background: rgba(255,218,121,0.4);
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
           z-index: 1;
-          animation: pulse-anim 1.2s infinite;
-          pointer-events: none;
-        }
-        @keyframes pulse-anim {
-          0% {
-            opacity: 0.7;
-            transform: translate(-50%, -50%) scale(1);
-          }
-          70% {
-            opacity: 0.15;
-            transform: translate(-50%, -50%) scale(1.5);
-          }
-          100% {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(2);
-          }
+          margin-bottom: 10px; /* Space between icon and label */
+          object-fit: contain;
+          padding: 5px; /* Added padding to ensure the icon is visible within the circle */
         }
 
-        .roadmap .point .point-label {
-          flex: 1 0 100%;
+        .timeline li .timeline-label {
+          position: absolute;
+          bottom: -5px; /* Default position below the circle, further adjusted for spacing */
           width: 100%;
-          font-size: 14px;
-          margin-bottom: 5px;
+          line-height: 1.2;
         }
 
-        @media (min-width: 641px) {
-          .roadmap .point .point-label {
-            flex: 1 0 50%;
-            width: 50%;
+        .timeline li:nth-child(even) .timeline-label {
+          top: -5px; /* Move even labels above the circle, further adjusted for spacing */
+          bottom: auto;
+        }
+
+        ul.timeline:nth-child(1) {
+          color: #000;
+        }
+
+        .timeline li:first-child .timeline-label {
+          color: #CC3333; /* Make first label red */
+        }
+
+        .timeline li:after {
+          content: "";
+          position: absolute;
+          width: 0; /* Initial width for animation */
+          height: 2px; /* Make line lightly thicker */
+          background-color: #CC3333;
+          top: calc(50% - 1px);
+          left: -50%;
+          z-index: 0;
+          transition: width 0.7s ease-in-out; /* Animation for width */
+        }
+        .timeline li.line-animated:after {
+          width: 100%; /* Final width after animation */
+        }
+
+        /* New rule for slower animation of the second step's connecting line */
+        .timeline li:nth-child(2).line-animated:after {
+          transition: width 0.5s ease-in-out; /* Increased speed */
+        }
+
+        /* New rule for increased speed of the line between step 2 and step 3 */
+        .timeline li:nth-child(3).line-animated:after {
+          transition: width 0.5s ease-in-out; /* Increased speed for 2nd to 3rd line */
+        }
+
+        .timeline li.no-transition:after {
+          transition: none; /* Disable transition for instant reset */
+        }
+
+        .timeline li:first-child:after {
+          content: none;
+        }
+
+        /* Clear floats */
+        .timeline:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        @media (max-width: 700px) {
+          .container {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 98vw;
+            padding: 0;
           }
-        }
 
-        .roadmap .point .point-text {
-          flex: 1 0 100%;
-          width: 100%;
-          font-size: 12px;
-          color: #111;
-        }
-
-        @media (min-width: 641px) {
-          .roadmap .point .point-text {
-            flex: 1 0 50%;
-            width: 50%;
+          .timeline {
+            margin: 24px 0;
           }
-        }
 
-        /* Highlight active step - keep for visual consistency */
-        .roadmap .point.point-active .point-index {
-          border-color: #ffda79;
-          box-shadow: 0 0 0 4px rgba(255,218,121,0.18);
+          .timeline li {
+            width: 25%;
+            font-size: 0.8rem;
+          }
+
+          .timeline li .timeline-icon {
+            width: 32px;
+            height: 32px;
+            /* line-height: 32px; */
+            /* font-size: 1rem; */
+            border-width: 2px;
+            margin-bottom: 6px;
+            padding: 3px;
+          }
+
+          .timeline li:after {
+            left: -50%;
+            top: calc(50% - 1px);
+            width: 100%;
+            height: 1px;
+          }
         }
       `}</style>
+      
+      <div className="container">
+        <ul className="timeline">
+          {timelineItems.map((item, idx) => (
+            <li
+              key={item.label}
+              className={`${idx <= animatedIndex ? "line-animated" : ""} ${resetting ? "no-transition" : ""}`}
+              style={{}}
+            >
+              <img src={item.icon} alt={item.label} className="timeline-icon" />
+              <div className="timeline-label">{item.label}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
