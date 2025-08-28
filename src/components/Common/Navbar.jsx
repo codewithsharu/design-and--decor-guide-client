@@ -1,4 +1,62 @@
 import React, { useState } from "react";
+import ddglogo from "./ddglogo.png";
+
+// A better icon: a modern chat bubble SVG
+const ChatBubbleIcon = ({ color = "#fff", size = 22 }) => (
+  <span
+    className="chat-bubble-icon"
+    aria-hidden="true"
+    style={{ display: "inline-flex", alignItems: "center", marginRight: 2 }}
+  >
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 22 22"
+      fill="none"
+      style={{ display: "block" }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="2"
+        y="3"
+        width="18"
+        height="13"
+        rx="5"
+        fill={color}
+        stroke="#CD3737"
+        strokeWidth="2"
+      />
+      <ellipse
+        cx="7"
+        cy="9.5"
+        rx="1.2"
+        ry="1.2"
+        fill="#CD3737"
+      />
+      <ellipse
+        cx="11"
+        cy="9.5"
+        rx="1.2"
+        ry="1.2"
+        fill="#CD3737"
+      />
+      <ellipse
+        cx="15"
+        cy="9.5"
+        rx="1.2"
+        ry="1.2"
+        fill="#CD3737"
+      />
+      <path
+        d="M7 16.5C7.5 16.5 8.5 17.5 11 19C13.5 17.5 14.5 16.5 15 16.5"
+        stroke="#CD3737"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  </span>
+);
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,8 +71,11 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  // Define the golden color for the border
-  const goldenColor = "#FFD700";
+  // Colors
+  const primaryColor = "#CD3737"; // Red/Maroon
+  const secondaryColor = "#0082BD"; // Blue/Teal
+  const whiteColor = "#FFFFFF"; // White
+  const blackColor = "#000000"; // Black
 
   return (
     <>
@@ -27,24 +88,23 @@ const Navbar = () => {
           position: "fixed",
           width: "100%",
           zIndex: 1000,
-          background: "transparent",
         }}
       >
-        <nav className="navbar">
+        <nav className="navbar" style={{ backgroundColor: "#fff" }}>
           <div className="navbar-logo">
             <span>
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-                style={{ marginRight: 15, verticalAlign: "middle" }}
-              >
-                <circle cx="12" cy="12" r="10" fill="#222" />
-                <rect x="8" y="10" width="8" height="6" rx="2" fill="#fff" />
-                <rect x="10" y="7" width="4" height="4" rx="1" fill="#fff" />
-              </svg>
-              Logo
+              <img
+                src={ddglogo}
+                alt="Logo"
+                style={{
+                  width: "120px",
+                  height: "auto",
+                  marginRight: "0px",
+                  verticalAlign: "middle",
+                  position: "relative",
+                  zIndex: 1001,
+                }}
+              />
             </span>
           </div>
           <div
@@ -60,11 +120,11 @@ const Navbar = () => {
                     top: menuOpen ? "calc(100% + 10px)" : "-200px",
                     left: 10,
                     right: 10,
-                    backgroundColor: "#111", // black bar on mobile
+                    backgroundColor: whiteColor,
                     boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
                     padding: 20,
                     borderRadius: 40,
-                    border: "1.5px solid #e0e0e0",
+                    border: `1.5px solid ${secondaryColor}`,
                     opacity: menuOpen ? 1 : 0,
                     transition: "all 0.3s cubic-bezier(.4,2,.6,1)",
                     pointerEvents: menuOpen ? "all" : "none",
@@ -76,7 +136,7 @@ const Navbar = () => {
               href="#about"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#F5E6C5" }} // beige
+              style={{ color: blackColor, padding: "8px 12px" }}
             >
               About
             </a>
@@ -84,7 +144,7 @@ const Navbar = () => {
               href="#services"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#F5E6C5" }} // beige
+              style={{ color: blackColor, padding: "8px 12px" }}
             >
               Services
             </a>
@@ -92,37 +152,79 @@ const Navbar = () => {
               href="#gallery"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#F5E6C5" }} // beige
+              style={{ color: blackColor, padding: "8px 12px" }}
             >
               Gallery
             </a>
             <a
-              href="#pricing"
+              href="#contact"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#F5E6C5" }} // beige
+              style={{ color: blackColor, padding: "8px 12px" }}
             >
-              Why choose us?
+              Contact Us
             </a>
-     
-          </div>
-          {/* Show Contact Us as a button on desktop */}
-          {window.innerWidth > 768 && (
-            <button
-              className="navbar-button"
-              style={{
-                backgroundColor: "#111", // black bar
-                color: "#F5E6C5", // beige text
-                border: `2px solid ${goldenColor}`,
-              }}
-            >
+            {window.innerWidth <= 768 && (
               <a
                 href="#contact"
-                style={{ textDecoration: "none", color: "#F5E6C5" }}
+                className="nav-link button-lets-talk"
+                onClick={handleNavLinkClick}
+                style={{
+                  color: whiteColor,
+                  transition: "all 0.3s ease-in-out",
+                  position: "relative",
+                  overflow: "hidden",
+                  zIndex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  fontFamily: "'Sora', 'Inter', 'Work Sans', sans-serif",
+                  fontWeight: 800,
+                  fontSize: "1.13rem",
+                  letterSpacing: "0.02em",
+                  textTransform: "uppercase",
+                  boxShadow: "0 2px 8px 0 rgba(0,0,0,0.08)", /* Very subtle shadow */
+                  background: primaryColor, /* Solid color background */
+                  border: "none",
+                  padding: "12px 32px",
+                  borderRadius: "32px",
+                  marginTop: "12px",
+                }}
               >
-                Contact Us
+                <ChatBubbleIcon color="#fff" size={22} />
+                Let's Talk
               </a>
-            </button>
+            )}
+          </div>
+          {/* Show Let's Talk as a world-class button on desktop */}
+          {window.innerWidth > 768 && (
+            <a
+              href="#contact"
+              className="navbar-button button-lets-talk"
+              style={{
+                textDecoration: "none",
+                color: whiteColor,
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                fontFamily: "'Sora', 'Inter', 'Work Sans', sans-serif",
+                fontWeight: 800,
+                fontSize: "1.1rem", /* Slightly smaller font size */
+                letterSpacing: "0.01em", /* Reduced letter spacing */
+                textTransform: "none", /* No uppercase */
+                background: primaryColor, /* Solid color background */
+                border: "none",
+                padding: "14px 38px",
+                borderRadius: "36px",
+                boxShadow: "0 4px 12px 0 rgba(0,0,0,0.08)", /* Very subtle shadow */
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.2s ease-in-out", /* Simpler transition */
+              }}
+            >
+              <ChatBubbleIcon color="#fff" size={22} />
+              Let's Talk
+            </a>
           )}
           <div
             className="hamburger"
@@ -130,9 +232,9 @@ const Navbar = () => {
               display: window.innerWidth <= 768 ? "block" : "none",
               fontSize: 24,
               cursor: "pointer",
-              color: "#F5E6C5", // beige hamburger
+              color: blackColor,
               marginLeft: 16,
-              marginRight: 16, // Added space to the right
+              marginRight: 16,
               userSelect: "none",
             }}
             onClick={handleHamburgerClick}
@@ -143,6 +245,7 @@ const Navbar = () => {
         </nav>
       </header>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap');
         * {
           margin: 0;
           padding: 0;
@@ -151,50 +254,77 @@ const Navbar = () => {
         .navbar {
           width: 70%;
           max-width: 1100px;
-          background: #111; /* black bar */
+          background: ${whiteColor};
           box-shadow: 0 4px 16px rgba(0,0,0,0.10);
           border-radius: 40px;
-          padding: 10px 28px;
+          padding: 10px 15px;
           display: flex;
           justify-content: space-between;
           align-items: center;
           position: relative;
-          border: 1.5px solid #222;
-          margin: 0 10px;
+          border: 1.5px solid ${secondaryColor};
+          margin: 0 auto;
           min-height: 56px;
         }
         .navbar-logo {
           display: flex;
           align-items: center;
+          height: 100%;
         }
         .navbar-logo span {
-          font-size: 1.15rem;
-          font-weight: 600;
-          color: #F5E6C5; /* beige */
-          font-family: 'Work Sans', 'Inter', sans-serif;
-          letter-spacing: 0.01em;
           display: flex;
           align-items: center;
         }
         .navbar-menu {
           display: flex;
-          gap: 40px;
+          gap: 20px;
+          align-items: center;
         }
         .navbar-menu a {
           text-decoration: none;
-          font-size: 15px;
-          color: #F5E6C5; /* beige */
+          font-size: 16px;
+          color: ${blackColor};
           font-weight: 500;
           font-family: 'Inter', 'Work Sans', sans-serif;
-          transition: color 0.2s;
-          padding: 4px 0;
-          border-radius: 6px;
+          transition: color 0.2s, background-color 0.2s;
+          padding: 8px 12px;
+          border-radius: 0;
+          white-space: nowrap;
+          position: relative;
+          background: none;
+        }
+        .navbar-menu a::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 4px;
+          width: 100%;
+          border-radius: 2px 2px 0 0;
+          background: linear-gradient(90deg, ${secondaryColor} 0%, ${primaryColor} 100%);
+          opacity: 0.85;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.32s cubic-bezier(.4,2,.6,1), opacity 0.2s;
+          pointer-events: none;
+        }
+        .navbar-menu a:hover,
+        .navbar-menu a:focus {
+          color: ${primaryColor};
+          background: none;
+        }
+        .navbar-menu a:hover::after,
+        .navbar-menu a:focus::after {
+          transform: scaleX(1);
+          opacity: 1;
         }
         .navbar-button {
           padding: 8px 28px;
-          background-color: #111; /* black */
-          color: #F5E6C5; /* beige */
-          border: 2px solid #FFD700; /* golden border */
+          background-color: ${primaryColor};
+          color: ${whiteColor};
+          border: 2px solid ${primaryColor};
           border-radius: 30px;
           cursor: pointer;
           font-size: 15px;
@@ -202,23 +332,72 @@ const Navbar = () => {
           font-family: 'Inter', 'Work Sans', sans-serif;
           transition: background 0.2s, color 0.2s;
           box-shadow: 0 2px 8px rgba(34,34,34,0.08);
+          white-space: nowrap;
         }
-          
         .navbar-button:hover {
-          background: #F5E6C5; /* beige */
-          color: #111; /* black */
+          background: ${whiteColor};
+          color: ${primaryColor};
         }
         .navbar-button a {
-          color: #F5E6C5;
+          color: ${whiteColor};
+          text-decoration: none;
         }
         .navbar-button:hover a {
-          color: #111;
+          color: ${primaryColor};
         }
+
+        /* World-class Let's Talk button styles */
+        .button-lets-talk {
+          font-family: 'Sora', 'Inter', 'Work Sans', sans-serif !important;
+          font-weight: 800 !important;
+          font-size: 1.13rem !important;
+          letter-spacing: 0.02em;
+          text-transform: uppercase;
+          background: linear-gradient(90deg, #CD3737 0%, #E06C6C 100%); /* Softer gradient */
+          color: #fff !important;
+          border: none !important;
+          border-radius: 32px !important;
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08); /* Very subtle shadow */
+          padding: 12px 32px !important;
+          display: inline-flex !important;
+          align-items: center;
+          gap: 12px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.25s cubic-bezier(.4,2,.6,1);
+          outline: none;
+        }
+        .button-lets-talk:hover, .button-lets-talk:focus {
+          background: ${secondaryColor}; /* Change background color on hover */
+          color: #fff !important;
+          box-shadow: 0 4px 12px 0 rgba(0,0,0,0.12); /* Slightly more pronounced shadow on hover */
+          transform: translateY(-1px); /* Subtle lift */
+          text-shadow: none;
+        }
+        .button-lets-talk:active {
+          transform: scale(0.98);
+        }
+
+        /* Chat bubble icon style */
+        .chat-bubble-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 2px;
+        }
+        .chat-bubble-icon svg {
+          display: block;
+        }
+
+        .navbar-menu a.button-lets-talk {
+          margin-top: 12px;
+        }
+
         .hamburger {
           display: none;
           font-size: 28px;
           cursor: pointer;
-          color: #F5E6C5; /* beige */
+          color: ${blackColor};
         }
         @media screen and (max-width: 900px) {
           .navbar {
@@ -244,11 +423,11 @@ const Navbar = () => {
             top: -200px;
             left: 10px;
             right: 10px;
-            background-color: #111; /* black bar on mobile */
+            background-color: ${whiteColor};
             box-shadow: 0 4px 16px rgba(0,0,0,0.10);
             padding: 20px;
             border-radius: 40px;
-            border: 1.5px solid #222;
+            border: 1.5px solid ${secondaryColor};
             opacity: 0;
             transition: all 0.3s cubic-bezier(.4,2,.6,1);
             pointer-events: none;
@@ -260,24 +439,10 @@ const Navbar = () => {
           }
           .hamburger {
             display: block;
-            color: #F5E6C5; /* beige */
+            color: ${blackColor};
           }
           .navbar-button {
             display: none;
-          }
-          .navbar-menu .nav-link:last-child {
-            /* Contact Us as menu item on mobile */
-            color: #111 !important;
-            background: #F5E6C5 !important;
-            border-radius: 30px;
-            padding: 8px 28px;
-            font-weight: 600;
-            font-family: 'Inter', 'Work Sans', sans-serif;
-            text-align: center;
-            margin-top: 8px;
-            border: 2px solid #FFD700 !important; /* golden border */
-            box-shadow: 0 2px 8px rgba(34,34,34,0.08);
-            display: inline-block;
           }
         }
       `}</style>
