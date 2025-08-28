@@ -1,0 +1,178 @@
+/* src/pages/Hiw1.css */
+
+.how-it-works-title {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  color: #CC3333; /* Red color for title */
+  font-size: 2.5rem; /* Adjust size */
+}
+
+.how-it-works-description {
+  text-align: center;
+  color: #333333; /* Dark gray for description */
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.portfolio-button {
+  display: block;
+  margin: 0 auto 60px auto;
+  padding: 15px 30px;
+  border: 1px solid #CC3333; /* Red border color */
+  background-color: transparent;
+  color: #CC3333; /* Red text color */
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.portfolio-button:hover {
+  background-color: #CC3333;
+  color: #fff;
+}
+
+.container {
+  width: 1200px;
+  margin: 24px auto;
+  padding-top: 50px; /* Add padding to the top for the new header */
+  background-color: #fff; /* White background for the container */
+}
+
+.timeline {
+  counter-reset: test 0; /* Start counter from 1 */
+  position: relative;
+  padding: 0;
+  margin: 40px 0;
+}
+
+.timeline li {
+  list-style: none;
+  float: left;
+  width: 25%; /* Adjusted for 4 steps */
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px; /* Give some space for labels above/below */
+  padding: 0 5px;
+  color: #333333; /* Dark gray text for timeline items */
+}
+
+.timeline li .timeline-icon {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #3366CC; /* Blue border */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: #fff; /* White background */
+  position: relative;
+  z-index: 2; /* Increased z-index for icons to be above the line */
+  margin-bottom: 10px; /* Space between icon and label */
+  object-fit: contain;
+  padding: 5px; /* Added padding to ensure the icon is visible within the circle */
+}
+
+.timeline li .timeline-label {
+  position: absolute;
+  bottom: -5px; /* Default position below the circle, further adjusted for spacing */
+  width: 100%;
+  line-height: 1.2;
+}
+
+.timeline li:nth-child(even) .timeline-label {
+  top: -5px; /* Move even labels above the circle, further adjusted for spacing */
+  bottom: auto;
+}
+
+ul.timeline:nth-child(1) {
+  color: #000;
+}
+
+.timeline li:first-child .timeline-label {
+  color: #CC3333; /* Make first label red */
+}
+
+.timeline li:after {
+  content: "";
+  position: absolute;
+  width: 0; /* Initial width for animation */
+  height: 2px; /* Make line lightly thicker */
+  background-color: #CC3333; /* Red line */
+  top: calc(50% - 1px);
+  left: -50%; /* Line starts from the middle of the previous li */
+  z-index: 1; /* Ensure line is behind icons */
+  transition: width 0.7s ease-in-out; /* Animation for width */
+}
+.timeline li.line-animated:after {
+  width: 100%; /* Line spans full width of the current li */
+}
+
+/* New rule for slower animation of the second step's connecting line */
+.timeline li:nth-child(2).line-animated:after {
+  transition: width 0.5s ease-in-out; /* Increased speed */
+  /* Reverted specific width adjustment */
+}
+
+/* New rule for increased speed of the line between step 2 and step 3 */
+.timeline li:nth-child(3).line-animated:after {
+  transition: width 0.5s ease-in-out; /* Increased speed for 2nd to 3rd line */
+  /* Reverted specific width adjustment */
+}
+
+.timeline li.no-transition:after {
+  transition: none; /* Disable transition for instant reset */
+}
+
+.timeline li:first-child:after {
+  content: none;
+}
+
+/* Clear floats */
+.timeline:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 98vw;
+    padding: 0;
+  }
+
+  .timeline {
+    margin: 24px 0;
+  }
+
+  .timeline li {
+    width: 25%;
+    font-size: 0.8rem;
+  }
+
+  .timeline li .timeline-icon {
+    width: 32px;
+    height: 32px;
+    border-width: 2px;
+    margin-bottom: 6px;
+    padding: 3px;
+  }
+
+  .timeline li:after {
+    left: -50%;
+    top: calc(50% - 1px);
+    width: 100%;
+    height: 1px;
+  }
+}

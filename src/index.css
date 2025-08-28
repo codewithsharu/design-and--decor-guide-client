@@ -1,3 +1,7 @@
+body {
+  background-color: #fff; /* Global white background */
+}
+
 /* ./src/index.css */
 @tailwind base;
 @tailwind components;
