@@ -24,7 +24,7 @@ export default function Hiw1() {
           alt="Roadmap"
           className="hiw1-roadmap-img"
           style={{
-            width: "75%",
+            width: "80%",
             maxWidth: "900px",
             minWidth: "240px",
             height: "auto",
