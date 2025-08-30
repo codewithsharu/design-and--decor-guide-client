@@ -659,7 +659,6 @@ export default function ContactUs() {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             background: ${theme.cardBackground};
             padding: 20px !important; /* Adjusted padding for better containment */
-            min-height: 600px !important; /* Increased height for mobile */
           }
 
 
@@ -722,8 +721,6 @@ export default function ContactUs() {
           }
         }
       `}</style>
-
-      <br /><br /><br /> <br /><br /><br />
     </div>
   );
 }

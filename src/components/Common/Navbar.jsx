@@ -78,7 +78,7 @@ const Navbar = () => {
           display: "flex",
           alignItems: "center",
           position: "fixed",
-          top: 0,
+          top: 20, /* Adjusted to create space above the navigation bar */
           width: "100%",
           zIndex: 1000,
           left: 0,
