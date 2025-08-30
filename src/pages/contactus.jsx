@@ -67,8 +67,8 @@ export default function ContactUs() {
 
   return (
     <div className="contact-page-container">
-      <br />
-      <br />
+      
+      
       <h1 className="contact-title">Get in Touch</h1>
       <h2 className="contact-subtitle">Let's Chat, Reach Out to Us</h2>
       <p className="contact-desc">
@@ -204,7 +204,7 @@ export default function ContactUs() {
         .contact-page-container {
           font-family: 'Poppins', sans-serif;
           background-color: ${theme.lightBlue};
-          padding: 80px 20px;
+          padding: 80px 20px; /* Reverted to original padding */
           min-height: 100vh;
           display: flex;
           flex-direction: column;
@@ -458,7 +458,7 @@ export default function ContactUs() {
             padding: 24px !important; /* Adjusted padding for smaller screens */
           }
           .contact-page-container {
-            padding: 40px 8px;
+            padding: 40px 8px; /* Reverted to original padding */
           }
           .contact-img-wrap {
             max-width: 300px; /* Limit max width on tablet */
@@ -484,7 +484,7 @@ export default function ContactUs() {
         }
         @media (max-width: 600px) {
           .contact-page-container {
-            padding: 20px 2vw;
+            padding: 20px 2vw; /* Reverted to original padding */
           }
           .contact-title {
             font-size: 22px !important;
@@ -558,6 +558,11 @@ export default function ContactUs() {
           }
         }
       `}</style>
+      <br />
+      <br />
+      <br />
+      <br />
+      
     </div>
   );
 }

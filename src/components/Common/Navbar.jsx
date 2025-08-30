@@ -77,8 +77,8 @@ const Navbar = () => {
         style={{
           display: "flex",
           alignItems: "center",
-          marginTop: "2em",
-          position: "fixed",
+          position: "sticky",
+          top: 0, /* Added to make the sticky header stick to the top */
           width: "100%",
           zIndex: 1000,
         }}

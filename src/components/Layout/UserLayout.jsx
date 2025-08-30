@@ -24,7 +24,7 @@ const UserLayout = () => {
         <Header/>
         
         {/* Main content */}
-        <main>
+        <main> {/* Removed padding-top as header is now sticky */}
           <Outlet/>
         </main>
         {/* Footer */}
