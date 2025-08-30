@@ -71,18 +71,11 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  // Colors
-  const primaryColor = "#CD3737"; // Red/Maroon
-  const secondaryColor = "#0082BD"; // Blue/Teal
-  const whiteColor = "#FFFFFF"; // White
-  const blackColor = "#000000"; // Black
-
   return (
     <>
       <header
         style={{
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
           marginTop: "2em",
           position: "fixed",
@@ -90,19 +83,22 @@ const Navbar = () => {
           zIndex: 1000,
         }}
       >
-        <nav className="navbar" style={{ backgroundColor: "#fff" }}>
+        <nav className="navbar" style={{ backgroundColor: "#FFFFFF" }}>
           <div className="navbar-logo">
             <span>
               <img
                 src={ddglogo}
                 alt="Logo"
+                className="navbar-logo-img"
                 style={{
-                  width: "120px",
+                  width: "96px",
                   height: "auto",
                   marginRight: "0px",
                   verticalAlign: "middle",
                   position: "relative",
                   zIndex: 1001,
+                  maxHeight: "78px",
+                  objectFit: "contain",
                 }}
               />
             </span>
@@ -120,11 +116,11 @@ const Navbar = () => {
                     top: menuOpen ? "calc(100% + 10px)" : "-200px",
                     left: 10,
                     right: 10,
-                    backgroundColor: whiteColor,
+                    backgroundColor: "#FFFFFF",
                     boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
                     padding: 20,
                     borderRadius: 40,
-                    border: `1.5px solid ${secondaryColor}`,
+                    border: `1.5px solid #8B0000`,
                     opacity: menuOpen ? 1 : 0,
                     transition: "all 0.3s cubic-bezier(.4,2,.6,1)",
                     pointerEvents: menuOpen ? "all" : "none",
@@ -136,7 +132,7 @@ const Navbar = () => {
               href="#about"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: blackColor, padding: "8px 12px" }}
+              style={{ color: "#000000", padding: "8px 12px" }}
             >
               About
             </a>
@@ -144,7 +140,7 @@ const Navbar = () => {
               href="#services"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: blackColor, padding: "8px 12px" }}
+              style={{ color: "#000000", padding: "8px 12px" }}
             >
               Services
             </a>
@@ -152,7 +148,7 @@ const Navbar = () => {
               href="#gallery"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: blackColor, padding: "8px 12px" }}
+              style={{ color: "#000000", padding: "8px 12px" }}
             >
               Gallery
             </a>
@@ -160,7 +156,7 @@ const Navbar = () => {
               href="#contact"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: blackColor, padding: "8px 12px" }}
+              style={{ color: "#000000", padding: "8px 12px" }}
             >
               Contact Us
             </a>
@@ -170,7 +166,7 @@ const Navbar = () => {
                 className="nav-link button-lets-talk"
                 onClick={handleNavLinkClick}
                 style={{
-                  color: whiteColor,
+                  color: "#FFFFFF",
                   transition: "all 0.3s ease-in-out",
                   position: "relative",
                   overflow: "hidden",
@@ -184,7 +180,7 @@ const Navbar = () => {
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
                   boxShadow: "0 2px 8px 0 rgba(0,0,0,0.08)", /* Very subtle shadow */
-                  background: primaryColor, /* Solid color background */
+                  background: "#CD3737", /* Solid color background */
                   border: "none",
                   padding: "12px 32px",
                   borderRadius: "32px",
@@ -203,7 +199,7 @@ const Navbar = () => {
               className="navbar-button button-lets-talk"
               style={{
                 textDecoration: "none",
-                color: whiteColor,
+                color: "#FFFFFF",
                 display: "flex",
                 alignItems: "center",
                 gap: "14px",
@@ -212,7 +208,7 @@ const Navbar = () => {
                 fontSize: "1.1rem", /* Slightly smaller font size */
                 letterSpacing: "0.01em", /* Reduced letter spacing */
                 textTransform: "none", /* No uppercase */
-                background: primaryColor, /* Solid color background */
+                background: "#CD3737", /* Solid color background */
                 border: "none",
                 padding: "14px 38px",
                 borderRadius: "36px",
@@ -232,7 +228,7 @@ const Navbar = () => {
               display: window.innerWidth <= 768 ? "block" : "none",
               fontSize: 24,
               cursor: "pointer",
-              color: blackColor,
+              color: "#000000",
               marginLeft: 16,
               marginRight: 16,
               userSelect: "none",
@@ -254,7 +250,7 @@ const Navbar = () => {
         .navbar {
           width: 70%;
           max-width: 1100px;
-          background: ${whiteColor};
+          background: #FFFFFF;
           box-shadow: 0 4px 16px rgba(0,0,0,0.10);
           border-radius: 40px;
           padding: 10px 15px;
@@ -262,7 +258,7 @@ const Navbar = () => {
           justify-content: space-between;
           align-items: center;
           position: relative;
-          border: 1.5px solid ${secondaryColor};
+          border: 1.5px solid #8B0000;
           margin: 0 auto;
           min-height: 56px;
         }
@@ -270,10 +266,22 @@ const Navbar = () => {
           display: flex;
           align-items: center;
           height: 100%;
+          padding-left: 15px; /* Added for space on left of logo */
         }
         .navbar-logo span {
           display: flex;
           align-items: center;
+        }
+        .navbar-logo-img {
+          width: 96px;
+          max-height: 78px;
+          transition: width 0.2s, max-height 0.2s;
+        }
+        @media screen and (max-width: 768px) {
+          .navbar-logo-img {
+            width: 54px !important;
+            max-height: 44px !important;
+          }
         }
         .navbar-menu {
           display: flex;
@@ -283,7 +291,7 @@ const Navbar = () => {
         .navbar-menu a {
           text-decoration: none;
           font-size: 16px;
-          color: ${blackColor};
+          color: #000000;
           font-weight: 500;
           font-family: 'Inter', 'Work Sans', sans-serif;
           transition: color 0.2s, background-color 0.2s;
@@ -293,38 +301,12 @@ const Navbar = () => {
           position: relative;
           background: none;
         }
-        .navbar-menu a::after {
-          content: "";
-          display: block;
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 4px;
-          width: 100%;
-          border-radius: 2px 2px 0 0;
-          background: linear-gradient(90deg, ${secondaryColor} 0%, ${primaryColor} 100%);
-          opacity: 0.85;
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.32s cubic-bezier(.4,2,.6,1), opacity 0.2s;
-          pointer-events: none;
-        }
-        .navbar-menu a:hover,
-        .navbar-menu a:focus {
-          color: ${primaryColor};
-          background: none;
-        }
-        .navbar-menu a:hover::after,
-        .navbar-menu a:focus::after {
-          transform: scaleX(1);
-          opacity: 1;
-        }
+
         .navbar-button {
           padding: 8px 28px;
-          background-color: ${primaryColor};
-          color: ${whiteColor};
-          border: 2px solid ${primaryColor};
+          background-color: #CD3737;
+          color: #FFFFFF;
+          border: none;
           border-radius: 30px;
           cursor: pointer;
           font-size: 15px;
@@ -335,15 +317,15 @@ const Navbar = () => {
           white-space: nowrap;
         }
         .navbar-button:hover {
-          background: ${whiteColor};
-          color: ${primaryColor};
+          background: #FFFFFF;
+          color: #CD3737;
         }
         .navbar-button a {
-          color: ${whiteColor};
+          color: #FFFFFF;
           text-decoration: none;
         }
         .navbar-button:hover a {
-          color: ${primaryColor};
+          color: #CD3737;
         }
 
         /* World-class Let's Talk button styles */
@@ -353,8 +335,8 @@ const Navbar = () => {
           font-size: 1.13rem !important;
           letter-spacing: 0.02em;
           text-transform: uppercase;
-          background: linear-gradient(90deg, #CD3737 0%, #E06C6C 100%); /* Softer gradient */
-          color: #fff !important;
+          background: linear-gradient(90deg, #CD3737 0%, #8B0000 100%); /* Softer gradient */
+          color: #FFFFFF !important;
           border: none !important;
           border-radius: 32px !important;
           box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08); /* Very subtle shadow */
@@ -368,10 +350,10 @@ const Navbar = () => {
           outline: none;
         }
         .button-lets-talk:hover, .button-lets-talk:focus {
-          background: ${secondaryColor}; /* Change background color on hover */
-          color: #fff !important;
+          background: #8B0000; /* Change background color on hover */
+          color: #FFFFFF !important;
           box-shadow: 0 4px 12px 0 rgba(0,0,0,0.12); /* Slightly more pronounced shadow on hover */
-          transform: translateY(-1px); /* Subtle lift */
+          transform: translateY(-1px);
           text-shadow: none;
         }
         .button-lets-talk:active {
@@ -393,11 +375,39 @@ const Navbar = () => {
           margin-top: 12px;
         }
 
+        .navbar-menu a::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 4px;
+          width: 100%;
+          border-radius: 2px 2px 0 0;
+          background: linear-gradient(90deg, #8B0000 0%, #CD3737 100%);
+          opacity: 0.85;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.32s cubic-bezier(.4,2,.6,1), opacity 0.2s;
+          pointer-events: none;
+        }
+        .navbar-menu a:hover,
+        .navbar-menu a:focus {
+          color: #CD3737;
+          background: none;
+        }
+        .navbar-menu a:hover::after,
+        .navbar-menu a:focus::after {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+
         .hamburger {
           display: none;
           font-size: 28px;
           cursor: pointer;
-          color: ${blackColor};
+          color: #000000;
         }
         @media screen and (max-width: 900px) {
           .navbar {
@@ -423,11 +433,11 @@ const Navbar = () => {
             top: -200px;
             left: 10px;
             right: 10px;
-            background-color: ${whiteColor};
+            background-color: #FFFFFF;
             box-shadow: 0 4px 16px rgba(0,0,0,0.10);
             padding: 20px;
             border-radius: 40px;
-            border: 1.5px solid ${secondaryColor};
+            border: 1.5px solid #8B0000;
             opacity: 0;
             transition: all 0.3s cubic-bezier(.4,2,.6,1);
             pointer-events: none;
@@ -439,10 +449,7 @@ const Navbar = () => {
           }
           .hamburger {
             display: block;
-            color: ${blackColor};
-          }
-          .navbar-button {
-            display: none;
+            color: #000000;
           }
         }
       `}</style>
