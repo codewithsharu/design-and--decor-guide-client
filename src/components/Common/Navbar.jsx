@@ -153,7 +153,7 @@ const Navbar = () => {
               Gallery
             </a>
             <a
-              href="#contact"
+              href="/contactus"
               className="nav-link"
               onClick={handleNavLinkClick}
               style={{ color: "#000000", padding: "8px 12px" }}
@@ -195,7 +195,7 @@ const Navbar = () => {
           {/* Show Let's Talk as a world-class button on desktop */}
           {window.innerWidth > 768 && (
             <a
-              href="#contact"
+              href="/contactus"
               className="navbar-button button-lets-talk"
               style={{
                 textDecoration: "none",

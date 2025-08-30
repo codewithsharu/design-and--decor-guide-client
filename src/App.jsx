@@ -37,6 +37,9 @@ import Gallery from "./pages/gallery";
 // Import the ServicesById page
 import ServicesById from "./pages/servicesbyid";
 
+// Import the ContactUs page from pages/contactus.jsx
+import ContactUsPage from "./pages/contactus";
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -69,6 +72,9 @@ const App = () => {
             {/* Render the ServicesById page at /servicesbyid */}
             <Route path="/servicesbyid" element={<ServicesById />} />
             <Route path="/servicesbyid/:id" element={<ServicesById />} />
+
+            {/* Add route for ContactUs page from pages/contactus.jsx */}
+            <Route path="/contactus" element={<ContactUsPage />} />
           </Route>
 
           {/* Admin Routes - Fixed */}
