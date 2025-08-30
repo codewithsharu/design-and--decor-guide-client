@@ -77,13 +77,25 @@ const Navbar = () => {
         style={{
           display: "flex",
           alignItems: "center",
-          position: "sticky",
-          top: 0, /* Added to make the sticky header stick to the top */
+          position: "fixed",
+          top: 0,
           width: "100%",
           zIndex: 1000,
+          left: 0,
+          right: 0,
+          background: "transparent",
+          pointerEvents: "none", 
+          // Make header not block pointer events for underlying content
         }}
       >
-        <nav className="navbar" style={{ backgroundColor: "#FFFFFF" }}>
+        <nav
+          className="navbar"
+          style={{
+            backgroundColor: "#FFFFFF",
+            pointerEvents: "auto", // Allow nav to be interactive
+            margin: "0 auto",
+          }}
+        >
           <div className="navbar-logo">
             <span>
               <img
@@ -179,8 +191,8 @@ const Navbar = () => {
                   fontSize: "1.13rem",
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
-                  boxShadow: "0 2px 8px 0 rgba(0,0,0,0.08)", /* Very subtle shadow */
-                  background: "#CD3737", /* Solid color background */
+                  boxShadow: "0 2px 8px 0 rgba(0,0,0,0.08)",
+                  background: "#CD3737",
                   border: "none",
                   padding: "12px 32px",
                   borderRadius: "32px",
@@ -205,17 +217,17 @@ const Navbar = () => {
                 gap: "14px",
                 fontFamily: "'Sora', 'Inter', 'Work Sans', sans-serif",
                 fontWeight: 800,
-                fontSize: "1.1rem", /* Slightly smaller font size */
-                letterSpacing: "0.01em", /* Reduced letter spacing */
-                textTransform: "none", /* No uppercase */
-                background: "#CD3737", /* Solid color background */
+                fontSize: "1.1rem",
+                letterSpacing: "0.01em",
+                textTransform: "none",
+                background: "#CD3737",
                 border: "none",
                 padding: "14px 38px",
                 borderRadius: "36px",
-                boxShadow: "0 4px 12px 0 rgba(0,0,0,0.08)", /* Very subtle shadow */
+                boxShadow: "0 4px 12px 0 rgba(0,0,0,0.08)",
                 position: "relative",
                 overflow: "hidden",
-                transition: "all 0.2s ease-in-out", /* Simpler transition */
+                transition: "all 0.2s ease-in-out",
               }}
             >
               <ChatBubbleIcon color="#fff" size={22} />
@@ -261,12 +273,13 @@ const Navbar = () => {
           border: 1.5px solid #8B0000;
           margin: 0 auto;
           min-height: 56px;
+          pointer-events: auto;
         }
         .navbar-logo {
           display: flex;
           align-items: center;
           height: 100%;
-          padding-left: 15px; /* Added for space on left of logo */
+          padding-left: 15px;
         }
         .navbar-logo span {
           display: flex;
@@ -335,11 +348,11 @@ const Navbar = () => {
           font-size: 1.13rem !important;
           letter-spacing: 0.02em;
           text-transform: uppercase;
-          background: linear-gradient(90deg, #CD3737 0%, #8B0000 100%); /* Softer gradient */
+          background: linear-gradient(90deg, #CD3737 0%, #8B0000 100%);
           color: #FFFFFF !important;
           border: none !important;
           border-radius: 32px !important;
-          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08); /* Very subtle shadow */
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
           padding: 12px 32px !important;
           display: inline-flex !important;
           align-items: center;
@@ -350,9 +363,9 @@ const Navbar = () => {
           outline: none;
         }
         .button-lets-talk:hover, .button-lets-talk:focus {
-          background: #8B0000; /* Change background color on hover */
+          background: #8B0000;
           color: #FFFFFF !important;
-          box-shadow: 0 4px 12px 0 rgba(0,0,0,0.12); /* Slightly more pronounced shadow on hover */
+          box-shadow: 0 4px 12px 0 rgba(0,0,0,0.12);
           transform: translateY(-1px);
           text-shadow: none;
         }
@@ -451,6 +464,10 @@ const Navbar = () => {
             display: block;
             color: #000000;
           }
+        }
+        /* Remove body padding-top so navbar does not occupy any space */
+        body {
+          padding-top: 0 !important;
         }
       `}</style>
     </>
