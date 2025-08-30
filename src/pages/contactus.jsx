@@ -175,26 +175,170 @@ export default function ContactUs() {
               className="contact-img"
             />
           </div>
-          <div className="contact-details">
+          <div className="contact-details mobile-optimized-details">
             <h3>Our Details</h3>
-            <div className="detail-card">
-              <div className="detail-icon-row">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 15, color: theme.primary }}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                <div>
-                  <h4>Email Us:</h4>
-                  <p>techteam@kawruh.com</p>
+            <div className="details-list">
+              <div className="detail-card">
+                <div className="detail-icon-row">
+                  <span className="detail-icon-wrap">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="detail-icon"
+                      style={{ color: theme.primary }}
+                    >
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </span>
+                  <div className="detail-texts">
+                    <span className="detail-label">Email Us:</span>
+                    <span className="detail-value">techteam@kawruh.com</span>
+                  </div>
+                </div>
+              </div>
+              <div className="detail-card">
+                <div className="detail-icon-row">
+                  <span className="detail-icon-wrap">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="detail-icon"
+                      style={{ color: theme.primary }}
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.67-2.94 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.57 9.91 5.06 14.39 10.9 14.9 1.43.23 2.5 1.48 2.5 2.92z"></path>
+                    </svg>
+                  </span>
+                  <div className="detail-texts">
+                    <span className="detail-label">Call Us:</span>
+                    <span className="detail-value">(0252) 8324 9231</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="detail-card">
-              <div className="detail-icon-row">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 15, color: theme.primary }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.67-2.94 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.57 9.91 5.06 14.39 10.9 14.9 1.43.23 2.5 1.48 2.5 2.92z"></path></svg>
-                <div>
-                  <h4>Call Us:</h4>
-                  <p>(0252) 8324 9231</p>
-                </div>
-              </div>
-            </div>
+            <style>{`
+              .mobile-optimized-details {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 0;
+                margin-top: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+              .details-list {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+              }
+              .detail-card {
+                background: ${theme.cardBackground};
+                border-radius: 12px;
+                padding: 12px 14px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+                width: 100%;
+                max-width: 350px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 60px;
+                transition: min-height 0.2s;
+              }
+              .detail-icon-row {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                gap: 10px;
+              }
+              .detail-icon-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 28px;
+                min-height: 28px;
+                background: ${theme.lightBlue};
+                border-radius: 50%;
+                padding: 4px;
+              }
+              .detail-icon {
+                display: block;
+                width: 20px;
+                height: 20px;
+              }
+              .detail-texts {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                width: 100%;
+              }
+              .detail-label {
+                font-size: 14px;
+                font-weight: 600;
+                color: ${theme.dark};
+                margin-bottom: 2px;
+                line-height: 1.1;
+              }
+              .detail-value {
+                font-size: 13px;
+                color: ${theme.text};
+                word-break: break-all;
+                line-height: 1.2;
+              }
+              @media (max-width: 600px) {
+                .mobile-optimized-details {
+                  padding: 0 0 !important;
+                  margin-top: 10px !important;
+                  align-items: stretch;
+                }
+                .details-list {
+                  gap: 8px !important;
+                  align-items: stretch;
+                }
+                .detail-card {
+                  padding: 12px 8px !important;
+                  border-radius: 10px !important;
+                  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+                  max-width: 100% !important;
+                  min-width: 0 !important;
+                  min-height: 90px !important; /* Increased height for mobile */
+                }
+                .detail-icon-row {
+                  gap: 8px !important;
+                }
+                .detail-icon-wrap {
+                  min-width: 24px !important;
+                  min-height: 24px !important;
+                  padding: 2px !important;
+                }
+                .detail-icon {
+                  width: 16px !important;
+                  height: 16px !important;
+                }
+                .detail-label {
+                  font-size: 12px !important;
+                }
+                .detail-value {
+                  font-size: 11px !important;
+                }
+              }
+            `}</style>
           </div>
         </div>
       </div>
@@ -514,10 +658,14 @@ export default function ContactUs() {
             border-radius: 15px !important; /* Adjusted border-radius */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             background: ${theme.cardBackground};
-            padding: 16px !important;
+            padding: 20px !important; /* Adjusted padding for better containment */
+            min-height: 600px !important; /* Increased height for mobile */
           }
+
+
+          
           .form-title, .contact-details h3 {
-            font-size: 16px !important;
+            font-size: 14px !important; /* Reduced font size for mobile */
           }
           .input-row {
             flex-direction: column;
@@ -547,22 +695,35 @@ export default function ContactUs() {
             height: 100%;
             object-fit: contain; /* Changed from cover to contain */
           }
+          .contact-details {
+            padding: 0 5px; /* Adjusted padding for contact details */
+            margin-top: 15px; /* Adjusted margin-top for better spacing */
+          }
           .detail-card {
-            padding: 10px 8px 10px 6px;
+            padding: 12px; /* Adjusted padding for better fit */
+            margin-bottom: 10px; /* Adjusted margin for better spacing */
+            min-height: 80px; /* Added min-height to prevent content overflow */
+          }
+          .detail-icon-row {
+            flex-wrap: wrap; /* Added to allow items to wrap */
+            justify-content: center; /* Center items when wrapped */
+            text-align: center; /* Center text when wrapped */
+          }
+          .detail-icon-row h4,
+          .detail-icon-row p {
+            text-align: center; /* Ensure text is centered when wrapped */
+            width: 100%; /* Allow text to take full width */
           }
           .detail-icon-row h4 {
-            font-size: 13px !important;
+            font-size: 12px !important; /* Adjusted for even smaller screens */
           }
           .detail-icon-row p {
-            font-size: 12px !important;
+            font-size: 9px !important; /* Further reduced font size for mobile */
           }
         }
       `}</style>
-      <br />
-      <br />
-      <br />
-      <br />
-      
+
+      <br /><br /><br /> <br /><br /><br />
     </div>
   );
 }
