@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from '../Common/Header';
 import Footer from '../Common/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -6,8 +6,8 @@ import Navbar from '../Common/Navbar';
 
 const UserLayout = () => {
   const location = useLocation();
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
+  const [isShrunk, setIsShrunk] = useState(false);
 
   // Scroll to top button logic
   const scrollToTop = () => {
@@ -17,22 +17,19 @@ const UserLayout = () => {
     });
   };
 
-  // Detect scroll for navbar visibility
+  // Detect scroll for navbar shrink/expand
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        // Scrolling down → hide navbar
-        setShowNavbar(false);
-      } else {
-        // Scrolling up → show navbar
-        setShowNavbar(true);
-      }
-      setLastScrollY(window.scrollY);
+      const previousY = lastScrollYRef.current;
+      const currentY = window.scrollY;
+      const scrollingDown = currentY > previousY;
+      setIsShrunk(scrollingDown && currentY > 10);
+      lastScrollYRef.current = currentY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Check if on contactus page
   const isContactUsPage = location.pathname === '/contactus';
@@ -42,17 +39,13 @@ const UserLayout = () => {
       {/* Header */}
       <Header/>
 
-      {/* Navbar (sticky + scroll hide/show) */}
-      <div
-        className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
-          showNavbar ? 'translate-y-0' : '-translate-y-full'
-        }`}
-      >
-        <Navbar />
+      {/* Navbar (sticky, shrinks on scroll down) */}
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Navbar isShrunk={isShrunk} />
       </div>
 
-      {/* Push content below navbar */}
-      <div className="pt-16">
+      {/* Content sits flush under fixed navbar (no extra gap) */}
+      <div className="pt-0">
         <main>
           <Outlet />
         </main>

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import ddglogo from "./ddglogo.png";
 
-
-
-
 // A better icon: a modern chat bubble SVG
 const ChatBubbleIcon = ({ color = "#fff", size = 22 }) => (
   <span
@@ -61,7 +58,7 @@ const ChatBubbleIcon = ({ color = "#fff", size = 22 }) => (
   </span>
 );
 
-const Navbar = () => {
+const Navbar = ({ isShrunk = false }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Handles hamburger click
@@ -80,7 +77,7 @@ const Navbar = () => {
         style={{
           display: "flex",
           alignItems: "center",
-          position: "fixed",
+          position: "relative",
           /* Adjusted to create space above the navigation bar */
           width: "100%",
           zIndex: 1000,
@@ -92,11 +89,13 @@ const Navbar = () => {
         }}
       >
         <nav
-          className="navbar"
+          className={`navbar${isShrunk ? " shrink" : ""}`}
           style={{
             backgroundColor: "#FFFFFF",
             pointerEvents: "auto", // Allow nav to be interactive
             margin: "0 auto",
+            minHeight: isShrunk ? "60px" : "100px",
+            transition: "min-height 0.3s ease",
           }}
         >
           <div className="navbar-logo">
@@ -106,14 +105,15 @@ const Navbar = () => {
                 alt="Logo"
                 className="navbar-logo-img"
                 style={{
-                  width: "96px",
+                  width: isShrunk ? "70px" : "96px",
                   height: "auto",
                   marginRight: "0px",
                   verticalAlign: "middle",
                   position: "relative",
                   zIndex: 1001,
-                  maxHeight: "78px",
+                  maxHeight: isShrunk ? "50px" : "78px",
                   objectFit: "contain",
+                  transition: "width 0.2s, max-height 0.2s",
                 }}
               />
             </span>
@@ -144,10 +144,18 @@ const Navbar = () => {
             }
           >
             <a
+              href="/"
+              className="nav-link home-link"
+              onClick={handleNavLinkClick}
+              style={{ padding: "8px 12px" }}
+            >
+              Home
+            </a>
+            <a
               href="#about"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#000000", padding: "8px 12px" }}
+              style={{ padding: "8px 12px" }}
             >
               About
             </a>
@@ -155,7 +163,7 @@ const Navbar = () => {
               href="#services"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#000000", padding: "8px 12px" }}
+              style={{ padding: "8px 12px" }}
             >
               Services
             </a>
@@ -163,7 +171,7 @@ const Navbar = () => {
               href="#gallery"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#000000", padding: "8px 12px" }}
+              style={{ padding: "8px 12px" }}
             >
               Gallery
             </a>
@@ -171,7 +179,7 @@ const Navbar = () => {
               href="/contactus"
               className="nav-link"
               onClick={handleNavLinkClick}
-              style={{ color: "#000000", padding: "8px 12px" }}
+              style={{ padding: "8px 12px" }}
             >
               Contact Us
             </a>
@@ -207,27 +215,20 @@ const Navbar = () => {
         .navbar {
   width: 100%;
   max-width: 100%;
-  background: #FFFFFF;
+  background: red;
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
   border-radius: 0;
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;        /* make it stick to top */
-  top: 0;
-  left: 0;
-  right: 0;
-  border: 1.5px solid #fff;
+  position: relative;
   min-height: 100px;
   pointer-events: auto;
   transition: min-height 0.3s ease;  /* smooth shrinking */
   z-index: 1000;
 }
 
-.navbar.shrink {
-  min-height: 60px;       /* shrink height */
-}
         .navbar-logo {
           display: flex;
           align-items: center;
@@ -252,20 +253,34 @@ const Navbar = () => {
         .navbar-menu {
           display: flex;
           gap: 20px;
+          --nav-gap: 20px;
           align-items: center;
         }
         .navbar-menu a {
           text-decoration: none;
-          font-size: 16px;
+          font-size: 15px;
           color: #000000;
-          font-weight: 500;
+          font-weight: 800;
           font-family: 'Inter', 'Work Sans', sans-serif;
-          transition: color 0.2s, background-color 0.2s;
-          padding: 8px 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.28em;
+          transition: color 0.25s ease, opacity 0.25s ease;
+          padding: 14px 28px;
           border-radius: 0;
           white-space: nowrap;
           position: relative;
           background: none;
+        }
+        /* Vertical divider between nav items - centered between links */
+        .navbar-menu a.nav-link:not(:first-child)::before {
+          content: "";
+          position: absolute;
+          left: calc(var(--nav-gap) / -2);
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 18px;
+          background: rgba(0,0,0,0.15);
         }
 
         .navbar-button {
@@ -341,32 +356,15 @@ const Navbar = () => {
           margin-top: 12px;
         }
 
-        .navbar-menu a::after {
-          content: "";
-          display: block;
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 4px;
-          width: 100%;
-          border-radius: 2px 2px 0 0;
-          background: linear-gradient(90deg, #8B0000 0%, #CD3737 100%);
-          opacity: 0.85;
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.32s cubic-bezier(.4,2,.6,1), opacity 0.2s;
-          pointer-events: none;
-        }
+        /* Disable previous underline animation for a clean, segmented look */
+        .navbar-menu a::after { display: none; }
         .navbar-menu a:hover,
         .navbar-menu a:focus {
-          color: #CD3737;
+          color: #0ea5e9; /* sky blue */
           background: none;
         }
-        .navbar-menu a:hover::after,
-        .navbar-menu a:focus::after {
-          transform: scaleX(1);
-          opacity: 1;
+        .navbar-menu a.home-link {
+          color: #0ea5e9; /* sky blue for Home */
         }
 
         .hamburger {
@@ -382,6 +380,7 @@ const Navbar = () => {
   }
   .navbar-menu {
     gap: 18px;
+    --nav-gap: 18px;
   }
 }
 
@@ -397,6 +396,7 @@ const Navbar = () => {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    --nav-gap: 10px;
     position: absolute;
     top: -200px;
     left: 10px;
@@ -410,6 +410,8 @@ const Navbar = () => {
     transition: all 0.3s cubic-bezier(.4,2,.6,1);
     pointer-events: none;
   }
+  /* Hide vertical dividers on mobile */
+  .navbar-menu a.nav-link::before { display: none !important; }
   .navbar-menu.active {
     top: calc(100% + 10px);
     opacity: 1;
