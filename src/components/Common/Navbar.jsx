@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import ddglogo from "./ddglogo.png";
 
+
+
+
 // A better icon: a modern chat bubble SVG
 const ChatBubbleIcon = ({ color = "#fff", size = 22 }) => (
   <span
@@ -78,7 +81,7 @@ const Navbar = () => {
           display: "flex",
           alignItems: "center",
           position: "fixed",
-          top: 20, /* Adjusted to create space above the navigation bar */
+          /* Adjusted to create space above the navigation bar */
           width: "100%",
           zIndex: 1000,
           left: 0,
@@ -172,68 +175,10 @@ const Navbar = () => {
             >
               Contact Us
             </a>
-            {window.innerWidth <= 768 && (
-              <a
-                href="#contact"
-                className="nav-link button-lets-talk"
-                onClick={handleNavLinkClick}
-                style={{
-                  color: "#FFFFFF",
-                  transition: "all 0.3s ease-in-out",
-                  position: "relative",
-                  overflow: "hidden",
-                  zIndex: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  fontFamily: "'Sora', 'Inter', 'Work Sans', sans-serif",
-                  fontWeight: 800,
-                  fontSize: "1.13rem",
-                  letterSpacing: "0.02em",
-                  textTransform: "uppercase",
-                  boxShadow: "0 2px 8px 0 rgba(0,0,0,0.08)",
-                  background: "#CD3737",
-                  border: "none",
-                  padding: "12px 32px",
-                  borderRadius: "32px",
-                  marginTop: "12px",
-                }}
-              >
-                <ChatBubbleIcon color="#fff" size={22} />
-                Let's Talk
-              </a>
-            )}
+            
           </div>
           {/* Show Let's Talk as a world-class button on desktop */}
-          {window.innerWidth > 768 && (
-            <a
-              href="/contactus"
-              className="navbar-button button-lets-talk"
-              style={{
-                textDecoration: "none",
-                color: "#FFFFFF",
-                display: "flex",
-                alignItems: "center",
-                gap: "14px",
-                fontFamily: "'Sora', 'Inter', 'Work Sans', sans-serif",
-                fontWeight: 800,
-                fontSize: "1.1rem",
-                letterSpacing: "0.01em",
-                textTransform: "none",
-                background: "#CD3737",
-                border: "none",
-                padding: "14px 38px",
-                borderRadius: "36px",
-                boxShadow: "0 4px 12px 0 rgba(0,0,0,0.08)",
-                position: "relative",
-                overflow: "hidden",
-                transition: "all 0.2s ease-in-out",
-              }}
-            >
-              <ChatBubbleIcon color="#fff" size={22} />
-              Let's Talk
-            </a>
-          )}
+          
           <div
             className="hamburger"
             style={{
@@ -260,21 +205,29 @@ const Navbar = () => {
           box-sizing: border-box;
         }
         .navbar {
-          width: 70%;
-          max-width: 1100px;
-          background: #FFFFFF;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-          border-radius: 40px;
-          padding: 10px 15px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: relative;
-          border: 1.5px solid #8B0000;
-          margin: 0 auto;
-          min-height: 56px;
-          pointer-events: auto;
-        }
+  width: 100%;
+  max-width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border-radius: 0;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;        /* make it stick to top */
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 1.5px solid #fff;
+  min-height: 100px;
+  pointer-events: auto;
+  transition: min-height 0.3s ease;  /* smooth shrinking */
+  z-index: 1000;
+}
+
+.navbar.shrink {
+  min-height: 60px;       /* shrink height */
+}
         .navbar-logo {
           display: flex;
           align-items: center;
@@ -423,48 +376,50 @@ const Navbar = () => {
           color: #000000;
         }
         @media screen and (max-width: 900px) {
-          .navbar {
-            width: 95%;
-            padding: 8px 8px;
-          }
-          .navbar-menu {
-            gap: 18px;
-          }
-        }
-        @media screen and (max-width: 768px) {
-          .navbar {
-            width: 98%;
-            min-width: unset;
-            padding: 8px 4px;
-          }
-          .navbar-menu {
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: absolute;
-            top: -200px;
-            left: 10px;
-            right: 10px;
-            background-color: #FFFFFF;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-            padding: 20px;
-            border-radius: 40px;
-            border: 1.5px solid #8B0000;
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(.4,2,.6,1);
-            pointer-events: none;
-          }
-          .navbar-menu.active {
-            top: calc(100% + 10px);
-            opacity: 1;
-            pointer-events: all;
-          }
-          .hamburger {
-            display: block;
-            color: #000000;
-          }
-        }
+  .navbar {
+    width: 100%;              /* still full width */
+    padding: 8px 8px;
+  }
+  .navbar-menu {
+    gap: 18px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .navbar {
+    width: 100%;              /* full width */
+    min-width: unset;
+    padding: 8px 4px;
+  }
+  .navbar-menu {
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: -200px;
+    left: 10px;
+    right: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    padding: 20px;
+    border-radius: 40px;
+    border: 1.5px solid #8B0000;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    pointer-events: none;
+  }
+  .navbar-menu.active {
+    top: calc(100% + 10px);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .hamburger {
+    display: block;
+    color: #000000;
+  }
+}
         /* Remove body padding-top so navbar does not occupy any space */
         body {
           padding-top: 0 !important;
