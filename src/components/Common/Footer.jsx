@@ -24,7 +24,7 @@ const Footer = () => {
           left: 0;
           right: 0;
           height: 2px;
-          background: linear-gradient(90deg, #D4A574 0%, #E6C589 50%, #D4A574 100%);
+          background: linear-gradient(90deg,rgb(68, 177, 228) 0%, #E6C589 50%,rgb(68, 177, 228) 100%);
         }
         
         .footer-container {
@@ -61,19 +61,30 @@ const Footer = () => {
         
         }
           .khand-bold {
-  font-family: "Khand", sans-serif;
-  font-size: 2.4rem;
-         
-          color: #D4A574;
-          margin: 0 0 20px 0;
-          letter-spacing: 0.05em;
-          line-height: 1.2;
-          text-transform: uppercase;
-  
-}
+            font-family: "Khand", sans-serif;
+            font-size: 2.4rem;
+            color: rgb(68, 177, 228);
+            margin: 0 0 20px 0;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+          }
+
+          .khand-bold1::after {
+            content: "";
+            display: block;
+            width: 90%;
+            max-width: 90px;
+            height: 2px;
+            background: red;
+            margin: 10px auto 0 0;
+            opacity: 0.7;
+          }
         
         .footer-description {
-          color: #bbb;
+          color: #CCCCCC;
           font-size: 14px;
           line-height: 1.7;
           margin-bottom: 30px;
@@ -92,14 +103,14 @@ const Footer = () => {
           width: 40px;
           height: 40px;
           background: #2a2a2a;
-          color: #D4A574;
+          color:rgb(68, 177, 228);
           border-radius: 6px;
           transition: all 0.3s ease;
           border: 1px solid #333;
         }
         
         .footer-social a:hover {
-          background: #D4A574;
+          background:rgb(68, 177, 228);
           color: #1a1a1a;
           transform: translateY(-2px);
         }
@@ -117,7 +128,7 @@ const Footer = () => {
         
         .footer-col h4 {
           font-size: 14px;
-          color: #D4A574;
+          color:rgb(68, 177, 228);
           font-weight: 600;
           margin-bottom: 20px;
           text-transform: uppercase;
@@ -130,7 +141,7 @@ const Footer = () => {
           display: block;
           width: 40px;
           height: 1px;
-          background: #D4A574;
+          background:rgb(68, 177, 228);
           margin-top: 8px;
         }
         
@@ -146,7 +157,7 @@ const Footer = () => {
         
         .footer-col a,
         .footer-col p {
-          color: #bbb;
+          color: #CCCCCC;
           font-size: 13px;
           font-weight: 400;
           text-decoration: none;
@@ -156,7 +167,7 @@ const Footer = () => {
         }
         
         .footer-col a:hover {
-          color: #D4A574;
+          color:rgb(68, 177, 228);
         }
         
         .footer-right {
@@ -175,13 +186,13 @@ const Footer = () => {
         }
         
         .contact-icon {
-          color: #D4A574;
+          color:rgb(68, 177, 228);
           flex-shrink: 0;
         }
         
         .contact-title {
           font-size: 14px;
-          color: #D4A574;
+          color:rgb(68, 177, 228);
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.08em;
@@ -189,7 +200,7 @@ const Footer = () => {
         }
         
         .contact-text {
-          color: #bbb;
+          color: #CCCCCC;
           font-size: 13px;
           line-height: 1.6;
           margin: 0;
@@ -213,7 +224,7 @@ const Footer = () => {
         .footer-logo-small {
           width: 40px;
           height: 40px;
-          background: #D4A574;
+          background:rgb(68, 177, 228);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -268,14 +279,53 @@ const Footer = () => {
                 DDG tailor every design to your needs, ensuring your space reflects your style flawlessly. With us, your dream home is just a step away.
               </div>
               <div className="footer-social">
-                <a href="#" aria-label="Instagram">
-                  <Instagram size={20} />
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="instagram-bg"
+                  style={{
+                    background: "linear-gradient(45deg, #fd5, #ff543e 40%, #c837ab 80%, #285AEB)",
+                    borderRadius: "50%",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 36,
+                    height: 36,
+                  }}
+                >
+                  <Instagram size={20} color="#fff" />
                 </a>
-                <a href="#" aria-label="LinkedIn">
-                  <Linkedin size={20} />
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="linkedin-bg"
+                  style={{
+                    background: "#0077B5", // LinkedIn blue
+                    borderRadius: "50%",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 36,
+                    height: 36,
+                  }}
+                >
+                  <Linkedin size={20} color="#fff" />
                 </a>
-                <a href="#" aria-label="YouTube">
-                  <Youtube size={20} />
+                <a
+                  href="#"
+                  aria-label="YouTube"
+                  className="youtube-bg"
+                  style={{
+                    background: "#FF0000", // YouTube red
+                    borderRadius: "50%",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 36,
+                    height: 36,
+                  }}
+                >
+                  <Youtube size={20} color="#fff" />
                 </a>
               </div>
             </div>
@@ -283,7 +333,7 @@ const Footer = () => {
             {/* Middle Section */}
             <div className="footer-middle">
               <div className="footer-col ">
-                <h1 className="khand-bold">Quick Links</h1>
+                <h1 className="khand-bold1 khand-bold">Quick Links</h1>
                 <ul>
                   <li><a href="#">Home</a></li>
                   <li><a href="#">About Us</a></li>
@@ -293,7 +343,7 @@ const Footer = () => {
               </div>
 
               <div className="footer-col">
-                <h1 className="khand-bold">Our Services</h1>
+                <h1 className="khand-bold1 khand-bold">Our Services</h1>
                 <ul>
                   <li><a href="#">Turnkey Interiors</a></li>
                   <li><a href="#">Modular Furniture</a></li>
@@ -307,7 +357,7 @@ const Footer = () => {
             {/* Right Section */}
             <div className="footer-right">
               <div className="contact-section">
-              <h1 className="khand-bold">CONTACT INFORMATIONS</h1>
+              <h1 className="khand-bold khand-bold1">CONTACT INFORMATIONS</h1>
                 <div className="contact-item">
 
                   <div
