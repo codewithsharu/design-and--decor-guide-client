@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ddglogo from "./ddglogo.png";
+import { Link, useLocation } from "react-router-dom";
 
 // A better icon: a modern chat bubble SVG
 const ChatBubbleIcon = ({ color = "#fff", size = 22 }) => (
@@ -60,6 +61,14 @@ const ChatBubbleIcon = ({ color = "#fff", size = 22 }) => (
 
 const Navbar = ({ isShrunk = false }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname, hash } = useLocation();
+
+  // Determine if a nav target is active
+  const isActive = (target) => {
+    if (target === "/") return pathname === "/" && (!hash || hash === "");
+    if (target.startsWith("#")) return pathname === "/" && hash === target;
+    return pathname === target;
+  };
 
   // Handles hamburger click
   const handleHamburgerClick = () => {
@@ -143,46 +152,46 @@ const Navbar = ({ isShrunk = false }) => {
                 : {}
             }
           >
-            <a
-              href="/"
-              className="nav-link home-link"
+            <Link
+              to="/"
+              className={`nav-link ${isActive("/") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >
               Home
-            </a>
-            <a
-              href="#about"
-              className="nav-link"
+            </Link>
+            <Link
+              to="/#about"
+              className={`nav-link ${isActive("#about") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >
               About
-            </a>
-            <a
-              href="#services"
-              className="nav-link"
+            </Link>
+            <Link
+              to="/#services"
+              className={`nav-link ${isActive("#services") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >
               Services
-            </a>
-            <a
-              href="#gallery"
-              className="nav-link"
+            </Link>
+            <Link
+              to="/fullgallery"
+              className={`nav-link ${isActive("/fullgallery") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >
               Gallery
-            </a>
-            <a
-              href="/contactus"
-              className="nav-link"
+            </Link>
+            <Link
+              to="/contactus"
+              className={`nav-link ${isActive("/contactus") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >
               Contact Us
-            </a>
+            </Link>
             
           </div>
           {/* Show Let's Talk as a world-class button on desktop */}
@@ -363,9 +372,7 @@ const Navbar = ({ isShrunk = false }) => {
           color: #0ea5e9; /* sky blue */
           background: none;
         }
-        .navbar-menu a.home-link {
-          color: #0ea5e9; /* sky blue for Home */
-        }
+        .navbar-menu a.active { color: #0ea5e9; }
 
         .hamburger {
           display: none;

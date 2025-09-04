@@ -33,6 +33,7 @@ import PrivacyPolicy from "./components/support/PrivacyPolicy";
 import ContactUs from "./components/support/ContactUs";
 import CancellationAndRefund from "./components/support/CancellationAndRefund";
 import Gallery from "./pages/gallery";
+import FullGallery from "./pages/fullgallery";
 
 // Import the ServicesById page
 import ServicesById from "./pages/servicesbyid";
@@ -75,6 +76,7 @@ const App = () => {
 
             {/* Add route for ContactUs page from pages/contactus.jsx */}
             <Route path="/contactus" element={<ContactUsPage />} />
+            <Route path="/fullgallery" element={<FullGallery />} />
           </Route>
 
           {/* Admin Routes - Fixed */}

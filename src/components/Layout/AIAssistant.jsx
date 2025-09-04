@@ -11,8 +11,7 @@ const AIAssistant = () => {
   const [showingRecommendations, setShowingRecommendations] = useState(false);
   const [isHome, setIsHome] = useState(true);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [finalRecommendations, setFinalRecommendations] = useState([]);
-  const whatsappNumber = '919999999999';
+  const whatsappNumber = '917816072525';
 
   // Interior design questionnaire (static, step-by-step)
   const questionnaire = [
@@ -74,11 +73,9 @@ const AIAssistant = () => {
   // Progress helpers
   const totalSteps = questionnaire.length;
   const answeredSteps = Object.keys(userPreferences).length;
-  const progressPercent = showingRecommendations
-    ? 100
-    : Math.round((answeredSteps / totalSteps) * 100);
-  const currentStepLabel = showingRecommendations
-    ? 'Recommendations'
+  const progressPercent = Math.min(100, Math.round((answeredSteps / totalSteps) * 100));
+  const currentStepLabel = answeredSteps >= totalSteps
+    ? 'Completed'
     : `Step ${Math.min(answeredSteps + 1, totalSteps)} of ${totalSteps}`;
 
   // Avatars
@@ -228,68 +225,19 @@ const AIAssistant = () => {
         ]);
       }, 500);
     } else {
-      setShowingRecommendations(true);
-      // Show recommendations with images
-      const recommendations = getRecommendations();
-      setFinalRecommendations(recommendations);
-      setTimeout(() => {
-        setMessages(prev => [...prev, { 
-          text: "Based on your design preferences, here are curated room setups:", 
-          sender: 'assistant',
-          id: Date.now() 
-        }]);
-        
-        // Add recommendations with images
-        recommendations.forEach((product, index) => {
-          setTimeout(() => {
-            setMessages(prev => [...prev, { 
-              text: `${product.name} - ${product.price}`, 
-              sender: 'assistant',
-              isProduct: true,
-              productImage: product.image,
-              id: Date.now() + index 
-            }]);
-          }, index * 300);
-        });
-
-        // Add close option after recommendations
-        setTimeout(() => {
-          setMessages(prev => [...prev, {
-            text: "Would you like to restart or close the chat?",
-            sender: 'assistant',
-            isOptions: true,
-            id: Date.now() + 1000
-          }]);
-        }, recommendations.length * 300 + 500);
-      }, 500);
+      // Completed questionnaire
+      setCurrentStep(totalSteps);
     }
   };
 
-  const getRecommendations = () => {
-    const preferences = userPreferences;
-    const scoreProduct = (product) => {
-      let score = 0;
-      if (preferences["Which room are you designing?"] === product.room) score += 3;
-      if (preferences["What's your preferred style?"] === product.style) score += 2;
-      if (preferences["What's your primary color palette?"] === product.palette) score += 2;
-      if (preferences["What's your budget level?"] === product.budget) score += 1;
-      if (preferences["How bold should the accents be?"] === product.accents) score += 1;
-      const prefMaterial = preferences["What materials do you prefer?"];
-      if (prefMaterial && product.materials.includes(prefMaterial)) score += 1;
-      return score;
-    };
-
-    const ranked = [...products]
-      .map(p => ({ p, s: scoreProduct(p) }))
-      .sort((a, b) => b.s - a.s)
-      .filter(r => r.s > 0)
-      .slice(0, 3)
-      .map(r => r.p);
-
-    return ranked.length > 0 ? ranked : products.slice(0, 3);
+  const handleWhatsAppChat = () => {
+    const text = encodeURIComponent('Hi! I would like to chat about interior design.');
+    const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+    window.open(url, '_blank');
   };
 
-  const formatWhatsAppMessage = (preferences, recommendations) => {
+  // Build a concise WhatsApp message from the user's selections
+  const formatWhatsAppMessageFromPreferences = (preferences) => {
     const labelMap = {
       "Which room are you designing?": "Room",
       "What's your preferred style?": "Style",
@@ -309,24 +257,12 @@ const AIAssistant = () => {
         lines.push(`- ${labelMap[key]}: ${preferences[key]}`);
       }
     });
-    lines.push("");
-    lines.push("Top Suggestions:");
-    recommendations.slice(0, 3).forEach((rec, idx) => {
-      lines.push(`${idx + 1}. ${rec.name} (${rec.price})`);
-    });
 
     return encodeURIComponent(lines.join("\n"));
   };
 
   const handleSendToTeam = () => {
-    if (!showingRecommendations) return;
-    const text = formatWhatsAppMessage(userPreferences, finalRecommendations);
-    const url = `https://wa.me/${whatsappNumber}?text=${text}`;
-    window.open(url, '_blank');
-  };
-
-  const handleWhatsAppChat = () => {
-    const text = encodeURIComponent('Hi! I would like to chat about interior design.');
+    const text = formatWhatsAppMessageFromPreferences(userPreferences);
     const url = `https://wa.me/${whatsappNumber}?text=${text}`;
     window.open(url, '_blank');
   };
@@ -344,7 +280,6 @@ const AIAssistant = () => {
     setCurrentStep(0);
     setMessages([]);
     setUserPreferences({});
-    setShowingRecommendations(false);
     setIsHome(true);
   };
 
@@ -352,7 +287,6 @@ const AIAssistant = () => {
     setCurrentStep(0);
     setMessages([{ text: questionnaire[0].question, sender: 'assistant', id: Date.now() }]);
     setUserPreferences({});
-    setShowingRecommendations(false);
     setIsHome(false);
   };
 
@@ -360,7 +294,6 @@ const AIAssistant = () => {
     setCurrentStep(0);
     setMessages([]);
     setUserPreferences({});
-    setShowingRecommendations(false);
     setIsHome(true);
   };
   // History handlers removed
@@ -489,59 +422,17 @@ const AIAssistant = () => {
                       className={`max-w-[78%] rounded-2xl px-4 py-3 shadow-sm border transition-colors ${
                         message.sender === 'user'
                           ? 'bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white border-transparent'
-                          : message.isProduct
-                          ? 'bg-white text-gray-800 border-gray-200'
-                          : message.isOptions
-                          ? 'bg-violet-50 text-violet-800 border-violet-200'
                           : 'bg-white text-gray-800 border-gray-200'
                       }`}
                     >
                       <div className="whitespace-pre-wrap text-[13px] leading-relaxed">{message.text}</div>
-                      {message.isProduct && message.productImage && (
-                        <div className="mt-3 rounded-xl overflow-hidden border border-gray-200 bg-white">
-                          <img 
-                            src={message.productImage} 
-                            alt={message.text}
-                            className="w-full h-40 object-cover"
-                          />
-                          <div className="p-3 flex items-center justify-between text-sm">
-                            <span className="text-gray-700">View details</span>
-                            <button className="inline-flex items-center gap-1 text-violet-600 hover:text-fuchsia-600">
-                              <i className="fas fa-arrow-right"></i>
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                      {message.isOptions && (
-                        <div className="mt-3 space-y-2">
-                          <button
-                            onClick={handleSendToTeam}
-                            disabled={!showingRecommendations}
-                            className={`w-full px-4 py-2 rounded-lg text-white shadow ${showingRecommendations ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-emerald-300 cursor-not-allowed'}`}
-                          >
-                            Send to Team (WhatsApp)
-                          </button>
-                          <button
-                            onClick={handleShowMore}
-                            className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-4 py-2 rounded-lg hover:opacity-90"
-                          >
-                            Show More Options
-                          </button>
-                          <button
-                            onClick={handleClose}
-                            className="w-full bg-gray-100 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200"
-                          >
-                            Close Chat
-                          </button>
-                        </div>
-                      )}
                     </div>
                     {message.sender === 'user' ? <UserAvatar /> : <></>}
                   </div>
                 ))}
 
                 {/* Inline options as chips under the current question */}
-                {!showingRecommendations && currentStep < questionnaire.length && (
+                {currentStep < questionnaire.length && (
                   <div className="mt-2">
                     <div className="text-xs font-medium text-gray-500 mb-2">Choose an option</div>
                     <div className="flex flex-wrap gap-2">
@@ -555,6 +446,16 @@ const AIAssistant = () => {
                         </button>
                       ))}
                     </div>
+                  </div>
+                )}
+                {currentStep >= questionnaire.length && (
+                  <div className="mt-3">
+                    <button
+                      onClick={handleSendToTeam}
+                      className="w-full px-4 py-2 rounded-lg text-white shadow bg-emerald-600 hover:bg-emerald-700"
+                    >
+                      Send to Team 
+                    </button>
                   </div>
                 )}
               </>
