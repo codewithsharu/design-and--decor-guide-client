@@ -422,7 +422,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="footer-bottom-right">
-              Managed & Developed by Shareen Digital
+              any suitable text
             </div>
           </div>
         </div>
