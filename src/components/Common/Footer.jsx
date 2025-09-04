@@ -357,9 +357,10 @@ const Footer = () => {
             {/* Right Section */}
             <div className="footer-right">
               <div className="contact-section">
-              <h1 className="khand-bold khand-bold1">CONTACT INFORMATIONS</h1>
+                <h1 className="khand-bold khand-bold1">CONTACT INFORMATION</h1>
+                
+                {/* Location */}
                 <div className="contact-item">
-
                   <div
                     className="contact-header"
                     style={{
@@ -369,10 +370,14 @@ const Footer = () => {
                       marginBottom: 0,
                     }}
                   >
-                    <MapPin 
-                      size="clamp(22, 2.5vw, 32)" 
-                      className="contact-icon" 
-                      style={{ flexShrink: 0, width: "clamp(22px, 2.5vw, 32px)", height: "clamp(22px, 2.5vw, 32px)" }} 
+                    <MapPin
+                      size="clamp(22, 2.5vw, 32)"
+                      className="contact-icon"
+                      style={{
+                        flexShrink: 0,
+                        width: "clamp(22px, 2.5vw, 32px)",
+                        height: "clamp(22px, 2.5vw, 32px)",
+                      }}
                     />
                     <h4
                       className="khand-bold"
@@ -387,24 +392,60 @@ const Footer = () => {
                     </h4>
                   </div>
                   <div className="contact-text">
-                    3rd floor, Purnachandra Towers, 1769, 1st Cross Road, Agara, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102
+                    Design & Décor Guide by MMC,<br />
+                    behind Jayabheri Maruthi Showroom,<br />
+                    Kranthi Nagar, Visakhapatnam - 530014,<br />
+                    Andhra Pradesh 530013<br />
+                    <a
+                      href="https://maps.app.goo.gl/mjGtYJ8VxeVRfbUb7?g_st=aw"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#fff", textDecoration: "underline" }}
+                    >
+                      View on Google Maps
+                    </a>
                   </div>
                 </div>
-                
+
+               
+                {/* Email & Website */}
                 <div className="contact-item">
-                  <div className="contact-header" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <Mail size="clamp(22, 2.5vw, 32)" 
-                      className="contact-icon" 
-                      style={{ flexShrink: 0, width: "clamp(22px, 2.5vw, 32px)", height: "clamp(22px, 2.5vw, 32px)" }}  />
+                  <div
+                    className="contact-header"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      marginBottom: 0,
+                    }}
+                  >
+                    <Mail
+                      size="clamp(22, 2.5vw, 32)"
+                      className="contact-icon"
+                      style={{
+                        flexShrink: 0,
+                        width: "clamp(22px, 2.5vw, 32px)",
+                        height: "clamp(22px, 2.5vw, 32px)",
+                      }}
+                    />
                     <h4
                       className="khand-bold"
-                      style={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)", color: "#fff", margin: 0 }}
+                      style={{
+                        fontSize: "clamp(1.1rem, 2vw, 1.25rem)",
+                        color: "#fff",
+                        margin: 0,
+                        lineHeight: 1.2,
+                      }}
                     >
-                      Mail us At
+                      Email & Website
                     </h4>
                   </div>
                   <div className="contact-text">
-                    ipsita.p@houzeome.com
+                    <a href="mailto:designdecorguide@gmail.com" style={{ color: "#fff", textDecoration: "none" }}>
+                      designdecorguide@gmail.com
+                    </a>
+                    <br />
+                   
                   </div>
                 </div>
               </div>
