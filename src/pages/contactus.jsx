@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ddglogo from "../assets/ddglogo.png";
 
 // Theme colors from src/theme.js
 const theme = {
@@ -67,13 +68,17 @@ export default function ContactUs() {
 
   return (
     <div className="contact-page-container">
+      <div className="contact-header">
+        <div className="contact-header-inner">
+          <img src={ddglogo} alt="DDG Logo" className="contact-logo" />
+          <div className="contact-heading-texts">
+            <h1 className="contact-title">Get in Touch</h1>
+            <h2 className="contact-subtitle">Let's Chat, Reach Out to Us</h2>
+            <p className="contact-desc">Have questions or feedback? We're here to help. Send us a message, and we'll respond within 24 hours</p>
+          </div>
+        </div>
+      </div>
       
-      
-      <h1 className="contact-title">Get in Touch</h1>
-      <h2 className="contact-subtitle">Let's Chat, Reach Out to Us</h2>
-      <p className="contact-desc">
-        Have questions or feedback? We're here to help. Send us a message, and we'll respond within 24 hours
-      </p>
       <div className="contact-box">
         {/* Left Side - Form */}
         <div className="container-left">
@@ -347,12 +352,40 @@ export default function ContactUs() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         .contact-page-container {
           font-family: 'Poppins', sans-serif;
-          background-color: ${theme.lightBlue};
-          padding: 80px 20px; /* Reverted to original padding */
+          background: linear-gradient(135deg, #f6f9ff 0%, #ecebff 35%, #f7f9ff 100%);
+          padding: 40px 20px; /* Reverted to original padding */
           min-height: 100vh;
           display: flex;
           flex-direction: column;
           align-items: center;
+        }
+        .contact-header {
+          width: 100%;
+          max-width: 1200px;
+          margin: 20px auto 10px auto;
+          position: relative;
+        }
+        .contact-header-inner {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          background: rgba(255,255,255,0.8);
+          backdrop-filter: saturate(160%) blur(6px);
+          border: 1px solid ${theme.border};
+          border-radius: 16px;
+          padding: 16px 18px;
+          box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+        .contact-logo {
+          width: 64px;
+          height: 64px;
+          object-fit: contain;
+          flex-shrink: 0;
+          filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
+        }
+        .contact-heading-texts {
+          display: flex;
+          flex-direction: column;
         }
         .contact-title {
           color: ${theme.dark};
@@ -361,20 +394,23 @@ export default function ContactUs() {
           font-weight: 600;
           margin-bottom: 10px;
           letter-spacing: -0.02em;
+          text-align: left;
+          margin: 0 0 2px 0;
         }
         .contact-subtitle {
           color: ${theme.dark};
           text-align: center;
           font-size: clamp(22px, 5vw, 32px);
           font-weight: 800;
-          margin-bottom: 15px;
+          margin-bottom: 6px;
           letter-spacing: -0.03em;
+          text-align: left;
         }
         .contact-desc {
           color: ${theme.lightText};
-          text-align: center;
+          text-align: left;
           font-size: clamp(15px, 3vw, 18px);
-          margin-bottom: 40px;
+          margin: 0;
           max-width: 700px;
           line-height: 1.6;
         }
@@ -385,18 +421,18 @@ export default function ContactUs() {
           width: 100%;
           flex-wrap: wrap;
           margin: 0 auto;
-          background: none; /* Remove background */
-          box-shadow: none; /* Remove shadow */
-          border-radius: 0; /* Remove border-radius */
+          background: none;
+          box-shadow: none;
+          border-radius: 0;
         }
         .container-left {
           flex: 2;
           padding: 40px;
           min-width: 280px;
           box-sizing: border-box;
-          background: ${theme.cardBackground};
+          background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
           border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 20px 40px rgba(31, 41, 55, 0.08);
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -479,15 +515,15 @@ export default function ContactUs() {
           font-family: 'Poppins', sans-serif;
           font-weight: 600;
           font-size: 16px;
-          background: ${theme.dark};
+          background: linear-gradient(135deg, #6B46C1 0%, #805AD5 100%);
           border: none;
           outline: none;
           color: ${theme.white};
           padding: 12px 30px;
           border-radius: 50px;
           margin-top: 20px;
-          transition: all 0.3s ease;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+          box-shadow: 0 10px 24px rgba(128, 90, 213, 0.28);
           cursor: pointer;
           display: inline-flex;
           align-items: center;
@@ -499,7 +535,8 @@ export default function ContactUs() {
           cursor: not-allowed;
         }
         .submit-btn:hover:not(:disabled) {
-          background: ${theme.secondary};
+          transform: translateY(-2px);
+          box-shadow: 0 16px 30px rgba(128, 90, 213, 0.34);
         }
         .success-text {
           color: ${theme.primary};
@@ -588,6 +625,10 @@ export default function ContactUs() {
             flex-direction: column;
             max-width: 100%;
           }
+          .contact-header-inner {
+            padding: 12px 14px;
+          }
+          .contact-logo { width: 56px; height: 56px; }
           .container-left, .container-right {
             padding: 24px !important;
             border-radius: 15px !important;
@@ -602,7 +643,7 @@ export default function ContactUs() {
             padding: 24px !important; /* Adjusted padding for smaller screens */
           }
           .contact-page-container {
-            padding: 40px 8px; /* Reverted to original padding */
+            padding: 24px 8px; /* Reverted to original padding */
           }
           .contact-img-wrap {
             max-width: 300px; /* Limit max width on tablet */
@@ -630,6 +671,8 @@ export default function ContactUs() {
           .contact-page-container {
             padding: 20px 2vw; /* Reverted to original padding */
           }
+          .contact-header-inner { gap: 12px; }
+          .contact-logo { width: 48px; height: 48px; }
           .contact-title {
             font-size: 22px !important;
           }
@@ -638,7 +681,7 @@ export default function ContactUs() {
           }
           .contact-desc {
             font-size: 13px !important;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
           }
           .contact-box {
             box-shadow: none;
