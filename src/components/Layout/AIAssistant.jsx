@@ -309,7 +309,11 @@ const AIAssistant = () => {
   return (
     <div className={`${containerPositionClass}`}>
       {isOpen ? (
-        <div className={`${isMaximized ? 'w-screen h-screen max-w-none rounded-none' : 'w-[92vw] max-w-[420px] h-[72vh] md:w-[420px] md:h-[640px] rounded-2xl'} bg-white shadow-2xl flex flex-col border border-gray-100`}>
+        <div className={`relative ${isMaximized ? 'w-screen h-screen max-w-none rounded-none' : 'w-[92vw] max-w-[420px] h-[72vh] md:w-[420px] md:h-[640px] rounded-2xl'} bg-white shadow-xl flex flex-col border border-gray-200`}>
+          {/* Message Tail */}
+          {!isMaximized && (
+            <div className="absolute bottom-[-9px] right-8 w-4 h-4 bg-white rotate-45 border-b border-r border-gray-200 shadow-sm rounded-sm"></div>
+          )}
           {/* Header */}
           <div className={`px-4 pt-3 pb-2 ${isMaximized ? '' : 'rounded-t-2xl'} border-b border-gray-100 bg-white/80 backdrop-blur relative z-30`}>            
             <div className="flex items-center justify-between">
