@@ -304,7 +304,7 @@ const AIAssistant = () => {
 
   const containerPositionClass = isOpen && isMaximized
     ? 'fixed inset-0 z-50'
-    : 'fixed bottom-20 right-4 md:bottom-24 md:right-8 z-50';
+    : 'fixed bottom-24 right-4 md:bottom-22 md:right-8 z-50';
 
   return (
     <div className={`${containerPositionClass}`}>

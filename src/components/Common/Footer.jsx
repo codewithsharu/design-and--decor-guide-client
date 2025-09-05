@@ -78,7 +78,7 @@ const Footer = () => {
             width: 90%;
             max-width: 90px;
             height: 2px;
-            background: red;
+            background: #FF0000;
             margin: 10px auto 0 0;
             opacity: 0.7;
           }
