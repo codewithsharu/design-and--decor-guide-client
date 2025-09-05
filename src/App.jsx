@@ -35,6 +35,7 @@ import CancellationAndRefund from "./components/support/CancellationAndRefund";
 import Gallery from "./pages/gallery";
 import FullGallery from "./pages/fullgallery";
 
+
 // Import the ServicesById page
 import ServicesById from "./pages/servicesbyid";
 
