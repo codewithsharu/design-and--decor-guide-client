@@ -3,13 +3,6 @@ import React from "react";
 const ContactUs = () => {
   return (
     <div className="min-h-screen w-full flex flex-col justify-center relative overflow-hidden bg-white pt-20 lg:pt-24">
-      {/* Background overlay pattern */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f5f5f5' fill-opacity='0.4'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }} />
-      </div>
       
       <div className="flex flex-col lg:flex-row w-full max-w-[1400px] mx-auto px-6 lg:px-12 py-10 lg:py-12 relative z-10 gap-8 lg:gap-16">
         {/* Left: Contact Form */}
@@ -97,28 +90,28 @@ const ContactUs = () => {
         </div>
         
         {/* Right: Office Info */}
-        <div className="w-full lg:w-[450px] xl:w-[500px] bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] p-8 lg:p-12 flex flex-col justify-between rounded-2xl shadow-2xl border border-[#c5a46d]/20 backdrop-blur-sm min-h-[550px] lg:min-h-[580px]">
+        <div className="w-full lg:w-[450px] xl:w-[500px] bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] p-6 lg:p-8 xl:p-12 flex flex-col justify-between rounded-2xl shadow-2xl border border-[#c5a46d]/20 backdrop-blur-sm min-h-[450px] lg:min-h-[550px] xl:min-h-[580px]">
           <div className="flex-1">
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl mb-4 tracking-wider uppercase" 
+            <h2 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-3 lg:mb-4 tracking-wider uppercase" 
                 style={{fontFamily:'Khand, sans-serif', letterSpacing:'1.5px', fontWeight:'400', color: 'rgb(68, 177, 228)'}}>
               OUR OFFICE
             </h2>
-            <div className="w-full h-[2px] bg-red-500 mb-8"></div>
+            <div className="w-full h-[2px] bg-red-500 mb-6 lg:mb-8"></div>
             
-            <div className="mb-8 lg:mb-9">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 flex items-center justify-center ">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(68, 177, 228)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="mb-6 lg:mb-8 xl:mb-9">
+              <div className="flex items-center gap-3 lg:gap-4 mb-3 lg:mb-4">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center">
+                  <svg width="24" height="24" className="lg:w-8 lg:h-8" viewBox="0 0 24 24" fill="none" stroke="rgb(68, 177, 228)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
                 </div>
-                <span className="text-lg lg:text-xl font-semibold tracking-wider uppercase mt-1" 
+                <span className="text-base lg:text-lg xl:text-xl font-semibold tracking-wider uppercase" 
                       style={{fontFamily:'Khand, Arial, sans-serif', letterSpacing:'1px', fontWeight:'600', color: 'rgb(255, 255, 255)'}}>
                   OUR LOCATION
                 </span>
               </div>
-              <p className="text-[#e5e5e5] text-base lg:text-lg ml-11 leading-relaxed font-light" 
+              <p className="text-[#e5e5e5] text-sm lg:text-base xl:text-lg ml-8 lg:ml-11 leading-relaxed font-light" 
                  style={{fontFamily:'Arial, Helvetica, sans-serif', lineHeight:'1.6'}}>
                 3rd floor, Purnachandra Towers,<br />
                 1769, 1st Cross Road, Agara,<br />
@@ -127,62 +120,63 @@ const ContactUs = () => {
               </p>
             </div>
             
-            <div className="mb-8 lg:mb-10">
-            <div className="flex items-center gap-4 mb-4">
-  <div className="w-10 h-10 flex items-center justify-center">
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="rgb(68, 177, 228)"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <path d="M22 6.5L12 13L2 6.5" />
-    </svg>
-  </div>
-  <span
-    className="text-lg lg:text-xl font-semibold tracking-wider uppercase"
-    style={{
-      fontFamily: "Khand, Arial, sans-serif",
-      letterSpacing: "1px",
-      fontWeight: "600",
-      color: "rgb(255, 255, 255)",
-    }}
-  >
-    MAIL US AT
-  </span>
-</div>
+            <div className="mb-6 lg:mb-8 xl:mb-10">
+              <div className="flex items-center gap-3 lg:gap-4 mb-3 lg:mb-4">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center">
+                  <svg
+                    width="24"
+                    height="24"
+                    className="lg:w-8 lg:h-8"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgb(68, 177, 228)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M22 6.5L12 13L2 6.5" />
+                  </svg>
+                </div>
+                <span
+                  className="text-base lg:text-lg xl:text-xl font-semibold tracking-wider uppercase"
+                  style={{
+                    fontFamily: "Khand, Arial, sans-serif",
+                    letterSpacing: "1px",
+                    fontWeight: "600",
+                    color: "rgb(255, 255, 255)",
+                  }}
+                >
+                  MAIL US AT
+                </span>
+              </div>
 
               <a href="mailto:ipsita.p@houzeome.com" 
-                 className="text-[#e5e5e5] ml-11 hover:text-[#c5a46d] transition-colors duration-300 text-base lg:text-lg font-light underline decoration-[#c5a46d]/50 hover:decoration-[#c5a46d]" 
+                 className="text-[#e5e5e5] ml-8 lg:ml-11 hover:text-[#c5a46d] transition-colors duration-300 text-sm lg:text-base xl:text-lg font-light underline decoration-[#c5a46d]/50 hover:decoration-[#c5a46d]" 
                  style={{fontFamily:'Arial, Helvetica, sans-serif'}}>
                 ipsita.p@houzeome.com
               </a>
             </div>
           </div>
           
-          <div className="border-t-2 border-red-500 pt-6">
-            <div className="font-semibold tracking-wider mb-6 uppercase text-lg lg:text-xl" 
+          <div className="border-t-2 border-red-500 pt-4 lg:pt-6">
+            <div className="font-semibold tracking-wider mb-4 lg:mb-6 uppercase text-base lg:text-lg xl:text-xl" 
                  style={{fontFamily:'Khand, Arial, sans-serif', letterSpacing:'1px', fontWeight:'600', color: 'rgb(255, 255, 255)'}}>
               FOLLOW US AT
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-3 lg:gap-4">
               <a href="#" 
-                 className="w-11 h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-[#E4405F] to-[#C13584] text-white text-lg lg:text-xl hover:scale-110 transition-transform duration-300 shadow-lg" 
+                 className="w-10 h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-[#E4405F] to-[#C13584] text-white text-base lg:text-lg xl:text-xl hover:scale-110 transition-transform duration-300 shadow-lg" 
                  title="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
               <a href="#" 
-                 className="w-11 h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-[#0077b5] to-[#005885] text-white text-lg lg:text-xl hover:scale-110 transition-transform duration-300 shadow-lg" 
+                 className="w-10 h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-[#0077b5] to-[#005885] text-white text-base lg:text-lg xl:text-xl hover:scale-110 transition-transform duration-300 shadow-lg" 
                  title="LinkedIn">
                 <i className="fab fa-linkedin-in"></i>
               </a>
               <a href="#" 
-                 className="w-11 h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-[#FF0000] to-[#CC0000] text-white text-lg lg:text-xl hover:scale-110 transition-transform duration-300 shadow-lg" 
+                 className="w-10 h-10 lg:w-11 lg:h-11 xl:w-12 xl:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-[#FF0000] to-[#CC0000] text-white text-base lg:text-lg xl:text-xl hover:scale-110 transition-transform duration-300 shadow-lg" 
                  title="YouTube">
                 <i className="fab fa-youtube"></i>
               </a>
@@ -192,17 +186,38 @@ const ContactUs = () => {
       </div>
 
       {/* Google Maps Section */}
-      <div className="w-full py-16 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="w-full max-w-[900px] mx-auto rounded-xl overflow-hidden shadow-2xl">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.2014356873533!2d83.3155196!3d17.735145400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39432af31fe3f9%3A0x231bc14bb4a7c86a!2sDesign%20%26%20D%C3%A9cor%20Guide%20by%20MMC!5e0!3m2!1sen!2sin!4v1757096264626!5m2!1sen!2sin" 
-              className="w-full aspect-video"
-              style={{border: 0}} 
-              allowFullScreen="" 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+      <div className="w-full py-8 lg:py-16 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 lg:px-6 xl:px-12">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-12 items-start">
+            {/* Address Details */}
+            <div className="w-full lg:w-1/3 pt-2 lg:pt-4">
+              <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold mb-4 lg:mb-6 text-gray-800" 
+                  style={{fontFamily: 'Khand, sans-serif'}}>
+                DESIGN & DÉCOR GUIDE BY MMC
+              </h2>
+              <div className="space-y-2 lg:space-y-3 text-gray-700 text-base lg:text-lg" style={{fontFamily: 'Arial, sans-serif'}}>
+                <p className="font-medium">D.No. 51-17-37, behind jayabheri</p>
+                <p>maruthi showroom, kranthi</p>
+                <p>nagar, nakkavanipaleam,</p>
+                <p>visakhapatnam - 530014,</p>
+                <p>Visakhapatnam, Andhra Pradesh</p>
+                <p>530013</p>
+              </div>
+            </div>
+
+            {/* Map */}
+            <div className="w-full lg:w-2/3 rounded-lg lg:rounded-xl overflow-hidden shadow-xl lg:shadow-2xl">
+              <div className="h-[250px] lg:h-[400px]">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.2014356873533!2d83.3155196!3d17.735145400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39432af31fe3f9%3A0x231bc14bb4a7c86a!2sDesign%20%26%20D%C3%A9cor%20Guide%20by%20MMC!5e0!3m2!1sen!2sin!4v1757096264626!5m2!1sen!2sin" 
+                  className="w-full h-full"
+                  style={{border: 0}} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

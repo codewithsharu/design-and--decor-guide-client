@@ -83,7 +83,7 @@ const flattenCategories = (categories) => {
   return result;
 };
 
-const flatCategory = flattenCategories(category);
+const flatCategory = flattenCategories(category).slice(0, 4);
 
 const Category = () => {
   return (

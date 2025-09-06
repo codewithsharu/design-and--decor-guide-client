@@ -34,8 +34,9 @@ import ContactUs from "./components/support/ContactUs";
 import CancellationAndRefund from "./components/support/CancellationAndRefund";
 import Gallery from "./pages/gallery";
 import FullGallery from "./pages/fullgallery";
+import Services from "./pages/Services";
 
-
+import AboutUs from "./pages/aboutus";
 // Import the ServicesById page
 import ServicesById from "./pages/servicesbyid";
 
@@ -71,9 +72,12 @@ const App = () => {
             <Route path="/gallery" element={<Gallery />}/>
             <Route path="/gallery/:id" element={<Gallery />} />
 
+
+            <Route path="/aboutus" element={<AboutUs />}/>
             {/* Render the ServicesById page at /servicesbyid */}
             <Route path="/servicesbyid" element={<ServicesById />} />
             <Route path="/servicesbyid/:id" element={<ServicesById />} />
+            <Route path="/services" element={<Services />}/>
 
             {/* Add route for ContactUs page from pages/contactus.jsx */}
             <Route path="/contactus" element={<ContactUsPage />} />

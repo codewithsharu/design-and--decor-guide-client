@@ -161,16 +161,16 @@ const Navbar = ({ isShrunk = false }) => {
               Home
             </Link>
             <Link
-              to="/#about"
-              className={`nav-link ${isActive("#about") ? "active" : ""}`}
+              to="/aboutus"
+              className={`nav-link ${isActive("/aboutus") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >
               About
             </Link>
             <Link
-              to="/#services"
-              className={`nav-link ${isActive("#services") ? "active" : ""}`}
+              to="/services"
+              className={`nav-link ${isActive("/services") ? "active" : ""}`}
               onClick={handleNavLinkClick}
               style={{ padding: "8px 12px" }}
             >

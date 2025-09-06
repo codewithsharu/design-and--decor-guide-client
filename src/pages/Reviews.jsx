@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // Inline SVG Star component to replace lucide-react
-function Star({ size = 18, fill = "#fbbf24" }) {
+function Star({ size = 18, fill = "#38bdf8" }) { // sky blue
   return (
     <svg
       width={size}
@@ -28,7 +28,7 @@ const ArrowLeft = ({ ...props }) => (
     aria-label="Previous review"
     {...props}
     className={
-      "flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 hover:bg-orange-200 text-orange-500 shadow transition disabled:opacity-40 disabled:cursor-not-allowed " +
+      "flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 hover:bg-sky-200 text-red-500 shadow transition disabled:opacity-40 disabled:cursor-not-allowed " +
       (props.className || "")
     }
     type="button"
@@ -50,7 +50,7 @@ const ArrowRight = ({ ...props }) => (
     aria-label="Next review"
     {...props}
     className={
-      "flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 hover:bg-orange-200 text-orange-500 shadow transition disabled:opacity-40 disabled:cursor-not-allowed " +
+      "flex items-center justify-center w-10 h-10 rounded-full bg-sky-100 hover:bg-sky-200 text-red-500 shadow transition disabled:opacity-40 disabled:cursor-not-allowed " +
       (props.className || "")
     }
     type="button"
@@ -151,7 +151,7 @@ export default function Reviews() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-16 px-4 md:px-12">
+    <div className="bg-white py-16 px-4 md:px-12">
       <div className="max-w-4xl mx-auto text-center mb-12">
         <div className="l-hero__headings">
           <div className="l-hero__headings-baseline">
@@ -205,10 +205,10 @@ export default function Reviews() {
           }
         `}</style>
         <p className="text-lg text-gray-500">
-          Hear what our customers have to say about <span className="bg-orange-100 px-2 rounded text-orange-600 font-semibold">D&DG</span>
+          Hear what our customers have to say about <span className="bg-red-100 px-2 rounded text-red-600 font-semibold">D&DG</span>
         </p>
         <div className="mt-2 flex justify-center">
-          <span className="inline-block w-24 h-1 rounded bg-orange-400"></span>
+          <span className="inline-block w-24 h-1 rounded bg-sky-400"></span>
         </div>
       </div>
       <div className="max-w-6xl mx-auto">
@@ -223,7 +223,7 @@ export default function Reviews() {
           {visibleReviews.map((review, index) => (
             <div
               key={index + current}
-              className="relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-left transition-transform hover:-translate-y-1 hover:shadow-2xl w-full max-w-xs md:max-w-none mx-auto flex flex-col"
+              className="relative bg-white rounded-3xl p-8 shadow-lg border border-sky-100 text-left transition-transform hover:-translate-y-1 hover:shadow-2xl w-full max-w-xs md:max-w-none mx-auto flex flex-col"
               style={{
                 minHeight: "370px",
                 aspectRatio: showCount === 1 ? "1 / 1" : undefined,
@@ -231,8 +231,8 @@ export default function Reviews() {
             >
               <div className="absolute -top-6 left-8">
                 <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
-                  <circle cx="24" cy="24" r="24" fill="#fbbf24" fillOpacity="0.1" />
-                  <text x="50%" y="60%" textAnchor="middle" fontSize="32" fill="#fbbf24" fontWeight="bold" fontFamily="serif">“</text>
+                  <circle cx="24" cy="24" r="24" fill="#38bdf8" fillOpacity="0.12" />
+                  <text x="50%" y="60%" textAnchor="middle" fontSize="32" fill="#ef4444" fontWeight="bold" fontFamily="serif">“</text>
                 </svg>
               </div>
               <p className="text-lg text-gray-700 mb-8 mt-2 italic leading-relaxed">
@@ -242,20 +242,20 @@ export default function Reviews() {
                 <img
                   src={review.img}
                   alt={review.name}
-                  className="w-14 h-14 rounded-full border-2 border-orange-200 shadow"
+                  className="w-14 h-14 rounded-full border-2 border-sky-200 shadow"
                 />
                 <div>
                   <p className="font-semibold text-gray-900">{review.name}</p>
                   <p className="text-sm text-gray-500">{review.role}</p>
                 </div>
-                {/* <div className="ml-auto flex items-center gap-1 text-orange-400">
+                {/* <div className="ml-auto flex items-center gap-1 text-sky-400">
                   {Array.from({ length: Math.floor(review.rating) }).map((_, i) => (
-                    <Star key={i} size={18} fill="#fbbf24" />
+                    <Star key={i} size={18} fill="#38bdf8" />
                   ))}
                   {review.rating % 1 !== 0 && (
                     <span className="relative" style={{ width: 18, display: "inline-block" }}>
                       <span style={{ position: "absolute", width: "50%", overflow: "hidden", left: 0, top: 0 }}>
-                        <Star size={18} fill="#fbbf24" />
+                        <Star size={18} fill="#38bdf8" />
                       </span>
                       <span style={{ position: "absolute", width: "50%", overflow: "hidden", right: 0, top: 0 }}>
                         <Star size={18} fill="#e5e7eb" />
