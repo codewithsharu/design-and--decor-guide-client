@@ -113,54 +113,54 @@ const ContactUs = () => {
               </div>
               <p className="text-[#e5e5e5] text-sm lg:text-base xl:text-lg ml-8 lg:ml-11 leading-relaxed font-light" 
                  style={{fontFamily:'Arial, Helvetica, sans-serif', lineHeight:'1.6'}}>
-                3rd floor, Purnachandra Towers,<br />
-                1769, 1st Cross Road, Agara,<br />
-                1st Sector, HSR Layout,<br />
-                Bengaluru, Karnataka 560102
-              </p>
-            </div>
-            
-            <div className="mb-6 lg:mb-8 xl:mb-10">
-              <div className="flex items-center gap-3 lg:gap-4 mb-3 lg:mb-4">
-                <div className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center">
-                  <svg
-                    width="24"
-                    height="24"
-                    className="lg:w-8 lg:h-8"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgb(68, 177, 228)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="M22 6.5L12 13L2 6.5" />
-                  </svg>
-                </div>
-                <span
-                  className="text-base lg:text-lg xl:text-xl font-semibold tracking-wider uppercase"
-                  style={{
-                    fontFamily: "Khand, Arial, sans-serif",
-                    letterSpacing: "1px",
-                    fontWeight: "600",
-                    color: "rgb(255, 255, 255)",
-                  }}
-                >
-                  MAIL US AT
-                </span>
-              </div>
+                 Design & Décor Guide by MMC,<br />
+                 behind Jayabheri Maruthi Showroom,<br />
+                 Kranthi Nagar, Visakhapatnam - 530014,<br />
+                 Andhra Pradesh 530013
+               </p>
+             </div>
+             
+             <div className="mb-6 lg:mb-8 xl:mb-10">
+               <div className="flex items-center gap-3 lg:gap-4 mb-3 lg:mb-4">
+                 <div className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center">
+                   <svg
+                     width="24"
+                     height="24"
+                     className="lg:w-8 lg:h-8"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="rgb(68, 177, 228)"
+                     strokeWidth="2"
+                     strokeLinecap="round"
+                     strokeLinejoin="round"
+                   >
+                     <rect x="2" y="4" width="20" height="16" rx="2" />
+                     <path d="M22 6.5L12 13L2 6.5" />
+                   </svg>
+                 </div>
+                 <span
+                   className="text-base lg:text-lg xl:text-xl font-semibold tracking-wider uppercase"
+                   style={{
+                     fontFamily: "Khand, Arial, sans-serif",
+                     letterSpacing: "1px",
+                     fontWeight: "600",
+                     color: "rgb(255, 255, 255)",
+                   }}
+                 >
+                   MAIL US AT
+                 </span>
+               </div>
 
-              <a href="mailto:ipsita.p@houzeome.com" 
-                 className="text-[#e5e5e5] ml-8 lg:ml-11 hover:text-[#c5a46d] transition-colors duration-300 text-sm lg:text-base xl:text-lg font-light underline decoration-[#c5a46d]/50 hover:decoration-[#c5a46d]" 
-                 style={{fontFamily:'Arial, Helvetica, sans-serif'}}>
-                ipsita.p@houzeome.com
-              </a>
-            </div>
-          </div>
-          
-          <div className="border-t-2 border-red-500 pt-4 lg:pt-6">
-            <div className="font-semibold tracking-wider mb-4 lg:mb-6 uppercase text-base lg:text-lg xl:text-xl" 
+               <a href="mailto:designdecorguide@gmail.com" 
+                  className="text-[#e5e5e5] ml-8 lg:ml-11 hover:text-[#c5a46d] transition-colors duration-300 text-sm lg:text-base xl:text-lg font-light underline decoration-[#c5a46d]/50 hover:decoration-[#c5a46d]" 
+                  style={{fontFamily:'Arial, Helvetica, sans-serif'}}>
+                 designdecorguide@gmail.com
+               </a>
+             </div>
+           </div>
+           
+           <div className="border-t-2 border-red-500 pt-4 lg:pt-6">
+             <div className="font-semibold tracking-wider mb-4 lg:mb-6 uppercase text-base lg:text-lg xl:text-xl" 
                  style={{fontFamily:'Khand, Arial, sans-serif', letterSpacing:'1px', fontWeight:'600', color: 'rgb(255, 255, 255)'}}>
               FOLLOW US AT
             </div>
