@@ -1,5 +1,10 @@
 import React from "react";
 import PortfolioHeading from "../components/Common/PortfolioHeading";
+import asianpaints from "../assets/asianpaints.jpeg";
+import kajaria from "../assets/kajaria.png";
+import mytyles from "../assets/mytyles.png";
+import quartizo from "../assets/quartizo.jpeg";
+import simens from "../assets/simens.png";
 const images = [
   "https://images.unsplash.com/photo-1568219656968-19c1da9775ae?auto=format&fit=crop&w=800&q=80", // Modern living room interior
   "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80", // Stylish bedroom design
@@ -666,35 +671,35 @@ const AboutUs = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 items-center justify-items-center">
             <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
               <img 
-                src="/src/assets/asianpaints.jpeg" 
+                src={asianpaints} 
                 alt="Asian Paints" 
                 className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
               <img 
-                src="/src/assets/kajaria.png" 
+                src={kajaria} 
                 alt="Kajaria" 
                 className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
               <img 
-                src="/src/assets/mytyles.png" 
+                src={mytyles} 
                 alt="MyTyles" 
                 className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
               <img 
-                src="/src/assets/quartizo.jpeg" 
+                src={quartizo} 
                 alt="Quartizo" 
                 className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
               <img 
-                src="/src/assets/simens.png" 
+                src={simens} 
                 alt="Siemens" 
                 className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
