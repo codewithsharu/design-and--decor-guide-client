@@ -11,7 +11,7 @@ const AIAssistant = () => {
   const [showingRecommendations, setShowingRecommendations] = useState(false);
   const [isHome, setIsHome] = useState(true);
   const [isMaximized, setIsMaximized] = useState(false);
-  const whatsappNumber = '917816072525';
+  const whatsappNumber = '918618877807';
 
   // Interior design questionnaire (static, step-by-step)
   const questionnaire = [
