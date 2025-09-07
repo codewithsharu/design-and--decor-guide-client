@@ -10,6 +10,7 @@ const images = [
 const AboutUs = () => {
   return (
     <>
+    <br /><br />
      
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -147,6 +148,7 @@ const AboutUs = () => {
         .animate-scroll-mobile {
             animation: scroll-mobile 20s linear infinite;
         }
+        
       `}</style>
       <div className="newarrivals-body">
         <div className="newarrivals-container">
@@ -289,7 +291,7 @@ const AboutUs = () => {
                 <div className="flex gap-8 min-w-full justify-start pl-4">
                   {/* Since 2004 */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
                       <div className="text-xl font-bold text-gray-800">2004</div>
                     </div>
@@ -297,7 +299,7 @@ const AboutUs = () => {
 
                   {/* Premium Materials */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
                       <div className="text-sm font-bold text-gray-800">Materials</div>
                     </div>
@@ -305,7 +307,7 @@ const AboutUs = () => {
 
                   {/* 10 Years Warranty - Center Circle */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-40 h-40 rounded-full flex flex-col items-center justify-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300" style={{ background: 'linear-gradient(135deg, rgb(68, 177, 228), rgb(98, 102, 208))' }}>
+                    <div className="w-40 h-40 border-2 border-black rounded-full flex flex-col items-center justify-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300" style={{ background: 'linear-gradient(135deg, rgb(68, 177, 228), rgb(98, 102, 208))' }}>
                       <div className="text-lg font-bold mb-1">10 YEARS</div>
                       <div className="text-sm font-semibold">Warranty</div>
                     </div>
@@ -313,7 +315,7 @@ const AboutUs = () => {
 
                   {/* Completion */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>COMPLETION</div>
                       <div className="text-xs font-bold text-gray-800">40 Working Days</div>
                     </div>
@@ -321,7 +323,7 @@ const AboutUs = () => {
 
                   {/* Projects */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
                       <div className="text-xs font-bold text-gray-800">300 Per Month</div>
                     </div>
@@ -329,7 +331,7 @@ const AboutUs = () => {
 
                   {/* Lifelong Service */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>LIFELONG</div>
                       <div className="text-xs font-bold text-gray-800">Service Support</div>
                     </div>
@@ -340,7 +342,7 @@ const AboutUs = () => {
                 <div className="flex gap-8 min-w-full justify-start pl-4">
                   {/* Since 2004 */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
                       <div className="text-xl font-bold text-gray-800">2004</div>
                     </div>
@@ -348,7 +350,7 @@ const AboutUs = () => {
 
                   {/* Premium Materials */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
                       <div className="text-sm font-bold text-gray-800">Materials</div>
                     </div>
@@ -356,7 +358,7 @@ const AboutUs = () => {
 
                   {/* 10 Years Warranty - Center Circle */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-40 h-40 rounded-full flex flex-col items-center justify-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300" style={{ background: 'linear-gradient(135deg, rgb(68, 177, 228), rgb(98, 102, 208))' }}>
+                    <div className="w-40 h-40 border-2 border-black rounded-full flex flex-col items-center justify-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300" style={{ background: 'linear-gradient(135deg, rgb(68, 177, 228), rgb(98, 102, 208))' }}>
                       <div className="text-lg font-bold mb-1">10 YEARS</div>
                       <div className="text-sm font-semibold">Warranty</div>
                     </div>
@@ -364,7 +366,7 @@ const AboutUs = () => {
 
                   {/* Completion */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>COMPLETION</div>
                       <div className="text-xs font-bold text-gray-800">40 Working Days</div>
                     </div>
@@ -372,7 +374,7 @@ const AboutUs = () => {
 
                   {/* Projects */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
                       <div className="text-xs font-bold text-gray-800">300 Per Month</div>
                     </div>
@@ -380,7 +382,7 @@ const AboutUs = () => {
 
                   {/* Lifelong Service */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-4 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>LIFELONG</div>
                       <div className="text-xs font-bold text-gray-800">Service Support</div>
                     </div>
@@ -393,7 +395,7 @@ const AboutUs = () => {
             <div className="hidden lg:contents">
               {/* Since 2004 */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-gray-200 hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
                   <div className="text-2xl font-bold text-gray-800">2004</div>
                 </div>
@@ -401,7 +403,7 @@ const AboutUs = () => {
 
               {/* Premium Materials */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-gray-200 hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
                   <div className="text-lg font-bold text-gray-800">Materials</div>
                 </div>
@@ -409,7 +411,7 @@ const AboutUs = () => {
 
               {/* 10 Years Warranty - Center Circle */}
               <div className="text-center group">
-                <div className="w-52 h-52 rounded-full flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-xl" style={{ background: 'linear-gradient(135deg, rgb(68, 177, 228), rgb(98, 102, 208))' }}>
+                <div className="w-52 h-52 border-2 border-black rounded-full flex flex-col items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-xl" style={{ background: 'linear-gradient(135deg, rgb(68, 177, 228), rgb(98, 102, 208))' }}>
                   <div className="text-2xl font-bold mb-2">10 YEARS</div>
                   <div className="text-lg font-semibold">Warranty</div>
                 </div>
@@ -417,7 +419,7 @@ const AboutUs = () => {
 
               {/* Completion */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-gray-200 hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>COMPLETION</div>
                   <div className="text-lg font-bold text-gray-800">40 Working Days</div>
                 </div>
@@ -425,7 +427,7 @@ const AboutUs = () => {
 
               {/* Projects */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-gray-200 hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
                   <div className="text-lg font-bold text-gray-800">300 Per Month</div>
                 </div>
@@ -433,7 +435,7 @@ const AboutUs = () => {
 
               {/* Lifelong Service */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-gray-200 hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>LIFELONG</div>
                   <div className="text-lg font-bold text-gray-800">Service Support</div>
                 </div>
@@ -444,54 +446,258 @@ const AboutUs = () => {
       </div>
 
       {/* Founder's Note Section */}
-      <div className="w-full bg-gray-50 py-16 px-4">
+      <div className="w-full bg-gray-50 py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Founder Image */}
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
               <div className="relative">
                 <img 
-                  src="/src/assets/founder-image.jpg" 
-                  alt="Jean-Baptiste Duprieu, Founder & CEO" 
-                  className="w-80 h-96 object-cover rounded-lg shadow-lg"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" 
+                  alt="Chinna Babu K, Founder & CEO" 
+                  className="w-80 h-96 object-cover rounded-2xl shadow-2xl"
                 />
+                {/* Decorative overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl"></div>
               </div>
             </div>
 
             {/* Founder's Note Content */}
-            <div className="space-y-6">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-8" style={{ fontFamily: 'Khand, sans-serif' }}>
-                A note from our founder.
+            <div className="space-y-5 order-1 lg:order-2">
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-400 leading-tight font-poppins">
+                Our founder
               </h2>
               
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
                 <p>
-                  Suffering from a chronic disease or going through extensive and painful medical treatments is the 
-                  daily reality of many around us. Throughout my life, I've watched too many loved ones enter this 
-                  cycle of pain. A cycle that some exited successfully and others who didn't, leaving us with more 
-                  questions than answers. However to the question « could this have been avoided? », the answer 
-                  was a resounding YES in 80%!(check and link US public health stats) of cases, ONLY IF warning 
-                  signs of their condition had been caught earlier.
+                  Every home tells a story, and every space deserves to reflect the dreams and aspirations of those who inhabit it. 
+                  Over the past 8 years, I've had the privilege of transforming countless houses into homes that truly resonate 
+                  with their owners' personalities and lifestyles.
                 </p>
                 
-              
                 
-                <p>
-                  We need this technology to be built into our lives.
-                </p>
                 
-                <p className="font-semibold text-gray-800">
-                  I started Cura to make this goal a reality.
+                <p className="font-semibold text-gray-800 text-xl">
+                  I founded Design & Decor Guide to bridge the gap between dreams and reality, one beautiful space at a time.
                 </p>
               </div>
 
               {/* Founder Signature */}
-              <div className="pt-6">
-                <p className="font-bold text-gray-800 mb-2">Jean-Baptiste Duprieu, Founder & CEO.</p>
-                <div className="w-48 h-16 bg-contain bg-no-repeat" 
-                     style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 60\'%3E%3Cpath d=\'M10 30 Q30 10, 50 30 T90 30\' stroke=\'%23374151\' stroke-width=\'2\' fill=\'none\'/%3E%3C/svg%3E")' }}>
+              <div className="pt-8">
+                <p className="font-bold text-gray-800 mb-4 text-xl">Chinna Babu K, Founder & CEO</p>
+                <div className="w-56 h-20 bg-contain bg-no-repeat" 
+                     style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 250 80\'%3E%3Cpath d=\'M15 40 Q35 20, 55 40 T95 40 Q115 20, 135 40 T175 40\' stroke=\'%23374151\' stroke-width=\'3\' fill=\'none\'/%3E%3C/svg%3E")' }}>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Our Team Section */}
+      <div className="py-20 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-16">
+            <div className="mb-8 lg:mb-0">
+              <div className="text-green-600 text-sm font-medium mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                Our Team
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                TEAM OF DDG
+              </h2>
+            </div>
+            <div className="lg:max-w-md">
+              <p className="text-gray-600 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                Our skilled team continuously innovates, ensuring our design services stay ahead of industry standards.
+              </p>
+            </div>
+          </div>
+
+          {/* Team Members Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {/* Chinna Babu K - Owner */}
+            <div className="relative group bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl p-8 shadow-2xl border border-blue-100 hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden flex flex-col items-center">
+              <div className="flex flex-col items-center relative z-10">
+                <div className="w-56 h-56 mb-6 rounded-full overflow-hidden shadow-xl border-4 border-white ring-4 ring-blue-200 group-hover:ring-purple-300 transition-all duration-500 bg-white flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80" 
+                    alt="Chinna Babu K, Owner" 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3
+                  className="font-extrabold text-gray-900 mb-2 tracking-wide"
+                  style={{
+                    fontFamily: 'Poppins, Arial, Helvetica, sans-serif',
+                    letterSpacing: '0.04em',
+                    fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                    fontSmoothing: 'antialiased',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale'
+                  }}
+                >
+                  CHINNA BABU K
+                </h3>
+                <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold px-5 py-2 rounded-full mb-3 shadow">
+                  Founder & CEO
+                </span>
+                
+                <div className="flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl px-6 py-3 shadow-inner mt-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                  <span className="text-blue-700 font-semibold text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    +91 8618877807
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="relative group bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl p-8 shadow-2xl border border-blue-100 hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden flex flex-col items-center">
+              <div className="flex flex-col items-center relative z-10">
+                <div className="w-56 h-56 mb-6 rounded-full overflow-hidden shadow-xl border-4 border-white ring-4 ring-blue-200 group-hover:ring-purple-300 transition-all duration-500 bg-white flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80" 
+                    alt="Chinna Babu K, Owner" 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3
+                  className="font-extrabold text-gray-900 mb-2 tracking-wide"
+                  style={{
+                    fontFamily: 'Poppins, Arial, Helvetica, sans-serif',
+                    letterSpacing: '0.04em',
+                    fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                    fontSmoothing: 'antialiased',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale'
+                  }}
+                >
+                  CHINNA BABU K
+                </h3>
+                <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold px-5 py-2 rounded-full mb-3 shadow">
+                  Founder & CEO
+                </span>
+                
+                <div className="flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl px-6 py-3 shadow-inner mt-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                  <span className="text-blue-700 font-semibold text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    +91 8618877807
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div className="relative group bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl p-8 shadow-2xl border border-blue-100 hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden flex flex-col items-center">
+              <div className="flex flex-col items-center relative z-10">
+                <div className="w-56 h-56 mb-6 rounded-full overflow-hidden shadow-xl border-4 border-white ring-4 ring-blue-200 group-hover:ring-purple-300 transition-all duration-500 bg-white flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80" 
+                    alt="Chinna Babu K, Owner" 
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3
+                  className="font-extrabold text-gray-900 mb-2 tracking-wide"
+                  style={{
+                    fontFamily: 'Poppins, Arial, Helvetica, sans-serif',
+                    letterSpacing: '0.04em',
+                    fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+                    fontSmoothing: 'antialiased',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale'
+                  }}
+                >
+                  CHINNA BABU K
+                </h3>
+                <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-bold px-5 py-2 rounded-full mb-3 shadow">
+                  Founder & CEO
+                </span>
+                
+                <div className="flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl px-6 py-3 shadow-inner mt-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                  <span className="text-blue-700 font-semibold text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    +91 8618877807
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+            
+
+            {/* Akhil - Project Manager Hyderabad */}
+           
+
+            {/* Ganesh K - Project Manager Visakhapatnam */}
+
+            
+            
+          </div>
+
+          {/* Contact Summary */}
+          
+        </div>
+      </div>
+
+      {/* Our Trusted Partners Section */}
+      <div className="py-20 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Khand, sans-serif' }}>
+              Our Trusted Partners
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              We collaborate with industry-leading brands to bring you the finest materials and innovative solutions for your dream home.
+            </p>
+          </div>
+
+          {/* Partners Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 items-center justify-items-center">
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src="/src/assets/asianpaints.jpeg" 
+                alt="Asian Paints" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src="/src/assets/kajaria.png" 
+                alt="Kajaria" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src="/src/assets/mytyles.png" 
+                alt="MyTyles" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src="/src/assets/quartizo.jpeg" 
+                alt="Quartizo" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src="/src/assets/simens.png" 
+                alt="Siemens" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </div>
           </div>
         </div>
