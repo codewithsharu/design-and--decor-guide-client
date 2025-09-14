@@ -11,7 +11,7 @@ const AIAssistant = () => {
   const [showingRecommendations, setShowingRecommendations] = useState(false);
   const [isHome, setIsHome] = useState(true);
   const [isMaximized, setIsMaximized] = useState(false);
-  const whatsappNumber = '917816072525';
+  const whatsappNumber = '918618877807';
 
   // Interior design questionnaire (static, step-by-step)
   const questionnaire = [
@@ -309,7 +309,7 @@ const AIAssistant = () => {
   return (
     <div className={`${containerPositionClass}`}>
       {isOpen ? (
-        <div className={`relative ${isMaximized ? 'w-screen h-screen max-w-none rounded-none' : 'w-[92vw] max-w-[420px] h-[72vh] md:w-[420px] md:h-[640px] rounded-2xl'} bg-white shadow-xl flex flex-col border border-gray-200`}>
+        <div className={`relative ${isMaximized ? 'w-screen h-screen max-w-none rounded-none' : 'w-[92vw] max-w-[380px] h-[72vh] md:w-[380px] md:h-[580px] rounded-2xl'} bg-white shadow-xl flex flex-col border border-gray-200`}>
           {/* Message Tail */}
           {!isMaximized && (
             <div className="absolute bottom-[-9px] right-8 w-4 h-4 bg-white rotate-45 border-b border-r border-gray-200 shadow-sm rounded-sm"></div>
