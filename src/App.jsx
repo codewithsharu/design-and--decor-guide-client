@@ -37,6 +37,7 @@ import FullGallery from "./pages/fullgallery";
 import Services from "./pages/Services";
 
 import AboutUs from "./pages/aboutus";
+import FAQ from "./pages/FAQ";
 // Import the ServicesById page
 import ServicesById from "./pages/servicesbyid";
 
@@ -71,9 +72,10 @@ const App = () => {
             <Route path='/forgot-password' element={<ForgotPassword />}/>
             <Route path="/gallery" element={<Gallery />}/>
             <Route path="/gallery/:id" element={<Gallery />} />
-
+            <Route path="/faq" element={<FAQ />}/>
 
             <Route path="/aboutus" element={<AboutUs />}/>
+            <Route path="/faq" element={<FAQ />}/>
             {/* Render the ServicesById page at /servicesbyid */}
             <Route path="/servicesbyid" element={<ServicesById />} />
             <Route path="/servicesbyid/:id" element={<ServicesById />} />

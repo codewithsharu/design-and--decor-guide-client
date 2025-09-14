@@ -24,6 +24,9 @@ import Hiw  from './Hiw1';
 
 import hiw  from './hiw';
 
+import FAQ from './FAQ';
+import { FaQ } from 'react-icons/fa6';
+
 const Home = () => {
 
   return (
@@ -41,6 +44,7 @@ const Home = () => {
       <hiw/>
       {/* <WhyChooseUs/> */}
       <Reviews/>
+      <FAQ/>
     </div>
   );
 };

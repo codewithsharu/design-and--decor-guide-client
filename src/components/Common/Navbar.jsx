@@ -184,6 +184,15 @@ const Navbar = ({ isShrunk = false }) => {
             >
               Gallery
             </Link>
+
+              <Link
+              to="/faq"
+              className={`nav-link ${isActive("/faq") ? "active" : ""}`}
+              onClick={handleNavLinkClick}
+              style={{ padding: "8px 12px" }}
+            >
+              FAQ'S
+            </Link>
             <Link
               to="/contactus"
               className={`nav-link ${isActive("/contactus") ? "active" : ""}`}

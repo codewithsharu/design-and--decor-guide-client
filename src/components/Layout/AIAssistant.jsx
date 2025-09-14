@@ -494,9 +494,33 @@ const AIAssistant = () => {
             border-2 border-transparent hover:border-white
             animate-bounce-slow"
         >
-          <i className="fas fa-message"></i>
+          <i className="fas fa-robot"></i>
         </button>
+
+
+
       )}
+
+      <button
+  onClick={() =>
+    window.open(
+      "https://api.whatsapp.com/send?phone=+917816072525&text=How%20can%20the%20Design%20and%20Decor%20team%20help%20you%3F",
+      "_blank"
+    )
+  }
+  className="unique-whatsapp-btn fixed bottom-8 left-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg
+    hover:bg-green-600 hover:scale-110 active:scale-95
+    transition-all duration-300 ease-in-out
+    flex items-center justify-center
+    text-2xl
+    opacity-90 hover:opacity-100
+    border-2 border-transparent hover:border-white
+    animate-pulse"
+  aria-label="Contact via WhatsApp"
+>
+  <i className="fab fa-whatsapp w-6 h-6" />
+</button>
+
 
       <style jsx>{`
         @keyframes fadeIn {

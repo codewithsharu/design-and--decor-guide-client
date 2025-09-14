@@ -150,7 +150,7 @@ const AboutUs = () => {
         }
         
       `}</style>
-      <div className="newarrivals-body">
+      {/* <div className="newarrivals-body">
         <div className="newarrivals-container">
           <div className="newarrivals-contentLeft">
             <div className="newarrivals-row">
@@ -172,7 +172,7 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Our Story Section */}
       <div className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
