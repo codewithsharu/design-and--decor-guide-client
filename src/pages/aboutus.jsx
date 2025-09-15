@@ -389,7 +389,7 @@ const AboutUs = () => {
             <div className="hidden lg:contents">
               {/* Since 2004 */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
                   <div className="text-2xl font-bold text-gray-800">2017</div>
                 </div>
@@ -397,7 +397,7 @@ const AboutUs = () => {
 
               {/* Premium Materials */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
                   <div className="text-lg font-bold text-gray-800">Materials</div>
                 </div>
@@ -408,15 +408,15 @@ const AboutUs = () => {
 
               {/* Completion */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
-                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>COMPLETION</div>
+                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-violet-500 to-sky-300">
+                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(3, 49, 70)' }}>COMPLETION</div>
                   <div className="text-lg font-bold text-gray-800">45 Working Days</div>
                 </div>
               </div>
 
               {/* Projects */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
                   <div className="text-lg font-bold text-gray-800">30 Per Month</div>
                 </div>
@@ -424,7 +424,7 @@ const AboutUs = () => {
 
               {/* Lifelong Service */}
               <div className="text-center group">
-                <div className="w-44 h-44 border-2 border-black hover:border-blue-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
+                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
                   <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>LIFELONG</div>
                   <div className="text-lg font-bold text-gray-800">Service Support</div>
                 </div>

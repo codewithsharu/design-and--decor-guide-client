@@ -394,18 +394,7 @@ const Footer = () => {
                     </h4>
                   </div>
                   <div className="contact-text">
-                    Design & Décor Guide by MMC,<br />
-                    behind Jayabheri Maruthi Showroom,<br />
-                    Kranthi Nagar, Visakhapatnam - 530014,<br />
-                    Andhra Pradesh 530013<br />
-                    <a
-                      href="https://maps.app.goo.gl/mjGtYJ8VxeVRfbUb7?g_st=aw"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "#fff", textDecoration: "underline" }}
-                    >
-                      View on Google Maps
-                    </a>
+                    Visakhapatnam (Vizag) & Hyderabad
                   </div>
                 </div>
 
@@ -444,7 +433,7 @@ const Footer = () => {
                   </div>
                   <div className="contact-text">
                     <a href="mailto:designdecorguide@gmail.com" style={{ color: "#fff", textDecoration: "none" }}>
-                      designdecorguide@gmail.com
+                      info@designdecorguide.com
                     </a>
                     <br />
                    

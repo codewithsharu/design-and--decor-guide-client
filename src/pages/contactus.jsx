@@ -114,9 +114,9 @@ const ContactUs = () => {
               <p className="text-[#e5e5e5] text-sm lg:text-base xl:text-lg ml-8 lg:ml-11 leading-relaxed font-light" 
                  style={{fontFamily:'Arial, Helvetica, sans-serif', lineHeight:'1.6'}}>
                  Design & Décor Guide by MMC,<br />
-                 behind Jayabheri Maruthi Showroom,<br />
-                 Kranthi Nagar, Visakhapatnam - 530014,<br />
-                 Andhra Pradesh 530013
+                
+                 vizag & Hyderabad<br />
+                
                </p>
              </div>
              
@@ -154,7 +154,7 @@ const ContactUs = () => {
                <a href="mailto:designdecorguide@gmail.com" 
                   className="text-[#e5e5e5] ml-8 lg:ml-11 hover:text-[#c5a46d] transition-colors duration-300 text-sm lg:text-base xl:text-lg font-light underline decoration-[#c5a46d]/50 hover:decoration-[#c5a46d]" 
                   style={{fontFamily:'Arial, Helvetica, sans-serif'}}>
-                 designdecorguide@gmail.com
+                 info@designdecorguide.com
                </a>
              </div>
            </div>
