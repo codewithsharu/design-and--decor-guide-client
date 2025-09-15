@@ -273,7 +273,9 @@ const Footer = () => {
             <div className="footer-left">
              
               <div className="footer-brand khand-bold">
-                <h1>DDG UNDERSTANDS YOUR PRIMARY NEEDS</h1>
+                <h1>
+                  <span style={{ color: "#44B1E4", fontWeight: 900, letterSpacing: 1 }}>DDG</span> UNDERSTANDS YOUR PRIMARY NEEDS
+                </h1>
               </div>
               <div className="footer-description">
                 DDG tailor every design to your needs, ensuring your space reflects your style flawlessly. With us, your dream home is just a step away.

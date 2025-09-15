@@ -5,6 +5,16 @@ import kajaria from "../assets/kajaria.png";
 import mytyles from "../assets/mytyles.png";
 import quartizo from "../assets/quartizo.jpeg";
 import simens from "../assets/simens.png";
+import centuryply from "../assets/centuryply.png";
+import philips from "../assets/philips.png";
+import crompton from "../assets/crompton.png";
+import godrej from "../assets/godrej.png";
+import hettich from "../assets/hettich.png";
+import saintgobain from "../assets/saintgobain.jpeg";
+import dulux from "../assets/dulux.png";
+import wipro from "../assets/wipro.png";
+import johnson from "../assets/johnson.png";
+import merino from "../assets/merino.png";
 const images = [
   "https://images.unsplash.com/photo-1568219656968-19c1da9775ae?auto=format&fit=crop&w=800&q=80", // Modern living room interior
   "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80", // Stylish bedroom design
@@ -701,6 +711,85 @@ const AboutUs = () => {
               <img 
                 src={simens} 
                 alt="Siemens" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={centuryply} 
+                alt="centuryply" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={philips} 
+                alt="philips" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={crompton} 
+                alt="crompton" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={godrej} 
+                alt="godrej" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={hettich} 
+                alt="hettich" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={saintgobain} 
+                alt="saintgobain" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={dulux} 
+                alt="dulux" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={wipro} 
+                alt="wipro" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={johnson} 
+                alt="johnson" 
+                className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex items-center justify-center w-full max-w-48 h-24 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 px-6 group">
+              <img 
+                src={merino} 
+                alt="merino" 
                 className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>

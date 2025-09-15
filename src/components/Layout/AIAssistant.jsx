@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import aiChatbot from '../../assets/aichatbot.png';
 
 const AIAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +82,7 @@ const AIAssistant = () => {
   // Avatars
   const AssistantAvatar = () => (
     <div className="shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white flex items-center justify-center shadow">
-      <i className="fas fa-hexagon text-xs"></i>
+      <img src={aiChatbot} alt="AI" className="h-5 w-5 object-contain" />
     </div>
   );
   const UserAvatar = () => (
@@ -318,8 +319,8 @@ const AIAssistant = () => {
           <div className={`px-4 pt-3 pb-2 ${isMaximized ? '' : 'rounded-t-2xl'} border-b border-gray-100 bg-white/80 backdrop-blur relative z-30`}>            
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white flex items-center justify-center shadow">
-                  <i className="fas fa-couch text-sm"></i>
+                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white flex items-center justify-center shadow overflow-hidden">
+                  <img src={aiChatbot} alt="DDG" className="h-6 w-6 object-contain" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-gray-900">DDG </div>
@@ -485,16 +486,16 @@ const AIAssistant = () => {
             setShowingRecommendations(false);
             setMessages([]);
           }}
-          className="w-12 h-12 md:w-12 md:h-12 bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white rounded-full shadow-lg 
+          className="w-12 h-12 md:w-12 md:h-12 bg-white text-violet-700 rounded-full shadow-lg 
             hover:opacity-90 hover:scale-110 active:scale-95
             transition-all duration-300 ease-in-out
             flex items-center justify-center
             text-xl
             opacity-80 hover:opacity-100
-            border-2 border-transparent hover:border-white
+            border-2 border-sky-400 hover:border-red-50
             animate-bounce-slow"
         >
-          <i className="fas fa-robot"></i>
+          <img src={aiChatbot} alt="AI Assistant" className="w-10 h-10 object-contain" />
         </button>
 
 
