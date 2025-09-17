@@ -164,6 +164,147 @@ const AboutUs = () => {
             animation: scroll-mobile 20s linear infinite;
         }
         
+        /* ===== About Section (Our Story) ===== */
+        .about-section{
+            position:relative;
+            padding:120px 0px;
+        }
+        .about-section .container{max-width:1200px;margin:0 auto;padding:0 16px;}
+        .about-section .row{display:flex;flex-wrap:wrap;align-items:center}
+        .about-section .content-column,
+        .about-section .image-column{flex:0 0 50%;max-width:50%}
+        @media (max-width: 991px){
+            .about-section .content-column,
+            .about-section .image-column{flex:0 0 100%;max-width:100%}
+        }
+        .about-section .content-column{
+            position:relative;
+            margin-bottom:40px;
+        }
+        .about-section .content-column .inner-column{
+            position:relative;
+            padding-top:50px;
+            padding-right:100px;
+        }
+        .about-section .content-column .text{
+            position:relative;
+            color:#777777;
+            font-size:15px;
+            line-height:2em;
+            margin-bottom:40px;
+        }
+        .about-section .content-column .email{
+            position:relative;
+            color:#252525;
+            font-weight:700;
+            margin-bottom:50px;
+        }
+        .about-section .image-column{
+            position:relative;
+            margin-bottom:50px;
+        }
+        .about-section .image-column .inner-column{
+            position:relative;
+            padding:40px 40px 0px 0px;
+            margin-left:50px;
+        }
+        .about-section .image-column .inner-column:after{
+            position:absolute;
+            content:'';
+            right:0px;
+            top:0px;
+            left:40px;
+            bottom:100px;
+            z-index:-1;
+            border:2px solid #d7a449;
+        }
+        .about-section .image-column .inner-column .image{position:relative;}
+        .about-section .image-column .inner-column .image:before{
+            position:absolute;
+            content:'';
+            left:-50px;
+            bottom:-50px;
+            width:299px;
+            height:299px;
+            background:url('https://i.ibb.co/DKn55Qz/pattern-1.jpg') repeat;
+        }
+        .about-section .image-column .inner-column .image img{
+            position:relative;
+            width:100%;
+            display:block;
+        }
+        .about-section .image-column .inner-column .image .overlay-box{
+            position:absolute;
+            left:40px;
+            bottom:48px;
+        }
+        .about-section .image-column .inner-column .image .overlay-box .year-box{
+            position:relative;
+            color:#252525;
+            font-size:24px;
+            font-weight:700;
+            line-height:1.4em;
+            padding-left:125px;
+        }
+        .about-section .image-column .inner-column .image .overlay-box .year-box .number{
+            position:absolute;
+            left:0px;
+            top:0px;
+            width:110px;
+            height:110px;
+            color:#d7a449;
+            font-size:68px;
+            font-weight:700;
+            line-height:105px;
+            text-align:center;
+            background-color:#ffffff;
+            border:1px solid #000000;
+        }
+        .about-section .btn-style-three:before {
+            position: absolute;
+            content: '';
+            left: 10px;
+            top: 10px;
+            z-index: -1;
+            right: -10px;
+            bottom: -10px;
+            background: url(https://i.ibb.co/DKn55Qz/pattern-1.jpg) repeat;
+        }
+        .about-section .btn-style-three:hover { color: #ffffff; background: #d7a449; }
+        .about-section .btn-style-three {
+            position: relative;
+            line-height: 24px;
+            color: #252525;
+            font-size: 15px;
+            font-weight: 700;
+            display: inline-block;
+            padding: 11px 40px;
+            background-color: #ffffff;
+            text-transform: capitalize;
+            border: 2px solid #d7a449;
+            font-family: 'Arimo', sans-serif;
+        }
+        .sec-title2{ color:#fff; }
+        .sec-title { position: relative; padding-bottom: 40px;  }
+        .sec-title .title {
+            position: relative;
+            color: #d7a449;
+            font-size: 18px;
+            font-weight: 700;
+            padding-right: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+            text-transform: capitalize;
+        }
+        .sec-title .title:before {
+            position: absolute;
+            content: '';
+            right: 0px;
+            bottom: 7px;
+            width: 40px;
+            height: 1px;
+            background-color: #bbbbbb;
+        }
       `}</style>
       {/* <div className="newarrivals-body">
         <div className="newarrivals-container">
@@ -189,101 +330,59 @@ const AboutUs = () => {
         </div>
       </div> */}
 
-      {/* Our Story Section */}
-      <div className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-400 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-2">
-           
-      <div className="reduced-padding-heading">
-        <PortfolioHeading
-          headingText="Our Story"
-        />
-      </div>
-      </div>
-
-          {/* Story Content */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Side - Text Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-gray-800 leading-tight">
-              
-                  <span style={{ fontFamily: 'Poppins, sans-serif', color: '#000000', fontWeight: '400', fontSize: '1.2em' }}>Design & Decor Guide</span>
-                </h3>
-                
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  At Design and Decor Guide, we believe every space deserves to reflect beauty, comfort, and individuality. Founded by Chinna Babu K, with over 10 years of experience in interior designing, we specialize in creating stunning house interiors for all types of spaces. Officially operating since 2017, we bring seasoned expertise and reliable delivery to every project.
-
-
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Our creative design team is passionate about bringing fresh, unique, and innovative ideas to life, ensuring each project is customized to our clients’ lifestyle and vision. We pride ourselves on delivering high-quality designs at affordable prices, blending functionality with style to transform houses into dream homes
-                </p>
-              </div>
-
-              {/* Statistics */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                    350+
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
+      {/* Our Story Section (replaced with About layout) */}
+      <section className="about-section">
+        <div className="container">
+          <div className="row clearfix">
+            {/* Content Column */}
+            <div className="content-column col-md-6 col-sm-12 col-xs-12">
+              <div className="inner-column">
+                <div className="sec-title">
+                  <div className="title">About Us</div>
+                  <h2>We Are The Leader In <br /> The Interiores</h2>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-                    10+
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">Years of Excellence</div>
+                <div className="text">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text text-transparent mb-2">
-                    98%
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">Client Satisfaction</div>
-                </div>
+                <div className="email">Request Quote: <span className="theme_color">info@designdecorguide.com</span></div>
+                <a href="about.html" className="theme-btn btn-style-three">Read More</a>
               </div>
             </div>
-
-            {/* Right Side - Visual Content */}
-            <div className="relative">
-              {/* Main Image */}
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <img 
-                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" 
-                  alt="Our design studio" 
-                  className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            {/* Image Column */}
+            <div className="image-column col-md-6 col-sm-12 col-xs-12">
+              <div className="inner-column" data-wow-delay="0ms" data-wow-duration="1500ms">
+                <div className="image">
+                  <img src="https://i.ibb.co/vQbkKj7/about.jpg" alt="About" />
+                  <div className="overlay-box">
+                    <div className="year-box"><span className="number">5</span>Years <br /> Experience <br /> Working</div>
+                  </div>
+                </div>
               </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl shadow-lg transform -rotate-12 flex items-center justify-center">
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                </svg>
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl shadow-lg transform rotate-12 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
-
-              {/* Background decoration */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl transform scale-110 rotate-6"></div>
             </div>
           </div>
-
-          {/* Mission Statement */}
-     
+        </div>
+      </section>
+      {/* Keep previous small statistics just after About section */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-3 gap-8 pt-8">
+          <div className="text-center">
+            <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+              350+
+            </div>
+            <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+              5+
+            </div>
+            <div className="text-sm text-gray-600 font-medium">Years of Excellence</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text text-transparent mb-2">
+              98%
+            </div>
+            <div className="text-sm text-gray-600 font-medium">Client Satisfaction</div>
+          </div>
         </div>
       </div>
 
