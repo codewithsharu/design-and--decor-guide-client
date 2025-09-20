@@ -486,16 +486,16 @@ const AIAssistant = () => {
             setShowingRecommendations(false);
             setMessages([]);
           }}
-          className="w-12 h-12 md:w-12 md:h-12 bg-white text-violet-700 rounded-full shadow-lg 
-            hover:opacity-90 hover:scale-110 active:scale-95
-            transition-all duration-300 ease-in-out
+          className="professional-chatbot-btn w-14 h-14 md:w-16 md:h-16 rounded-full
+            hover:scale-105 active:scale-98
+            transition-all duration-200 ease-out
             flex items-center justify-center
-            text-xl
-            opacity-80 hover:opacity-100
-            border-2 border-sky-400 hover:border-red-50
-            animate-bounce-slow"
+            border-2 border-blue-500 hover:border-blue-600
+            relative overflow-hidden group
+            shadow-sm hover:shadow-md"
         >
-          <img src={aiChatbot} alt="AI Assistant" className="w-10 h-10 object-contain" />
+          <img src={aiChatbot} alt="AI Assistant" className="robot-red-fill w-8 h-8 md:w-9 md:h-9 object-contain relative z-10" />
+          <div className="absolute inset-0 professional-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
         </button>
 
 
@@ -548,8 +548,165 @@ const AIAssistant = () => {
             transform: translateY(-10px);
           }
         }
+        
+        /* Attractive Red-Dominant Chatbot Button */
+        .chatbot-red-gradient-btn {
+          background: linear-gradient(135deg, #DC2626 0%, #EF4444 25%, #F87171 50%, #3B82F6 65%, #DC2626 100%);
+          background-size: 300% 300%;
+          animation: redWaveShift 4s ease-in-out infinite;
+          position: relative;
+          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+        
+        .chatbot-red-gradient-btn:hover {
+          background: linear-gradient(135deg, #B91C1C 0%, #DC2626 20%, #EF4444 40%, #2563EB 60%, #B91C1C 100%);
+          background-size: 300% 300%;
+          animation: redWaveShift 2s ease-in-out infinite;
+          transform: scale(1.15) translateY(-3px);
+          box-shadow: 0 12px 30px rgba(220, 38, 38, 0.5), 0 6px 15px rgba(59, 130, 246, 0.2);
+        }
+        
+        .chatbot-red-gradient-btn::before {
+          content: '';
+          position: absolute;
+          inset: -3px;
+          background: linear-gradient(135deg, #FCA5A5, #EF4444, #DC2626, #60A5FA, #EF4444);
+          background-size: 400% 400%;
+          border-radius: inherit;
+          opacity: 0.7;
+          z-index: -1;
+          animation: redWaveShift 4s ease-in-out infinite;
+          filter: blur(2px);
+        }
+        
+        .chatbot-red-gradient-btn:hover::before {
+          opacity: 1;
+          animation: redWaveShift 2s ease-in-out infinite;
+          filter: blur(3px);
+        }
+        
+        .chatbot-red-gradient-btn::after {
+          content: '';
+          position: absolute;
+          inset: 2px;
+          background: linear-gradient(45deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(59, 130, 246, 0.1) 100%);
+          border-radius: inherit;
+          z-index: 1;
+        }
+        
+        @keyframes redWaveShift {
+          0% {
+            background-position: 0% 50%;
+          }
+          25% {
+            background-position: 100% 25%;
+          }
+          50% {
+            background-position: 50% 100%;
+          }
+          75% {
+            background-position: 25% 0%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+        
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
       `}</style>
       <style jsx>{`
+        /* Blue Border Only */
+        .professional-chatbot-btn {
+          background: transparent;
+          border-color: rgb(48,149,213) !important;
+        }
+        
+        .professional-chatbot-btn:hover {
+          border-color: rgb(38,129,193) !important;
+          box-shadow: 0 0 8px rgba(48,149,213, 0.3);
+        }
+        
+        /* Red Robot Fill Only - Using exact rgb(125,15,15) */
+        .robot-red-fill {
+          filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(94%) contrast(108%);
+          -webkit-filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(94%) contrast(108%);
+          transition: all 0.3s ease;
+        }
+        
+        .professional-chatbot-btn:hover .robot-red-fill {
+          filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(104%) contrast(118%);
+          -webkit-filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7471%) hue-rotate(356deg) brightness(104%) contrast(118%);
+          drop-shadow: 0 0 6px rgba(125,15,15, 0.7);
+        }
+        
+        /* Alternative method using color overlay */
+        .robot-red-fill {
+          position: relative;
+        }
+        
+        .robot-red-fill::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgb(125,15,15);
+          mix-blend-mode: multiply;
+          pointer-events: none;
+        }
+        
+        /* Red Chatbot Icon Filter */
+        .chatbot-red-icon {
+          filter: sepia(1) hue-rotate(340deg) saturate(3) brightness(0.9);
+          -webkit-filter: sepia(1) hue-rotate(340deg) saturate(3) brightness(0.9);
+          transition: all 0.3s ease;
+        }
+        
+        .professional-chatbot-btn:hover .chatbot-red-icon {
+          filter: sepia(1) hue-rotate(335deg) saturate(4) brightness(1.1) drop-shadow(0 0 8px rgba(220, 38, 38, 0.8));
+          -webkit-filter: sepia(1) hue-rotate(335deg) saturate(4) brightness(1.1) drop-shadow(0 0 8px rgba(220, 38, 38, 0.8));
+        }
+        
+        /* Red fill overlay for the robot */
+        .chatbot-red-icon {
+          position: relative;
+        }
+        
+        .chatbot-red-icon::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: #DC2626;
+          mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='45'/%3E%3C/svg%3E");
+          -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='45'/%3E%3C/svg%3E");
+          mask-size: contain;
+          -webkit-mask-size: contain;
+          mask-repeat: no-repeat;
+          -webkit-mask-repeat: no-repeat;
+          mask-position: center;
+          -webkit-mask-position: center;
+          opacity: 0.8;
+          mix-blend-mode: color;
+          transition: opacity 0.3s ease;
+        }
+        
+        .professional-chatbot-btn:hover .chatbot-red-icon::before {
+          opacity: 1;
+          background: #B91C1C;
+        }
+        
         /* Thin, subtle scrollbar for WebKit */
         .thin-scrollbar::-webkit-scrollbar {
           width: 3px; /* thinner */

@@ -216,7 +216,7 @@ const AboutUs = () => {
             left:40px;
             bottom:100px;
             z-index:-1;
-            border:2px solid #d7a449;
+            border:2px solid #3095d5;
         }
         .about-section .image-column .inner-column .image{position:relative;}
         .about-section .image-column .inner-column .image:before{
@@ -252,7 +252,7 @@ const AboutUs = () => {
             top:0px;
             width:110px;
             height:110px;
-            color:#d7a449;
+            color:#3095d5;
             font-size:68px;
             font-weight:700;
             line-height:105px;
@@ -270,7 +270,7 @@ const AboutUs = () => {
             bottom: -10px;
             background: url(https://i.ibb.co/DKn55Qz/pattern-1.jpg) repeat;
         }
-        .about-section .btn-style-three:hover { color: #ffffff; background: #d7a449; }
+        .about-section .btn-style-three:hover { color: #ffffff; background: #3095d5; }
         .about-section .btn-style-three {
             position: relative;
             line-height: 24px;
@@ -281,14 +281,14 @@ const AboutUs = () => {
             padding: 11px 40px;
             background-color: #ffffff;
             text-transform: capitalize;
-            border: 2px solid #d7a449;
+            border: 2px solid #3095d5;
             font-family: 'Arimo', sans-serif;
         }
         .sec-title2{ color:#fff; }
         .sec-title { position: relative; padding-bottom: 40px;  }
         .sec-title .title {
             position: relative;
-            color: #d7a449;
+            color: #3095d5;
             font-size: 18px;
             font-weight: 700;
             padding-right: 50px;
