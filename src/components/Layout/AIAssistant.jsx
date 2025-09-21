@@ -7,67 +7,34 @@ const AIAssistant = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
   const [userPreferences, setUserPreferences] = useState({});
+  const [isWaitingForOther, setIsWaitingForOther] = useState(false);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
+  const otherInputRef = useRef(null);
+    // Removed fileInputRef as we will use manual text input instead
   const [showingRecommendations, setShowingRecommendations] = useState(false);
   const [isHome, setIsHome] = useState(true);
   const [isMaximized, setIsMaximized] = useState(false);
+  const [whatsappPayload, setWhatsappPayload] = useState(null);
   const whatsappNumber = '918618877807';
 
   // Interior design questionnaire (static, step-by-step)
   const questionnaire = [
     {
-      question: "Which room are you designing?",
-      options: [
-        "Living Room",
-        "Bedroom",
-        "Kitchen",
-        "Bathroom",
-        "Home Office",
-        "Dining Room"
-      ]
+      question: "Which location are you looking for?",
+      options: ["Visakhapatnam", "Hyderabad", "Other"]
     },
     {
-      question: "What's your preferred style?",
-      options: [
-        "Modern",
-        "Minimalist",
-        "Scandinavian",
-        "Traditional",
-        "Bohemian",
-        "Industrial",
-        "Coastal"
-      ]
+      question: "What is your requirement?",
+      options: ["Apartment", "Individual house", "Villa", "Office interiors"]
     },
     {
-      question: "What's your primary color palette?",
-      options: [
-        "Neutral",
-        "Warm",
-        "Cool",
-        "Earthy",
-        "Monochrome",
-        "Pastels"
-      ]
+      question: "Share your floor plan.",
+      isFileInput: true
     },
     {
-      question: "What's your budget level?",
-      options: ["Budget", "Mid-range", "Premium"]
-    },
-    {
-      question: "What materials do you prefer?",
-      options: [
-        "Wood",
-        "Metal",
-        "Glass",
-        "Natural Fibers",
-        "Fabric",
-        "Mixed"
-      ]
-    },
-    {
-      question: "How bold should the accents be?",
-      options: ["Subtle", "Balanced", "Bold"]
+      question: "Thank you for the details. Our team will get in touch with you shortly.",
+      isSubmit: true
     }
   ];
 
@@ -201,21 +168,48 @@ const AIAssistant = () => {
     scrollToBottom();
   }, [messages]);
 
+  // Focus the "Other" text input when it's shown
+  useEffect(() => {
+    if (isWaitingForOther && otherInputRef.current) {
+      otherInputRef.current.focus();
+    }
+  }, [isWaitingForOther]);
+
   // History feature removed
 
   const handleOptionSelect = (option) => {
     setIsHome(false);
     const currentQuestion = questionnaire[currentStep];
-    setUserPreferences(prev => ({
-      ...prev,
-      [currentQuestion.question]: option
-    }));
 
-    // Only add the user's answer
+    // Add the user's answer message
     setMessages(prev => [
       ...prev,
       { text: option, sender: 'user', id: Date.now() + 1 }
     ]);
+
+    // If user selected "Other" for the location question, prompt for free text
+    if (option === 'Other' && currentQuestion && currentQuestion.question === 'Which location are you looking for?') {
+      setIsWaitingForOther(true);
+      // Prompt assistant to ask for the location text
+      setTimeout(() => {
+        setMessages(prev => [
+          ...prev,
+          { text: 'Please specify your location.', sender: 'assistant', id: Date.now() }
+        ]);
+        // After the assistant message is added, attempt to focus the input and scroll
+        setTimeout(() => {
+          otherInputRef.current?.focus();
+          scrollToBottom();
+        }, 80);
+      }, 300);
+      return;
+    }
+
+    // Save selection and advance
+    setUserPreferences(prev => ({
+      ...prev,
+      [currentQuestion.question]: option
+    }));
 
     if (currentStep < questionnaire.length - 1) {
       setTimeout(() => {
@@ -237,42 +231,113 @@ const AIAssistant = () => {
     window.open(url, '_blank');
   };
 
-  // Build a concise WhatsApp message from the user's selections
-  const formatWhatsAppMessageFromPreferences = (preferences) => {
-    const labelMap = {
-      "Which room are you designing?": "Room",
-      "What's your preferred style?": "Style",
-      "What's your primary color palette?": "Color Palette",
-      "What's your budget level?": "Budget",
-      "What materials do you prefer?": "Preferred Material",
-      "How bold should the accents be?": "Accent Boldness"
-    };
+  // Handle file selection for the floor plan step
+    // (file upload removed) We'll collect floor-plan as manual text input instead
 
+  // Build a WhatsApp message including questionnaire answers and user messages
+  const buildWhatsAppMessage = (preferences = {}, allMessages = []) => {
     const lines = [];
-    lines.push("DDG Assistant Inquiry");
+    lines.push('DDG Assistant Inquiry');
     lines.push(`Date: ${new Date().toLocaleString()}`);
-    lines.push("");
-    lines.push("Selections:");
-    Object.keys(labelMap).forEach((key) => {
-      if (preferences[key]) {
-        lines.push(`- ${labelMap[key]}: ${preferences[key]}`);
+    lines.push('');
+
+    // Selections in questionnaire order
+    lines.push('Selections:');
+    questionnaire.forEach((q) => {
+      const answer = preferences[q.question];
+      if (answer) {
+        const display = typeof answer === 'string' ? answer : JSON.stringify(answer);
+        lines.push(`- ${q.question}: ${display}`);
       }
     });
 
-    return encodeURIComponent(lines.join("\n"));
+    // Include all user-typed messages
+    const userMessages = (allMessages || []).filter(m => m.sender === 'user').map(m => m.text).filter(Boolean);
+    if (userMessages.length) {
+      lines.push('');
+      lines.push('User messages:');
+      userMessages.forEach((m, i) => lines.push(`${i + 1}. ${m}`));
+    }
+
+    lines.push('');
+    lines.push('Please contact the user for next steps.');
+
+    const plain = lines.join('\n');
+    return {
+      plain,
+      encoded: encodeURIComponent(plain)
+    };
   };
 
   const handleSendToTeam = () => {
-    const text = formatWhatsAppMessageFromPreferences(userPreferences);
-    const url = `https://wa.me/${whatsappNumber}?text=${text}`;
-    window.open(url, '_blank');
+    // Use stored payload if available, otherwise build from current state
+    const built = whatsappPayload || buildWhatsAppMessage(userPreferences, messages);
+    const encoded = built.encoded;
+
+    // Copy plain text to clipboard for convenience
+    if (navigator?.clipboard && built.plain) {
+      try { navigator.clipboard.writeText(built.plain); } catch (e) { /* ignore */ }
+    }
+
+    // choose URL based on platform (web vs mobile)
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+    const base = isMobile ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
+    const url = `${base}?phone=${whatsappNumber}&text=${encoded}`;
+
+  window.open(url, '_blank');
   };
 
-  // No free-typing flow; keep handler but prevent submission
+  // Form submit handler — handles typed "Other" location input
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isHome) return;
-    return;
+    const text = inputMessage.trim();
+    if (!text) return;
+
+    // Add user's typed message
+    setMessages(prev => [...prev, { text, sender: 'user', id: Date.now() }]);
+    setInputMessage('');
+
+    if (isWaitingForOther) {
+      const currentQuestion = questionnaire[currentStep];
+      // Save typed location
+      setUserPreferences(prev => ({ ...prev, [currentQuestion.question]: text }));
+      setIsWaitingForOther(false);
+
+      // Advance to next step and show it
+      const nextStep = currentStep + 1;
+      setCurrentStep(nextStep);
+      if (nextStep < questionnaire.length) {
+        setTimeout(() => {
+          setMessages(prev => [
+            ...prev,
+            { text: questionnaire[nextStep].question, sender: 'assistant', id: Date.now() }
+          ]);
+        }, 400);
+      }
+    } else if (questionnaire[currentStep]?.isFileInput) {
+      const currentQuestion = questionnaire[currentStep];
+      // For floor plan input, format the user message
+      setMessages(prev => [...prev, { text: `Floor plan: ${text}`, sender: 'user', id: Date.now() }]);
+      setUserPreferences(prev => ({ ...prev, [currentQuestion.question]: text }));
+      setInputMessage('');
+
+      const completedStep = questionnaire.length;
+      setCurrentStep(completedStep);
+
+      const built = buildWhatsAppMessage({
+        ...userPreferences,
+        [currentQuestion.question]: text
+      }, [...messages, { text: `Floor plan: ${text}`, sender: 'user', id: Date.now() }]);
+      setWhatsappPayload(built);
+
+      setTimeout(() => {
+        const lastMsg = questionnaire[questionnaire.length - 1]?.question || 'Thank you for the details.';
+        setMessages(prev => [...prev, { text: lastMsg, sender: 'assistant', id: Date.now() }]);
+      }, 400);
+      setTimeout(() => {
+        setMessages(prev => [...prev, { text: 'All set — you can send these details to our team.', sender: 'assistant', id: Date.now() }]);
+      }, 700);
+    }
   };
 
   const handleClose = () => {
@@ -305,7 +370,7 @@ const AIAssistant = () => {
 
   const containerPositionClass = isOpen && isMaximized
     ? 'fixed inset-0 z-50'
-    : 'fixed bottom-24 right-4 md:bottom-22 md:right-8 z-50';
+    : 'fixed bottom-28 right-4 md:bottom-32 md:right-8 z-50';
 
   return (
     <div className={`${containerPositionClass}`}>
@@ -440,17 +505,73 @@ const AIAssistant = () => {
                 {currentStep < questionnaire.length && (
                   <div className="mt-2">
                     <div className="text-xs font-medium text-gray-500 mb-2">Choose an option</div>
-                    <div className="flex flex-wrap gap-2">
-                      {questionnaire[currentStep].options.map((option, index) => (
-                        <button
-                          key={index}
-                          onClick={() => handleOptionSelect(option)}
-                          className="px-3 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-sm text-gray-700"
-                        >
-                          {option}
-                        </button>
-                      ))}
-                    </div>
+                    {/* If waiting for "Other", show a text input instead of option chips */}
+                    {isWaitingForOther && questionnaire[currentStep] && questionnaire[currentStep].question === 'Which location are you looking for?' ? (
+                      <form onSubmit={handleSubmit} className="mt-2 flex gap-2 items-center">
+                        <input
+                          ref={otherInputRef}
+                          type="text"
+                          autoFocus={false}
+                          enterKeyHint="send"
+                          value={inputMessage}
+                          onChange={(e) => setInputMessage(e.target.value)}
+                          placeholder="Type your location..."
+                          className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        />
+                        <button type="submit" className="px-3 py-2 bg-violet-600 text-white rounded-lg">Send</button>
+                      </form>
+                    ) : questionnaire[currentStep].isFileInput ? (
+                      <form onSubmit={(e) => {
+                        e.preventDefault();
+                        const text = inputMessage.trim();
+                        if (!text) return;
+                        // Add user message
+                        setMessages(prev => [...prev, { text: `Floor plan: ${text}`, sender: 'user', id: Date.now() }]);
+                        // Save to preferences
+                        const currentQuestion = questionnaire[currentStep];
+                        setUserPreferences(prev => ({ ...prev, [currentQuestion.question]: text }));
+                        setInputMessage('');
+                        // Mark flow as completed so Send button is shown
+                        const completedStep = questionnaire.length; // index beyond last
+                        setCurrentStep(completedStep);
+                        // Build and store WhatsApp payload including the latest answer
+                        const built = buildWhatsAppMessage({
+                          ...userPreferences,
+                          [currentQuestion.question]: text
+                        }, [...messages, { text: `Floor plan: ${text}`, sender: 'user', id: Date.now() }]);
+                        setWhatsappPayload(built);
+                        // Add assistant final message (submit/thank you) and confirmation
+                        setTimeout(() => {
+                          // If the questionnaire had a closing message, show it
+                          const lastMsg = questionnaire[questionnaire.length - 1]?.question || 'Thank you for the details.';
+                          setMessages(prev => [...prev, { text: lastMsg, sender: 'assistant', id: Date.now() }]);
+                        }, 400);
+                        setTimeout(() => {
+                          setMessages(prev => [...prev, { text: 'All set — you can send these details to our team.', sender: 'assistant', id: Date.now() }]);
+                        }, 700);
+                      }} className="mt-2 flex gap-2 items-center">
+                        <input
+                          type="text"
+                          value={inputMessage}
+                          onChange={(e) => setInputMessage(e.target.value)}
+                          placeholder="Share your floor plan details or link..."
+                          className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        />
+                        <button type="submit" className="px-3 py-2 bg-violet-600 text-white rounded-lg">Send</button>
+                      </form>
+                    ) : (
+                      <div className="flex flex-wrap gap-2">
+                        {questionnaire[currentStep].options.map((option, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleOptionSelect(option)}
+                            className="px-3 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-sm text-gray-700"
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
                 {currentStep >= questionnaire.length && (
@@ -463,6 +584,7 @@ const AIAssistant = () => {
                     </button>
                   </div>
                 )}
+                
               </>
             )}
             <div ref={messagesEndRef} />
@@ -728,4 +850,4 @@ const AIAssistant = () => {
   );
 };
 
-export default AIAssistant; 
+export default AIAssistant;
