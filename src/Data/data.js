@@ -1,5 +1,44 @@
 
+import homeImg from '../assets/services/home.png';
+import kitchenImg from '../assets/services/kitchen.png';
+import renovationImg from '../assets/services/renovation.jpg';
+import turnkeyImg from '../assets/services/turnkey.png';
+import villaGuestHouseImg from '../assets/services/villa & guest house.jpg';
+import workSpacesImg from '../assets/services/work spaces.jpg';
+import apartmentsImg from '../assets/services/apartments.jpg';
+import bedroomImg from '../assets/services/bedroom.jpg';
+
 export const category = [
+  {
+    id: 201,
+    img: homeImg,
+    name: "Residential & Commercial",
+    url: "/servicesbyid/201",
+  },
+  {
+    id: 202,
+    img: workSpacesImg,
+    name: "Office",
+    url: "/servicesbyid/202",
+  },
+  {
+    id: 203,
+    img: kitchenImg,
+    name: "Kitchen & Wardrobe",
+    url: "/servicesbyid/203",
+  },
+  {
+    id: 204,
+    img: renovationImg,
+    name: "Renovation",
+    url: "/servicesbyid/204",
+  },
+  {
+    id: 205,
+    img: turnkeyImg,
+    name: "Turnkey",
+    url: "/servicesbyid/205",
+  },
   {
     id: 1,
     img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
