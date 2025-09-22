@@ -347,11 +347,10 @@ const Footer = () => {
               <div className="footer-col">
                 <h1 className="khand-bold1 khand-bold">Our Services</h1>
                 <ul>
-                  <li><a href="#">Turnkey Interiors</a></li>
-                  <li><a href="#">Modular Furniture</a></li>
-                  <li><a href="#">Soft Furnishings</a></li>
-                  <li><a href="#">Customised Lighting</a></li>
-                  <li><a href="#">Renovations & Interior Styling</a></li>
+                  <li><a href="#">Resedential</a></li>
+                  <li><a href="#">Commercial</a></li>
+                  <li><a href="#">Office</a></li>
+                  <li><a href="#">Turnkey projects</a></li>
                 </ul>
               </div>
             </div>
