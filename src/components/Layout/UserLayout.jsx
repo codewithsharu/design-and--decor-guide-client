@@ -33,6 +33,14 @@ const UserLayout = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [location.pathname]);
+
   // Check if on contactus page
   const isContactUsPage = location.pathname === '/contactus';
 
