@@ -155,40 +155,60 @@ const AboutUs = () => {
 
         <br /><br />
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-12">
-            {/* Left Content: Image and Video Button */}
-            <div className="relative w-full lg:w-[60%] mb-10 lg:mb-0 pr-0 lg:pr-20">
-              <img
-                src="https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg"
-                alt="Modern luxury living room interior"
-                className="w-full h-[500px] object-cover rounded-lg shadow-xl"
-              />
-              <div className="absolute -bottom-6 left-6 flex items-center bg-white p-3 rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300">
-                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path></svg>
-                <span className="ml-3 text-sm font-medium text-gray-800">WATCH VIDEO</span>
+
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center">
+            {/* Left Content: Tall Vertical Image with Border Video Button */}
+            <div className="relative w-full lg:w-[32%] flex flex-col items-start">
+              <div className="relative w-full h-[450px] lg:h-[550px] overflow-hidden">
+                <img
+                  src="https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg"
+                  alt="Modern luxury living room interior"
+                  className="w-full h-full object-cover shadow-xl"
+                  style={{ objectPosition: 'center', aspectRatio: '3/5' }}
+                />
+                {/* Watch Video Button at the border, bottom left */}
+                <button
+                  className="absolute bottom-0 left-0 flex items-center bg-white px-6 py-2 shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                  style={{ minWidth: 160 }}
+                >
+                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-black text-white mr-3">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path>
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium text-gray-800">WATCH VIDEO</span>
+                </button>
               </div>
             </div>
 
-            {/* Right Content: Text and CTA */}
-            <div className="relative w-full lg:w-[50%] bg-white p-8 lg:p-12 shadow-lg rounded-lg z-10 flex flex-col items-start text-left">
-              <p className="text-sm font-semibold text-black uppercase tracking-widest mb-2">DESIGN AND DECOR GUIDE</p>
-              
-              <p className="text-base text-black leading-relaxed mb-8 max-w-md">
-                At Design and Decor Guide, we believe every space should reflect beauty, comfort, and individuality. Founded by Chinna Babu K (8+ years experience), we create stunning, affordable interiors tailored to your lifestyle. Our team blends fresh ideas with functionality to transform houses into dream homes your space, reimagined.
-              </p>
-              <button className="px-8 py-3 bg-black text-white text-sm font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300">
-                READ MORE
-              </button>
-
-              {/* Statistics */}
-              <div className="flex space-x-12 mt-10">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-800">25+</div>
-                  <div className="text-sm text-gray-500">Years of Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-800">1,250+</div>
-                  <div className="text-sm text-gray-500">Projects Completed</div>
+            {/* Right Content: Floating Card */}
+            <div className="relative w-full lg:w-[60%] z-10 flex flex-col justify-center">
+              <div className="lg:absolute top-0 left-0 lg:-left-16 bg-white p-8 lg:p-10 shadow-2xl flex flex-col items-start text-left max-w-xl"
+                style={{ transform: "translateY(60px)" }}
+              >
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">DESIGN AND DECOR GUIDE</p>
+                <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2 leading-tight">
+                  Your Space, Reimagined.
+                </h2>
+                <p className="text-base text-gray-600 leading-relaxed mb-6">
+                  Every space should reflect beauty, comfort, and individuality.<br />
+                  Founded by Chinna Babu K (8+ years experience), we create stunning, affordable interiors.<br />
+                  Our team blends fresh ideas with functionality.<br />
+                
+                </p>
+                {/* <button className="px-6 py-2 bg-black text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300 mb-6">
+                  READ MORE
+                </button> */}
+                {/* Statistics */}
+                <div className="flex space-x-12 mt-2">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-800">8+</div>
+                    <div className="text-xs text-gray-500">Years of Experience</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-gray-800">500+</div>
+                    <div className="text-xs text-gray-500">Projects Completed</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -202,8 +222,8 @@ const AboutUs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Left Content: Title, Description, and Button */}
             <div className="flex flex-col items-start">
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">WHY CHOOSE US</h2>
-              <p className="text-base text-gray-600 leading-relaxed mb-8 max-w-md">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">WHY CHOOSE US</h2>
+              <p className="text-sm text-gray-600 leading-relaxed mb-8 max-w-md">
                 Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
               </p>
               <button className="px-8 py-3 bg-black text-white text-sm font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300">
@@ -216,10 +236,10 @@ const AboutUs = () => {
               {/* Card 1: Fast Building */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-clock" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-clock" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Fast Building</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Fast Building</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">
                   Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
                 </p>
               </div>
@@ -227,10 +247,10 @@ const AboutUs = () => {
               {/* Card 2: Smartly Execute */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-lightbulb" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-lightbulb" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Smartly Execute</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Smartly Execute</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">
                   Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
                 </p>
               </div>
@@ -238,10 +258,10 @@ const AboutUs = () => {
               {/* Card 3: Carefully Planned */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-clipboard-list" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-file-pen" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Carefully Planned</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Carefully Planned</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">
                   Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
                 </p>
               </div>
@@ -249,10 +269,10 @@ const AboutUs = () => {
               {/* Card 4: Perfect Design */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-pencil-ruler" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-pencil-ruler" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Perfect Design</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Perfect Design</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">
                   Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
                 </p>
               </div>
@@ -266,9 +286,7 @@ const AboutUs = () => {
         <div className="w-full relative z-10">
           {/* Section Header */}
           <div className="text-center mb-16 px-4">
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4 tracking-widest" style={{ fontFamily: 'Khand, sans-serif', letterSpacing: '0.2em' }}>
-              PROFESSIONAL HOME INTERIOR DESIGN COMPANY
-            </h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">PROFESSIONAL HOME INTERIOR DESIGN COMPANY</h2>
           </div>
 
           {/* Statistics Grid */}
@@ -280,16 +298,16 @@ const AboutUs = () => {
                 <div className="flex gap-8 min-w-full justify-start pl-4">
                   {/* Since 2004 */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">SINCE</div>
                       <div className="text-xl font-bold text-gray-800">2017</div>
                     </div>
                   </div>
 
                   {/* Premium Materials */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">PREMIUM</div>
                       <div className="text-sm font-bold text-gray-800">Materials</div>
                     </div>
                   </div>
@@ -298,16 +316,16 @@ const AboutUs = () => {
                  
                   {/* Completion */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>COMPLETION</div>
-                      <div className="text-xs font-bold text-gray-800">45 Working Days</div>
+                    <div className="w-36 h-36 rounded-full flex flex-col items-center justify-center bg-gradient-to-br from-violet-500 to-sky-300">
+                      <div className="text-sm font-semibold mb-1 text-white">COMPLETION</div>
+                      <div className="text-xs font-bold text-white">45 Working Days</div>
                     </div>
                   </div>
 
                   {/* Projects */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">PROJECTS</div>
                       <div className="text-xs font-bold text-gray-800">30 Per Month</div>
                     </div>
                   </div>
@@ -320,16 +338,16 @@ const AboutUs = () => {
                 <div className="flex gap-8 min-w-full justify-start pl-4">
                   {/* Since 2004 */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">SINCE</div>
                       <div className="text-xl font-bold text-gray-800">2017</div>
                     </div>
                   </div>
 
                   {/* Premium Materials */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">PREMIUM</div>
                       <div className="text-sm font-bold text-gray-800">Materials</div>
                     </div>
                   </div>
@@ -339,22 +357,27 @@ const AboutUs = () => {
 
                   {/* Completion */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>COMPLETION</div>
-                      <div className="text-xs font-bold text-gray-800">45 Working Days</div>
+                    <div className="w-36 h-36 rounded-full flex flex-col items-center justify-center bg-gradient-to-br from-violet-500 to-sky-300">
+                      <div className="text-sm font-semibold mb-1 text-white">COMPLETION</div>
+                      <div className="text-xs font-bold text-white">45 Working Days</div>
                     </div>
                   </div>
 
                   {/* Projects */}
                   <div className="text-center flex-shrink-0">
-                    <div className="w-36 h-36 border-2 border-black rounded-full flex flex-col items-center justify-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-sm font-semibold mb-1" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">PROJECTS</div>
                       <div className="text-xs font-bold text-gray-800">30 Per Month</div>
                     </div>
                   </div>
 
                   {/* Lifelong Service */}
-                  
+                  <div className="text-center flex-shrink-0">
+                    <div className="w-36 h-36 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                      <div className="text-sm font-semibold mb-1 text-sky-500">LIFELONG</div>
+                      <div className="text-xs font-bold text-gray-800">Service Support</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -362,17 +385,17 @@ const AboutUs = () => {
             {/* Desktop: Original Layout */}
             <div className="hidden lg:contents">
               {/* Since 2004 */}
-              <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
-                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>SINCE</div>
+              <div className="text-center">
+                <div className="w-44 h-44 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                  <div className="text-lg font-semibold mb-2 text-sky-500">SINCE</div>
                   <div className="text-2xl font-bold text-gray-800">2017</div>
                 </div>
               </div>
 
               {/* Premium Materials */}
-              <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
-                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>PREMIUM</div>
+              <div className="text-center">
+                <div className="w-44 h-44 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                  <div className="text-lg font-semibold mb-2 text-sky-500">PREMIUM</div>
                   <div className="text-lg font-bold text-gray-800">Materials</div>
                 </div>
               </div>
@@ -381,25 +404,25 @@ const AboutUs = () => {
          
 
               {/* Completion */}
-              <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-br from-violet-500 to-sky-300">
-                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(3, 49, 70)' }}>COMPLETION</div>
-                  <div className="text-lg font-bold text-gray-800">45 Working Days</div>
+              <div className="text-center">
+                <div className="w-44 h-44 rounded-full flex flex-col items-center justify-center bg-gradient-to-br from-violet-500 to-sky-300">
+                  <div className="text-lg font-semibold mb-2 text-white">COMPLETION</div>
+                  <div className="text-lg font-bold text-white">45 Working Days</div>
                 </div>
               </div>
 
               {/* Projects */}
-              <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
-                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>PROJECTS</div>
+              <div className="text-center">
+                <div className="w-44 h-44 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                  <div className="text-lg font-semibold mb-2 text-sky-500">PROJECTS</div>
                   <div className="text-lg font-bold text-gray-800">30 Per Month</div>
                 </div>
               </div>
 
               {/* Lifelong Service */}
-              <div className="text-center group">
-                <div className="w-44 h-44 border-4 border-sky-500 hover:border-sky-600 ring-1 ring-sky-300 rounded-full flex flex-col items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-105 bg-white">
-                  <div className="text-lg font-semibold mb-2" style={{ color: 'rgb(68, 177, 228)' }}>LIFELONG</div>
+              <div className="text-center">
+                <div className="w-44 h-44 border-2 border-sky-500 rounded-full flex flex-col items-center justify-center bg-white">
+                  <div className="text-lg font-semibold mb-2 text-sky-500">LIFELONG</div>
                   <div className="text-lg font-bold text-gray-800">Service Support</div>
                 </div>
               </div>
