@@ -137,7 +137,7 @@ const NewArrivals = () => {
               <p>
                 At our studio, we believe every space tells a story. Discover curated collections of modern furniture, elegant decor, and innovative design solutions to elevate your home. From cozy living rooms to serene bedrooms, we blend style and functionality for inspired living.
               </p>
-              <a href="#">Learn More About Us</a>
+              <a href="/aboutus">Learn More About Us</a>
             </div>
           </div>
         </div>
