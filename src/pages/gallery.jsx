@@ -1,29 +1,128 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-// Gallery data by id
+import resd1 from '../assets/gallery/resd - 1.jpg';
+import resd2 from '../assets/gallery/resd - 2.jpg';
+import com1 from '../assets/gallery/com -1.jpg';
+import com2 from '../assets/gallery/com -2.jpg';
+import off1 from '../assets/gallery/off 1.jpg';
+
+import off2 from '../assets/gallery/off 2.jpg';
+
+
+import turnkey1 from '../assets/gallery/turnkey1.png';
+
+import turnkey2 from '../assets/gallery/turnkey2.png';
+
+
+
+import balcony1 from '../assets/gallery/Balcony_/1.webp';
+
+import bedroom1 from '../assets/gallery/Bedroom/1.webp';
+import bedroom2 from '../assets/gallery/Bedroom/2.webp';
+import bedroom3 from '../assets/gallery/Bedroom/3.jpeg';
+import bedroom4 from '../assets/gallery/Bedroom/4.jpeg';
+
+import kitchen1 from '../assets/gallery/Kitchen_/1.jpeg';
+import kitchen2 from '../assets/gallery/Kitchen_/2.jpeg';
+import kitchen3 from '../assets/gallery/Kitchen_/3.jpeg';
+
+import livingroom1 from '../assets/gallery/Living room/1.webp';
+import livingroom2 from '../assets/gallery/Living room/2.jpeg';
+import livingroom3 from '../assets/gallery/Living room/3.jpeg';
+import livingroom4 from '../assets/gallery/Living room/4.jpeg';
+import livingroom5 from '../assets/gallery/Living room/5.jpeg';
+import livingroom6 from '../assets/gallery/Living room/6.jpeg';
+import livingroom7 from '../assets/gallery/Living room/7.jpeg';
+import livingroom8 from '../assets/gallery/Living room/8.jpeg';
+
+import poojaset1 from '../assets/gallery/Pooja set/1.webp';
+import poojaset2 from '../assets/gallery/Pooja set/photos-11738945-1727580563638-7338.jpeg';
+
+import washbasin1 from '../assets/gallery/Washbasin/photos-11738945-1727580563108-2980.jpeg';
+
+import villaGuestHouse from '../assets/gallery/villa & guest house.jpg';
+
+// Gallery data by id (using urls from @file_context_0)
 const galleries = {
   "1": {
-    title: "Nature Escapes",
+    title: "Resedential",
     images: [
-      "https://images.pexels.com/photos/2661256/pexels-photo-2661256.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/4065066/pexels-photo-4065066.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      "https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+      resd1,
+      resd2,
+        ],
   },
   "2": {
-    title: "Urban Vibes",
+    title: "Commercial",
     images: [
-      "https://images.pexels.com/photos/2252597/pexels-photo-2252597.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      "https://images.pexels.com/photos/167964/pexels-photo-167964.jpeg?auto=compress&cs=tinysrgb&w=600",
-    ],
+      com1,
+      com2,
+         ],
   },
   "3": {
-    title: "Modern Life",
+    title: "Office",
     images: [
-      "https://images.pexels.com/photos/4065066/pexels-photo-4065066.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      "https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "https://images.pexels.com/photos/2252597/pexels-photo-2252597.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+      off1,
+      off2,
+        ],
+  },
+  "4": {
+    title: "Turnkey projects",
+    images: [
+      turnkey1, // Local image for Turnkey projects
+      turnkey2,
+        ],
+  },
+  "5": {
+    title: "Balcony",
+    images: [
+      balcony1, // Replaced with local image
+      // Using the same image for now
+    ],
+  },
+  "6": {
+    title: "Bedroom",
+    images: [
+      bedroom1, // Replaced with local image
+      bedroom2,
+      bedroom3,
+      bedroom4,
+    ],
+  },
+  "7": {
+    title: "Kitchen",
+    images: [
+      kitchen1, // Replaced with local image
+      kitchen2,
+      kitchen3,
+    ],
+  },
+  "8": {
+    title: "Living room",
+    images: [
+      livingroom1, // Replaced with local image
+      livingroom2,
+      livingroom3,
+      livingroom4,
+      livingroom5,
+      livingroom6,
+      livingroom7,
+      livingroom8,
+    ],
+  },
+  "9": {
+    title: "Pooja set",
+    images: [
+      poojaset1, // Replaced with local image
+      poojaset2,
+    ],
+  },
+  "10": {
+    title: "Washbasin",
+    images: [
+      washbasin1, // Replaced with local image
+      washbasin1, // Using the same image for now
+      washbasin1, // Using the same image for now
     ],
   },
 };
@@ -87,7 +186,7 @@ export default function Gallery() {
         }
 
         .c-gallery__title {
-          font-size: 64px;
+          font-size: clamp(2rem, 5vw, 48px); /* Optimal and responsive font size */
           font-family: var(--font-title);
           text-align: center;
         }
@@ -122,7 +221,7 @@ export default function Gallery() {
         }
         @media (max-width: 600px) {
           .c-gallery__title {
-            font-size: 32px;
+            font-size: 28px; /* Adjusted for mobile */
           }
           .c-gallery__items {
             grid-template-columns: 1fr;

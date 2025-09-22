@@ -186,19 +186,17 @@ const AboutUs = () => {
             padding-top:50px;
             padding-right:100px;
         }
-        .about-section .content-column .text{
-            position:relative;
-            color:#777777;
-            font-size:15px;
-            line-height:2em;
-            margin-bottom:40px;
-        }
-        .about-section .content-column .email{
-            position:relative;
-            color:#252525;
-            font-weight:700;
-            margin-bottom:50px;
-        }
+    .about-section .content-column .text{
+      position:relative;
+      color:#777777;
+      font-size:15px;
+      line-height:2em;
+    }
+    .about-section .content-column .email{
+      color:#252525;
+      font-weight:700;
+      margin-bottom:50px;
+    }
         .about-section .image-column{
             position:relative;
             margin-bottom:50px;
@@ -312,7 +310,7 @@ const AboutUs = () => {
             <div className="newarrivals-row">
               {images.map((src, idx) => (
                 <div className="newarrivals-imgWrapper" key={idx}>
-                  <img src={src} alt={`Interior design ${idx + 1}`} />
+                  <img src={src} alt={Interior design ${idx + 1}} />
                 </div>
               ))}
             </div>
@@ -339,10 +337,18 @@ const AboutUs = () => {
               <div className="inner-column">
                 <div className="sec-title">
                   <div className="title">About Us</div>
-                  <h2>We Are The Leader In <br /> The Interiores</h2>
+                  <h2>At Design and Decor Guide, we believe every space deserves to reflect beauty, comfort, and individuality.</h2>
                 </div>
                 <div className="text">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                  <p>
+                    Founded by Chinna Babu K, with over 8 years of experience in interior designing, we specialize in creating stunning house interiors for all types of spaces.
+                  </p>
+                  <p>
+                    Our creative design team is passionate about bringing fresh, unique, and innovative ideas to life, ensuring each project is customized to our clients’ lifestyle and vision. We pride ourselves on delivering high-quality designs at affordable prices, blending functionality with style to transform houses into dream homes.
+                  </p>
+                  <p>
+                    At Design and Decor Guide, your space is not just designed—it's reimagined.
+                  </p>
                 </div>
                 <div className="email">Request Quote: <span className="theme_color">info@designdecorguide.com</span></div>
                 <a href="about.html" className="theme-btn btn-style-three">Read More</a>

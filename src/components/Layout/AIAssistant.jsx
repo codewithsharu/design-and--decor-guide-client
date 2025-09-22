@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import aiChatbot from '../../assets/aichatbot.png';
+import ddgLogo from '../../components/Common/ddglogo.png';
 
 const AIAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,7 @@ const AIAssistant = () => {
       isFileInput: true
     },
     {
-      question: "Thank you for the details. Our team will get in touch with you shortly.",
+      question: "Send your details to our team.",
       isSubmit: true
     }
   ];
@@ -48,7 +49,7 @@ const AIAssistant = () => {
 
   // Avatars
   const AssistantAvatar = () => (
-    <div className="shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white flex items-center justify-center shadow">
+    <div className="shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-gray-900 to-gray-700 text-white flex items-center justify-center shadow">
       <img src={aiChatbot} alt="AI" className="h-5 w-5 object-contain" />
     </div>
   );
@@ -281,8 +282,8 @@ const AIAssistant = () => {
 
     // choose URL based on platform (web vs mobile)
     const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
-    const base = isMobile ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
-    const url = `${base}?phone=${whatsappNumber}&text=${encoded}`;
+    const baseUrl = isMobile ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
+    const url = `${baseUrl}?phone=${whatsappNumber}&text=${encoded}`;
 
   window.open(url, '_blank');
   };
@@ -334,9 +335,6 @@ const AIAssistant = () => {
         const lastMsg = questionnaire[questionnaire.length - 1]?.question || 'Thank you for the details.';
         setMessages(prev => [...prev, { text: lastMsg, sender: 'assistant', id: Date.now() }]);
       }, 400);
-      setTimeout(() => {
-        setMessages(prev => [...prev, { text: 'All set — you can send these details to our team.', sender: 'assistant', id: Date.now() }]);
-      }, 700);
     }
   };
 
@@ -370,10 +368,10 @@ const AIAssistant = () => {
 
   const containerPositionClass = isOpen && isMaximized
     ? 'fixed inset-0 z-50'
-    : 'fixed bottom-28 right-4 md:bottom-32 md:right-8 z-50';
+    : `fixed bottom-28 right-4 md:bottom-32 md:right-8 z-50`;
 
   return (
-    <div className={`${containerPositionClass}`}>
+    <div className={containerPositionClass}>
       {isOpen ? (
         <div className={`relative ${isMaximized ? 'w-screen h-screen max-w-none rounded-none' : 'w-[92vw] max-w-[380px] h-[72vh] md:w-[380px] md:h-[580px] rounded-2xl'} bg-white shadow-xl flex flex-col border border-gray-200`}>
           {/* Message Tail */}
@@ -384,8 +382,8 @@ const AIAssistant = () => {
           <div className={`px-4 pt-3 pb-2 ${isMaximized ? '' : 'rounded-t-2xl'} border-b border-gray-100 bg-white/80 backdrop-blur relative z-30`}>            
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white flex items-center justify-center shadow overflow-hidden">
-                  <img src={aiChatbot} alt="DDG" className="h-6 w-6 object-contain" />
+                <div className="h-12 w-12 rounded-full bg-white flex items-center justify-center shadow overflow-hidden">
+                  <img src={ddgLogo} alt="DDG" className="h-full w-full object-contain" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-gray-900">DDG </div>
@@ -424,7 +422,7 @@ const AIAssistant = () => {
             <div className="mt-3">
               <div className="h-1.5 w-full rounded-full bg-gray-100 overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-violet-600 to-fuchsia-600"
+                  className="h-full bg-gradient-to-r from-black to-gray-700"
                   style={{ width: `${progressPercent}%` }}
                 ></div>
               </div>
@@ -438,16 +436,13 @@ const AIAssistant = () => {
           >
             {isHome ? (
               <div className="h-full flex flex-col items-center justify-start pt-6 text-center">
-                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white flex items-center justify-center shadow-md">
-                  <i className="fas fa-hexagon"></i>
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">Welcome to Interior Design Assistant</h3>
+                  <h3 className="mt-4 text-lg font-semibold text-gray-900">Welcome to Interior Design Assistant</h3>
                 <p className="mt-2 text-sm text-gray-600 max-w-[320px]">
                   We'll ask a few quick questions and suggest room setups tailored to you.
                 </p>
                 <button
                   onClick={handleShowMore}
-                  className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-4 py-2 rounded-lg shadow hover:opacity-90"
+                  className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-black to-gray-700 text-white px-4 py-2 rounded-lg shadow hover:opacity-90 font-semibold"
                 >
                   <i className="fas fa-play"></i>
                   Get started
@@ -457,9 +452,9 @@ const AIAssistant = () => {
                     <button
                       key={idx}
                       onClick={handleShowMore}
-                      className="text-left rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 p-3 text-sm text-gray-700 shadow-sm"
+                      className="text-left rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 p-3 text-sm text-gray-700 shadow-sm font-semibold"
                     >
-                      <div className="flex items-center gap-2 text-violet-600 mb-1">
+                      <div className="flex items-center gap-2 text-gray-800 mb-1">
                         <i className="fas fa-wand-magic-sparkles"></i>
                         <span className="font-medium">Example</span>
                       </div>
@@ -491,11 +486,11 @@ const AIAssistant = () => {
                     <div
                       className={`max-w-[78%] rounded-2xl px-4 py-3 shadow-sm border transition-colors ${
                         message.sender === 'user'
-                          ? 'bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white border-transparent'
-                          : 'bg-white text-gray-800 border-gray-200'
+                          ? 'bg-gray-900 text-white border-transparent font-medium'
+                          : 'bg-white text-gray-900 border-gray-200'
                       }`}
                     >
-                      <div className="whitespace-pre-wrap text-[13px] leading-relaxed">{message.text}</div>
+                      <div className="whitespace-pre-wrap text-[14px] leading-relaxed">{message.text}</div>
                     </div>
                     {message.sender === 'user' ? <UserAvatar /> : <></>}
                   </div>
@@ -516,9 +511,9 @@ const AIAssistant = () => {
                           value={inputMessage}
                           onChange={(e) => setInputMessage(e.target.value)}
                           placeholder="Type your location..."
-                          className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+                          className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700"
                         />
-                        <button type="submit" className="px-3 py-2 bg-violet-600 text-white rounded-lg">Send</button>
+                        <button type="submit" className="px-3 py-2 bg-gray-800 text-white rounded-lg">Send</button>
                       </form>
                     ) : questionnaire[currentStep].isFileInput ? (
                       <form onSubmit={(e) => {
@@ -546,18 +541,15 @@ const AIAssistant = () => {
                           const lastMsg = questionnaire[questionnaire.length - 1]?.question || 'Thank you for the details.';
                           setMessages(prev => [...prev, { text: lastMsg, sender: 'assistant', id: Date.now() }]);
                         }, 400);
-                        setTimeout(() => {
-                          setMessages(prev => [...prev, { text: 'All set — you can send these details to our team.', sender: 'assistant', id: Date.now() }]);
-                        }, 700);
                       }} className="mt-2 flex gap-2 items-center">
                         <input
                           type="text"
                           value={inputMessage}
                           onChange={(e) => setInputMessage(e.target.value)}
                           placeholder="Share your floor plan details or link..."
-                          className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+                          className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-700"
                         />
-                        <button type="submit" className="px-3 py-2 bg-violet-600 text-white rounded-lg">Send</button>
+                        <button type="submit" className="px-3 py-2 bg-gray-800 text-white rounded-lg">Send</button>
                       </form>
                     ) : (
                       <div className="flex flex-wrap gap-2">
@@ -627,7 +619,7 @@ const AIAssistant = () => {
       <button
   onClick={() =>
     window.open(
-      "https://api.whatsapp.com/send?phone=+917816072525&text=How%20can%20the%20Design%20and%20Decor%20team%20help%20you%3F",
+      "https://api.whatsapp.com/send?phone=+918618877807&text=How%20can%20the%20Design%20and%20Decor%20team%20help%20you%3F",
       "_blank"
     )
   }

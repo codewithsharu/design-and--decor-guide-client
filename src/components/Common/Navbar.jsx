@@ -144,7 +144,7 @@ const Navbar = ({ isShrunk = false }) => {
                     boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
                     padding: 20,
                     borderRadius: 40,
-                    border: `1.5px solid #8B0000`,
+                    border: "1.5px solid #8B0000",
                     opacity: menuOpen ? 1 : 0,
                     transition: "all 0.3s cubic-bezier(.4,2,.6,1)",
                     pointerEvents: menuOpen ? "all" : "none",
@@ -378,10 +378,10 @@ const Navbar = ({ isShrunk = false }) => {
         .navbar-menu a::after { display: none; }
         .navbar-menu a:hover,
         .navbar-menu a:focus {
-          color: #0ea5e9; /* sky blue */
+          color: rgb(200,62,62);
           background: none;
         }
-        .navbar-menu a.active { color: #0ea5e9; }
+        .navbar-menu a.active { color: rgb(200,62,62); }
 
         .hamburger {
           display: none;
