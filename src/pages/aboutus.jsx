@@ -1,5 +1,4 @@
 import React from "react";
-import PortfolioHeading from "../components/Common/PortfolioHeading";
 import asianpaints from "../assets/asianpaints.jpeg";
 import kajaria from "../assets/kajaria.png";
 import mytyles from "../assets/mytyles.png";
@@ -15,18 +14,11 @@ import dulux from "../assets/dulux.png";
 import wipro from "../assets/wipro.png";
 import johnson from "../assets/johnson.png";
 import merino from "../assets/merino.png";
-const images = [
-  "https://images.unsplash.com/photo-1568219656968-19c1da9775ae?auto=format&fit=crop&w=800&q=80", // Modern living room interior
-  "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80", // Stylish bedroom design
-  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80", // Contemporary kitchen
-  "https://plus.unsplash.com/premium_photo-1686090448517-2f692cc45187?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Modern interior
-];
+
 
 const AboutUs = () => {
   return (
     <>
-    <br /><br />
-     
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
         *{
@@ -34,13 +26,6 @@ const AboutUs = () => {
             padding: 0;
             box-sizing: border-box;
             outline: none;
-        }
-        .newarrivals-body{
-            width: 100%;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            font-family: 'Poppins', sans-serif;
         }
         .newarrivals-container{
             width: 90%;
@@ -163,234 +148,118 @@ const AboutUs = () => {
         .animate-scroll-mobile {
             animation: scroll-mobile 20s linear infinite;
         }
-        
-        /* ===== About Section (Our Story) ===== */
-        .about-section{
-            position:relative;
-            padding:120px 0px;
-        }
-        .about-section .container{max-width:1200px;margin:0 auto;padding:0 16px;}
-        .about-section .row{display:flex;flex-wrap:wrap;align-items:center}
-        .about-section .content-column,
-        .about-section .image-column{flex:0 0 50%;max-width:50%}
-        @media (max-width: 991px){
-            .about-section .content-column,
-            .about-section .image-column{flex:0 0 100%;max-width:100%}
-        }
-        .about-section .content-column{
-            position:relative;
-            margin-bottom:40px;
-        }
-        .about-section .content-column .inner-column{
-            position:relative;
-            padding-top:50px;
-            padding-right:100px;
-        }
-    .about-section .content-column .text{
-      position:relative;
-      color:#777777;
-      font-size:15px;
-      line-height:2em;
-    }
-    .about-section .content-column .email{
-      color:#252525;
-      font-weight:700;
-      margin-bottom:50px;
-    }
-        .about-section .image-column{
-            position:relative;
-            margin-bottom:50px;
-        }
-        .about-section .image-column .inner-column{
-            position:relative;
-            padding:40px 40px 0px 0px;
-            margin-left:50px;
-        }
-        .about-section .image-column .inner-column:after{
-            position:absolute;
-            content:'';
-            right:0px;
-            top:0px;
-            left:40px;
-            bottom:100px;
-            z-index:-1;
-            border:2px solid #3095d5;
-        }
-        .about-section .image-column .inner-column .image{position:relative;}
-        .about-section .image-column .inner-column .image:before{
-            position:absolute;
-            content:'';
-            left:-50px;
-            bottom:-50px;
-            width:299px;
-            height:299px;
-            background:url('https://i.ibb.co/DKn55Qz/pattern-1.jpg') repeat;
-        }
-        .about-section .image-column .inner-column .image img{
-            position:relative;
-            width:100%;
-            display:block;
-        }
-        .about-section .image-column .inner-column .image .overlay-box{
-            position:absolute;
-            left:40px;
-            bottom:48px;
-        }
-        .about-section .image-column .inner-column .image .overlay-box .year-box{
-            position:relative;
-            color:#252525;
-            font-size:24px;
-            font-weight:700;
-            line-height:1.4em;
-            padding-left:125px;
-        }
-        .about-section .image-column .inner-column .image .overlay-box .year-box .number{
-            position:absolute;
-            left:0px;
-            top:0px;
-            width:110px;
-            height:110px;
-            color:#3095d5;
-            font-size:68px;
-            font-weight:700;
-            line-height:105px;
-            text-align:center;
-            background-color:#ffffff;
-            border:1px solid #000000;
-        }
-        .about-section .btn-style-three:before {
-            position: absolute;
-            content: '';
-            left: 10px;
-            top: 10px;
-            z-index: -1;
-            right: -10px;
-            bottom: -10px;
-            background: url(https://i.ibb.co/DKn55Qz/pattern-1.jpg) repeat;
-        }
-        .about-section .btn-style-three:hover { color: #ffffff; background: #3095d5; }
-        .about-section .btn-style-three {
-            position: relative;
-            line-height: 24px;
-            color: #252525;
-            font-size: 15px;
-            font-weight: 700;
-            display: inline-block;
-            padding: 11px 40px;
-            background-color: #ffffff;
-            text-transform: capitalize;
-            border: 2px solid #3095d5;
-            font-family: 'Arimo', sans-serif;
-        }
-        .sec-title2{ color:#fff; }
-        .sec-title { position: relative; padding-bottom: 40px;  }
-        .sec-title .title {
-            position: relative;
-            color: #3095d5;
-            font-size: 18px;
-            font-weight: 700;
-            padding-right: 50px;
-            margin-bottom: 15px;
-            display: inline-block;
-            text-transform: capitalize;
-        }
-        .sec-title .title:before {
-            position: absolute;
-            content: '';
-            right: 0px;
-            bottom: 7px;
-            width: 40px;
-            height: 1px;
-            background-color: #bbbbbb;
-        }
       `}</style>
-      {/* <div className="newarrivals-body">
-        <div className="newarrivals-container">
-          <div className="newarrivals-contentLeft">
-            <div className="newarrivals-row">
-              {images.map((src, idx) => (
-                <div className="newarrivals-imgWrapper" key={idx}>
-                  <img src={src} alt={Interior design ${idx + 1}} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="newarrivals-contentRight">
-            <div className="newarrivals-content">
-              <h4>Welcome To</h4>
-              <h2>Design &amp; Decor Guide</h2>
-              <p>
-                At our studio, we believe every space tells a story. Discover curated collections of modern furniture, elegant decor, and innovative design solutions to elevate your home. From cozy living rooms to serene bedrooms, we blend style and functionality for inspired living.
-              </p>
-           
-            </div>
-          </div>
-        </div>
-      </div> */}
 
-      {/* Our Story Section (replaced with About layout) */}
-      <section className="about-section">
-        <div className="container">
-          <div className="row clearfix">
-            {/* Content Column */}
-            <div className="content-column col-md-6 col-sm-12 col-xs-12">
-              <div className="inner-column">
-                <div className="sec-title">
-                  <div className="title">About Us</div>
-                  <h2>At Design and Decor Guide, we believe every space deserves to reflect beauty, comfort, and individuality.</h2>
-                </div>
-                <div className="text">
-                  <p>
-                    Founded by Chinna Babu K, with over 8 years of experience in interior designing, we specialize in creating stunning house interiors for all types of spaces.
-                  </p>
-                  <p>
-                    Our creative design team is passionate about bringing fresh, unique, and innovative ideas to life, ensuring each project is customized to our clients’ lifestyle and vision. We pride ourselves on delivering high-quality designs at affordable prices, blending functionality with style to transform houses into dream homes.
-                  </p>
-                  <p>
-                    At Design and Decor Guide, your space is not just designed—it's reimagined.
-                  </p>
-                </div>
-                <div className="email">Request Quote: <span className="theme_color">info@designdecorguide.com</span></div>
-                <a href="about.html" className="theme-btn btn-style-three">Read More</a>
+      {/* Hero Section */}
+      <section className="relative bg-white pt-20 pb-12 overflow-hidden">
+
+        <br /><br />
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-12">
+            {/* Left Content: Image and Video Button */}
+            <div className="relative w-full lg:w-[60%] mb-10 lg:mb-0 pr-0 lg:pr-20">
+              <img
+                src="https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg"
+                alt="Modern luxury living room interior"
+                className="w-full h-[500px] object-cover rounded-lg shadow-xl"
+              />
+              <div className="absolute -bottom-6 left-6 flex items-center bg-white p-3 rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300">
+                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path></svg>
+                <span className="ml-3 text-sm font-medium text-gray-800">WATCH VIDEO</span>
               </div>
             </div>
-            {/* Image Column */}
-            <div className="image-column col-md-6 col-sm-12 col-xs-12">
-              <div className="inner-column" data-wow-delay="0ms" data-wow-duration="1500ms">
-                <div className="image">
-                  <img src="https://i.ibb.co/vQbkKj7/about.jpg" alt="About" />
-                  <div className="overlay-box">
-                    <div className="year-box"><span className="number">5</span>Years <br /> Experience <br /> Working</div>
-                  </div>
+
+            {/* Right Content: Text and CTA */}
+            <div className="relative w-full lg:w-[50%] bg-white p-8 lg:p-12 shadow-lg rounded-lg z-10 flex flex-col items-start text-left">
+              <p className="text-sm font-semibold text-black uppercase tracking-widest mb-2">DESIGN AND DECOR GUIDE</p>
+              
+              <p className="text-base text-black leading-relaxed mb-8 max-w-md">
+                At Design and Decor Guide, we believe every space should reflect beauty, comfort, and individuality. Founded by Chinna Babu K (8+ years experience), we create stunning, affordable interiors tailored to your lifestyle. Our team blends fresh ideas with functionality to transform houses into dream homes your space, reimagined.
+              </p>
+              <button className="px-8 py-3 bg-black text-white text-sm font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300">
+                READ MORE
+              </button>
+
+              {/* Statistics */}
+              <div className="flex space-x-12 mt-10">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-800">25+</div>
+                  <div className="text-sm text-gray-500">Years of Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-800">1,250+</div>
+                  <div className="text-sm text-gray-500">Projects Completed</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* Keep previous small statistics just after About section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-3 gap-8 pt-8">
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-              350+
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left Content: Title, Description, and Button */}
+            <div className="flex flex-col items-start">
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">WHY CHOOSE US</h2>
+              <p className="text-base text-gray-600 leading-relaxed mb-8 max-w-md">
+                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
+              </p>
+              <button className="px-8 py-3 bg-black text-white text-sm font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300">
+                VIEW ALL
+              </button>
             </div>
-            <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-              5+
+
+            {/* Right Content: Four Benefit Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Card 1: Fast Building */}
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
+                <div className="text-2xl text-gray-800 mb-3">
+                  <i className="fas fa-clock" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Fast Building</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                </p>
+              </div>
+
+              {/* Card 2: Smartly Execute */}
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
+                <div className="text-2xl text-gray-800 mb-3">
+                  <i className="fas fa-lightbulb" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Smartly Execute</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                </p>
+              </div>
+
+              {/* Card 3: Carefully Planned */}
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
+                <div className="text-2xl text-gray-800 mb-3">
+                  <i className="fas fa-clipboard-list" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Carefully Planned</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                </p>
+              </div>
+
+              {/* Card 4: Perfect Design */}
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
+                <div className="text-2xl text-gray-800 mb-3">
+                  <i className="fas fa-pencil-ruler" style={{ color: 'rgb(68, 177, 228)' }}></i> {/* Placeholder for icon */}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Perfect Design</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                </p>
+              </div>
             </div>
-            <div className="text-sm text-gray-600 font-medium">Years of Excellence</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text text-transparent mb-2">
-              98%
-            </div>
-            <div className="text-sm text-gray-600 font-medium">Client Satisfaction</div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Professional Company Statistics Section */}
       <div className="py-20 bg-white relative overflow-hidden">
