@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import resd1 from '../assets/gallery/resd - 1.jpg';
 import resd2 from '../assets/gallery/resd - 2.jpg';
@@ -59,95 +59,40 @@ const IMAGE_URLS = [
 
 ];
 
-function lerp(start, end, t) {
-  return start * (1 - t) + end * t;
-}
-
 const FullGallery = () => {
-  const galleryRef = useRef(null);
-  const trackRef = useRef(null);
-  const cardRefs = useRef([]);
-  const startY = useRef(0);
-  const endY = useRef(0);
-  const raf = useRef(null);
-  const easing = 0.05;
-
-  // Parallax effect for each card
-  const parallax = (card) => {
-    if (!card) return;
-    const wrapper = card.querySelector(".card-image-wrapper");
-    if (!wrapper) return;
-    const diff = card.offsetHeight - wrapper.offsetHeight;
-    const { top } = card.getBoundingClientRect();
-    const progress = top / window.innerHeight;
-    const yPos = diff * progress;
-    wrapper.style.transform = `translateY(${yPos}px)`;
-  };
-
-  // Activate parallax for all cards
-  const activateParallax = () => {
-    cardRefs.current.forEach(parallax);
-  };
-
-  // Update scroll and parallax
-  const updateScroll = () => {
-    startY.current = lerp(startY.current, endY.current, easing);
-    if (galleryRef.current && trackRef.current) {
-      galleryRef.current.style.height = `${trackRef.current.clientHeight}px`;
-      trackRef.current.style.transform = `translateY(-${startY.current}px)`;
-    }
-    activateParallax();
-    raf.current = requestAnimationFrame(updateScroll);
-    if (Math.abs(startY.current - window.scrollY) < 0.5) {
-      cancelAnimationFrame(raf.current);
-    }
-  };
-
-  // Start scroll animation
-  const startScroll = () => {
-    endY.current = window.scrollY;
-    cancelAnimationFrame(raf.current);
-    raf.current = requestAnimationFrame(updateScroll);
-  };
-
-  // Init on scroll
-  const init = () => {
-    activateParallax();
-    startScroll();
-  };
-
-  useEffect(() => {
-    // On mount, set up listeners
-    window.addEventListener("load", updateScroll, false);
-    window.addEventListener("scroll", init, false);
-    window.addEventListener("resize", updateScroll, false);
-
-    // Initial activation
-    setTimeout(() => {
-      updateScroll();
-    }, 0);
-
-    return () => {
-      window.removeEventListener("load", updateScroll, false);
-      window.removeEventListener("scroll", init, false);
-      window.removeEventListener("resize", updateScroll, false);
-      cancelAnimationFrame(raf.current);
-    };
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <>
-      <main className="gallery" ref={galleryRef}>
-        <div className="gallery-track" ref={trackRef}>
+    <br /><br /><br />
+      <main className="gallery">
+        <h1
+          className="gallery-title"
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "clamp(2rem, 4vw, 2rem)",
+          }}
+        >
+          Our Portfolio
+        </h1>
+        <div className="gallery-track">
           {IMAGE_URLS.map((src, idx) => (
             <div
               className="card"
               key={idx}
-              ref={el => (cardRefs.current[idx] = el)}
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "clamp(1rem, 2vw, 1.15rem)",
+              }}
             >
               <div className="card-image-wrapper">
-                <img src={src} alt={`Gallery ${idx + 1}`} />
+                <img
+                  src={src}
+                  alt={`Gallery ${idx + 1}`}
+                  style={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: "clamp(0.9rem, 1.5vw, 1rem)",
+                  }}
+                />
               </div>
             </div>
           ))}
@@ -159,54 +104,53 @@ const FullGallery = () => {
           padding: 0;
           box-sizing: border-box;
         }
+        body {
+          background: #ffffff;
+        }
         .gallery {
-          width: 100vw;
-          min-height: 100vh;
-          background: #181818;
-          position: relative;
+          width: 100%;
+          padding: 2rem;
+        }
+        .gallery-title {
+          font-size: 2.5rem;
+          color: #333;
+          text-align: center;
+          margin-bottom: 2rem;
+          font-family: 'Arial', sans-serif; /* Example font */
         }
         .gallery-track {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.25rem;
-          padding: 0.25rem;
-          will-change: transform;
-          z-index: 1;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.5rem;
         }
         .card {
-          height: 400px;
+          height: 300px;
           overflow: hidden;
           border-radius: 12px;
-          box-shadow: 0 2px 16px 0 rgba(0,0,0,0.12);
-          background: #222;
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+          background: #fff;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
+          border: 1px solid #eee; /* Subtle border */
+        }
+        .card:hover {
+        
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
         }
         .card-image-wrapper {
-          height: 135%;
-          will-change: transform;
-          transition: box-shadow 0.2s;
+          width: 100%;
+          height: 100%;
+          overflow: hidden; /* Ensure image zoom stays within bounds */
         }
         .card-image-wrapper img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
+          transition: transform 0.3s ease; /* Smooth zoom transition */
         }
-        @media (max-width: 800px) {
-          .gallery-track {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 550px) {
-          .gallery-track {
-            grid-template-columns: repeat(1, 1fr);
-          }
-          .card {
-            height: 300px;
-          }
+        .card-image-wrapper img:hover {
+          transform: scale(1.05); /* Subtle zoom on hover */
         }
       `}</style>
     </>

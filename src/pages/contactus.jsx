@@ -114,6 +114,13 @@ const ContactUs = () => {
               <p className="text-[#e5e5e5] text-sm lg:text-base xl:text-lg ml-8 lg:ml-11 leading-relaxed font-light" 
                  style={{fontFamily:'Arial, Helvetica, sans-serif', lineHeight:'1.6'}}>
                  Design & Décor Guide ,<br />
+                  HyderabadD.No. 51-17-37, behind jayabheri
+
+maruthi showroom, kranthi
+
+nagar, Maddilapalem ,
+
+visakhapatnam - 530014
                 
                  vizag & Hyderabad<br />
                 
