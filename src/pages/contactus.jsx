@@ -113,7 +113,7 @@ const ContactUs = () => {
               </div>
               <p className="text-[#e5e5e5] text-sm lg:text-base xl:text-lg ml-8 lg:ml-11 leading-relaxed font-light" 
                  style={{fontFamily:'Arial, Helvetica, sans-serif', lineHeight:'1.6'}}>
-                 Design & Décor Guide by MMC,<br />
+                 Design & Décor Guide ,<br />
                 
                  vizag & Hyderabad<br />
                 
@@ -193,7 +193,7 @@ const ContactUs = () => {
             <div className="w-full lg:w-1/3 pt-2 lg:pt-4">
               <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold mb-4 lg:mb-6 text-gray-800" 
                   style={{fontFamily: 'Khand, sans-serif'}}>
-                DESIGN & DÉCOR GUIDE BY MMC
+                DESIGN & DÉCOR GUIDE 
               </h2>
               <div className="space-y-2 lg:space-y-3 text-gray-700 text-base lg:text-lg" style={{fontFamily: 'Arial, sans-serif'}}>
                 <p className="font-medium">D.No. 51-17-37, behind jayabheri</p>

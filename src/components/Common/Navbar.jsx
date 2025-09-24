@@ -117,7 +117,7 @@ const Navbar = ({ isShrunk = false }) => {
                   width: isShrunk ? "70px" : "96px",
                   height: "auto",
                   marginRight: "0px",
-                  verticalAlign: "middle",
+                  
                   position: "relative",
                   zIndex: 1001,
                   maxHeight: isShrunk ? "50px" : "78px",
@@ -125,6 +125,38 @@ const Navbar = ({ isShrunk = false }) => {
                   transition: "width 0.2s, max-height 0.2s",
                 }}
               />
+              <span
+                className="logo-text"
+                style={{
+                  fontSize: isShrunk ? "1rem" : "1.25rem",
+                  color: "#000000",
+                  marginLeft: "10px",
+                  whiteSpace: "pre-line",
+                  transition: "font-size 0.2s",
+                  fontFamily: "'Montserrat', 'Arial', 'Helvetica Neue', Arial, sans-serif",
+                  lineHeight: 1.1,
+                  display: "inline-block",
+                  fontWeight: 400,
+                  letterSpacing: "0.5px",
+                  WebkitFontSmoothing: "antialiased",
+                  MozOsxFontSmoothing: "grayscale",
+                  textRendering: "geometricPrecision",
+                  background: "none",
+                  textShadow: "none",
+                  filter: "none",
+                  // Remove all possible rendering artifacts
+                  // No border, no outline, no boxShadow
+                  border: "none",
+                  outline: "none",
+                  boxShadow: "none",
+                  // Force hardware acceleration off
+                  willChange: "auto",
+                }}
+              >
+                DESIGN & 
+                <br />
+                DÉCOR GUIDE
+              </span>
             </span>
           </div>
           <div
@@ -225,6 +257,8 @@ const Navbar = ({ isShrunk = false }) => {
       </header>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
         * {
           margin: 0;
           padding: 0;
@@ -255,7 +289,7 @@ const Navbar = ({ isShrunk = false }) => {
         }
         .navbar-logo span {
           display: flex;
-          align-items: center;
+          align-items: flex-end;
         }
         .navbar-logo-img {
           width: 96px;
@@ -266,6 +300,9 @@ const Navbar = ({ isShrunk = false }) => {
           .navbar-logo-img {
             width: 54px !important;
             max-height: 44px !important;
+          }
+          .logo-text {
+            font-size: 0.9rem !important;
           }
         }
         .navbar-menu {

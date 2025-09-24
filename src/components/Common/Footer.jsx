@@ -274,7 +274,66 @@ const Footer = () => {
              
               <div className="footer-brand khand-bold">
                 <h1>
-                  <span style={{ color: "#44B1E4", fontWeight: 900, letterSpacing: 1 }}>DDG</span> UNDERSTANDS YOUR PRIMARY NEEDS
+                  <span
+                    style={{
+                      fontFamily: "'Playfair Display', 'Cinzel', serif",
+                      color: "rgb(68, 177, 228)", // blue
+                      fontWeight: 900,
+                      letterSpacing: 2,
+                      fontSize: "2.1rem",
+                      display: "inline-block",
+                      borderRadius: "6px",
+                      // Removed breathing animation
+                      textShadow: "0 1px 2px rgba(68, 177, 228, 0.35), 0 1px 0 #fff, 0 0 3px #44b1e4"
+                    }}
+                  >
+                    DESIGN & DÉCOR GUIDE
+                  </span>
+                  {/* <span
+                    style={{
+                      color: "#e0f2ff", // a light blue shade
+                      fontWeight: 700,
+                      fontFamily: "'Playfair Display', 'Cinzel', serif",
+                      letterSpacing: 2,
+                      marginLeft: 10,
+                      fontSize: "1.15rem",
+                      verticalAlign: "middle",
+                      // Removed breathing animation
+                      textShadow: "0 1px 6px #44b1e488, 0 1px 0 #fff, 0 0 4px #44b1e4"
+                    }}
+                  >
+                    — Understands Your Needs
+                  </span> */}
+                  <style>
+                    {`
+                      @keyframes footer-breathing-glow {
+                        0% {
+                          text-shadow:
+                            0 2px 8px rgba(68, 177, 228, 0.55),
+                            0 1px 0 #fff,
+                            0 0 7px #44b1e4,
+                            0 0 12px #44b1e4;
+                          filter: brightness(1.08);
+                        }
+                        50% {
+                          text-shadow:
+                            0 2px 16px rgba(68, 177, 228, 0.7),
+                            0 1px 0 #fff,
+                            0 0 14px #44b1e4,
+                            0 0 20px #44b1e4;
+                          filter: brightness(1.18);
+                        }
+                        100% {
+                          text-shadow:
+                            0 2px 8px rgba(68, 177, 228, 0.55),
+                            0 1px 0 #fff,
+                            0 0 7px #44b1e4,
+                            0 0 12px #44b1e4;
+                          filter: brightness(1.08);
+                        }
+                      }
+                    `}
+                  </style>
                 </h1>
               </div>
               <div className="footer-description">
