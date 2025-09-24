@@ -198,7 +198,7 @@ const ContactUs = () => {
               <div className="space-y-2 lg:space-y-3 text-gray-700 text-base lg:text-lg" style={{fontFamily: 'Arial, sans-serif'}}>
                 <p className="font-medium">D.No. 51-17-37, behind jayabheri</p>
                 <p>maruthi showroom, kranthi</p>
-                <p>nagar, nakkavanipaleam,</p>
+                <p>nagar, Maddilapalem ,</p>
                 <p>visakhapatnam - 530014,</p>
                 <p>Visakhapatnam, Andhra Pradesh</p>
                 <p>530013</p>
