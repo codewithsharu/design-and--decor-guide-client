@@ -43,10 +43,14 @@ import washbasin1 from '../assets/gallery/Washbasin/photos-11738945-172758056310
 
 import villaGuestHouse from '../assets/gallery/villa & guest house.jpg';
 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Helmet } from 'react-helmet';
+
 // Gallery data by id (using urls from @file_context_0)
 const galleries = {
   "1": {
     title: "Resedential",
+    description: "We create homes that are stylish, functional, and truly reflect who you are. From planning layouts to selecting the right furniture and décor, we handle everything with care. Our goal is to design spaces where you feel comfortable and happy every single day.",
     images: [
       resd1,
       resd2,
@@ -54,6 +58,7 @@ const galleries = {
   },
   "2": {
     title: "Commercial",
+    description: "Your commercial space is the first impression for your customers — we make it count. Our designs focus on maximizing space, improving functionality, and highlighting your brand. From retail stores to restaurants, we create spaces that attract and engage visitors.",
     images: [
       com1,
       com2,
@@ -61,6 +66,7 @@ const galleries = {
   },
   "3": {
     title: "Office",
+    description: "A well-designed office inspires productivity and creativity at work. We plan workstations, meeting rooms, and breakout spaces to suit your team’s needs. Our designs balance professionalism, comfort, and style to boost your workspace experience.",
     images: [
       off1,
       off2,
@@ -68,6 +74,7 @@ const galleries = {
   },
   "4": {
     title: "Turnkey projects",
+    description: "We offer complete end-to-end interior solutions under one roof. From concept design to final execution, we take care of every detail for you. Our turnkey approach ensures timely delivery, quality workmanship, and a stress-free process.",
     images: [
       turnkey1, // Local image for Turnkey projects
       turnkey2,
@@ -75,6 +82,7 @@ const galleries = {
   },
   "5": {
     title: "Balcony",
+    description: "Your balcony can be more than just a corner — it can be your retreat. We create cozy, functional spaces with seating, décor, and greenery that refresh you. Perfect for your morning coffee, reading sessions, or just relaxing after a long day.",
     images: [
       balcony1, // Replaced with local image
       // Using the same image for now
@@ -82,6 +90,7 @@ const galleries = {
   },
   "6": {
     title: "Bedroom",
+    description: "Your bedroom should be your peaceful escape from the world. We design calm, clutter-free spaces with smart storage and soothing color schemes. Our goal is to make your bedroom a cozy, stylish place you love coming back to.",
     images: [
       bedroom1, // Replaced with local image
       bedroom2,
@@ -91,6 +100,7 @@ const galleries = {
   },
   "7": {
     title: "Kitchen",
+    description: "We design kitchens that are practical, beautiful, and easy to work in. Our modular kitchen solutions include smart storage, durable finishes, and modern layouts. Cooking becomes a joy when everything is perfectly planned and within your reach.",
     images: [
       kitchen1, // Replaced with local image
       kitchen2,
@@ -99,6 +109,7 @@ const galleries = {
   },
   "8": {
     title: "Living room",
+    description: "The living room is where memories are made with family and friends. We design inviting spaces with well-placed furniture, beautiful lighting, and décor accents. Our designs strike the right balance between comfort and style for every occasion.",
     images: [
       livingroom1, // Replaced with local image
       livingroom2,
@@ -112,6 +123,7 @@ const galleries = {
   },
   "9": {
     title: "Pooja set",
+    description: "A pooja space brings peace, positivity, and tradition into your home. We design elegant pooja units that blend beautifully with your interiors. Our focus is on creating a serene, spiritual corner that feels warm and sacred.",
     images: [
       poojaset1, // Replaced with local image
       poojaset2,
@@ -119,6 +131,7 @@ const galleries = {
   },
   "10": {
     title: "Washbasin",
+    description: "Even small details like washbasins can make a big difference in your interiors. We offer stylish, space-saving designs that match your home’s look and feel. From modern to classic, we ensure your washbasin area is both functional and beautiful.",
     images: [
       washbasin1, // Replaced with local image
       washbasin1, // Using the same image for now
@@ -137,6 +150,11 @@ export default function Gallery() {
       <h1 className="c-gallery__title">
         {gallery ? gallery.title : "Gallery"}
       </h1>
+      {gallery && gallery.description && (
+        <p className="c-gallery__description poppins-text">
+          {gallery.description}
+        </p>
+      )}
       <div className="c-gallery__items">
         {gallery && gallery.images.length > 0 ? (
           gallery.images.map((src, idx) => (
@@ -157,6 +175,7 @@ export default function Gallery() {
       <style>{`
         @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         :root {
           --color-primary: #ffda79;
@@ -169,6 +188,7 @@ export default function Gallery() {
           --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
           --font-base: Lato, sans-serif;
           --font-title: "Playfair Display", serif;
+          --font-poppins: "Poppins", sans-serif;
         }
 
         body {
@@ -189,6 +209,16 @@ export default function Gallery() {
           font-size: clamp(2rem, 5vw, 48px); /* Optimal and responsive font size */
           font-family: var(--font-title);
           text-align: center;
+        }
+
+        .c-gallery__description {
+          font-family: var(--font-poppins);
+          text-align: center;
+          font-size: 1.1rem;
+          line-height: 1.6;
+          max-width: 800px;
+          margin: 0 auto 40px;
+          color: var(--color-dark);
         }
 
         .c-gallery__items {
