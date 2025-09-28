@@ -224,10 +224,10 @@ const AboutUs = () => {
             <div className="flex flex-col items-start">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">WHY CHOOSE US</h2>
               <p className="text-sm text-gray-600 leading-relaxed mb-8 max-w-md">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
+                We are committed to transforming your vision into reality with innovative designs, quality materials, and a seamless process. Our experienced team ensures every project is delivered on time, within budget, and tailored to your unique style and needs.
               </p>
               <button className="px-8 py-3 bg-black text-white text-sm font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-colors duration-300">
-                VIEW ALL
+                LEARN MORE
               </button>
             </div>
 
@@ -236,44 +236,44 @@ const AboutUs = () => {
               {/* Card 1: Fast Building */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-clock" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-clock" style={{ color: 'black' }}></i>
                 </div>
                 <h3 className="text-lg font-bold text-gray-800 mb-2">Fast Building</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                  We deliver projects quickly and efficiently, ensuring minimal disruption and timely completion for your peace of mind.
                 </p>
               </div>
 
               {/* Card 2: Smartly Execute */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-lightbulb" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-lightbulb" style={{ color: 'black' }}></i>
                 </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Smartly Execute</h3>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Smart Execution</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                  Our team combines creativity with technical expertise to execute every detail with precision and intelligence.
                 </p>
               </div>
 
               {/* Card 3: Carefully Planned */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-file-pen" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-file-pen" style={{ color: 'black' }}></i>
                 </div>
                 <h3 className="text-lg font-bold text-gray-800 mb-2">Carefully Planned</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                  Every project is meticulously planned, from concept to completion, to ensure a smooth and stress-free experience.
                 </p>
               </div>
 
               {/* Card 4: Perfect Design */}
               <div className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
                 <div className="text-2xl text-gray-800 mb-3">
-                  <i className="fas fa-pencil-ruler" style={{ color: 'black' }}></i> {/* Placeholder for icon */}
+                  <i className="fas fa-pencil-ruler" style={{ color: 'black' }}></i>
                 </div>
                 <h3 className="text-lg font-bold text-gray-800 mb-2">Perfect Design</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia
+                  We create beautiful, functional spaces that reflect your personality and enhance your lifestyle.
                 </p>
               </div>
             </div>

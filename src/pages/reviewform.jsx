@@ -18,6 +18,7 @@ const ReviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMessage(""); // Clear previous message at the start of a new submission
     setMessage("⏳ Submitting...");
 
     const formData = new FormData();
@@ -47,7 +48,7 @@ const ReviewForm = () => {
         responseData = { success: true, message: "Review submitted successfully" };
       }
 
-      if (responseData.success !== false) {
+      if (responseData.success) {
         setMessage("✅ Review submitted successfully!");
         setShowToast(true);
         setNameValue("");
@@ -179,7 +180,7 @@ const ReviewForm = () => {
                             onMouseLeave={() => setHoverRating(0)}
                             aria-pressed={starIndex <= rating}
                             title={`${starIndex} star${starIndex > 1 ? 's' : ''}`}
-                            className="focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-blue-50 transform transition-all duration-200 hover:scale-125 active:scale-105 p-1 rounded-full hover:bg-white/50"
+                            className="focus:outline-none transform transition-all duration-200 hover:scale-125 active:scale-105 p-1 rounded-full hover:bg-white/50"
                           >
                             <svg width="36" height="36" viewBox="0 0 24 24" fill={filled ? '#0891b2' : 'none'} stroke={filled ? '#0891b2' : '#cbd5e1'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                               <path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 19.897 4.665 24 6 15.595 0 9.748l8.332-1.73z" />
