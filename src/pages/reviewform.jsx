@@ -20,41 +20,64 @@ const ReviewForm = () => {
     setLoading(true);
     setMessage("⏳ Submitting...");
 
-  const formData = new FormData();
-  formData.append("Name", nameValue.trim());
-  formData.append("Review", reviewValue.trim());
-  formData.append("Rating", String(rating));
+    const formData = new FormData();
+    formData.append("name", nameValue.trim());        // lowercase 'name'
+    formData.append("review", reviewValue.trim());    // lowercase 'review' 
+    formData.append("rating", String(rating));        // lowercase 'rating'
 
     try {
-      // Note: avoid mode: 'no-cors' so we can get real response and errors.
-      // If the Apps Script endpoint doesn't allow CORS, the request will fail here and
-      // you'll need to add CORS headers on the script side. See README note below.
       const res = await fetch(SCRIPT_POST_URL, {
         method: "POST",
-        headers: {
-          // Let the browser set Content-Type for FormData
-        },
         body: formData,
       });
 
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
       }
 
-  setMessage("✅ Review submitted successfully!");
-  setShowToast(true);
-  setNameValue("");
-  setReviewValue("");
-  setRating(0);
-  setHoverRating(0);
-  // hide toast after a moment
-  setTimeout(() => setShowToast(false), 3500);
+      // Parse the JSON response
+      const responseText = await res.text();
+      let responseData;
+      
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (parseError) {
+        // If response is not JSON, treat as success if we got a response
+        console.log("Response:", responseText);
+        responseData = { success: true, message: "Review submitted successfully" };
+      }
+
+      if (responseData.success !== false) {
+        setMessage("✅ Review submitted successfully!");
+        setShowToast(true);
+        setNameValue("");
+        setReviewValue("");
+        setRating(0);
+        setHoverRating(0);
+        // hide toast after a moment
+        setTimeout(() => setShowToast(false), 3500);
+      } else {
+        throw new Error(responseData.error || "Submission failed");
+      }
+      
     } catch (err) {
       console.error("Error submitting review:", err);
-      setMessage("❌ Error submitting review. Check console for details.");
+      
+      // More specific error messages
+      if (err.name === 'TypeError' && err.message.includes('fetch')) {
+        setMessage("❌ Network error. Please check your internet connection and try again.");
+      } else if (err.message.includes('CORS')) {
+        setMessage("❌ CORS error. Please contact support to enable CORS on the server.");
+      } else if (err.message.includes('404')) {
+        setMessage("❌ Service not found. Please contact support.");
+      } else if (err.message.includes('500')) {
+        setMessage("❌ Server error. Please try again later.");
+      } else {
+        setMessage(`❌ Error submitting review: ${err.message}`);
+      }
     } finally {
       setLoading(false);
-      setTimeout(() => setMessage(""), 4000);
+      setTimeout(() => setMessage(""), 6000); // Keep error messages visible longer
     }
   };
 
@@ -156,9 +179,9 @@ const ReviewForm = () => {
                             onMouseLeave={() => setHoverRating(0)}
                             aria-pressed={starIndex <= rating}
                             title={`${starIndex} star${starIndex > 1 ? 's' : ''}`}
-                            className="focus:outline-none transform transition-all duration-200 hover:scale-125 active:scale-105 p-1 rounded-full hover:bg-white/50"
+                            className="focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-blue-50 transform transition-all duration-200 hover:scale-125 active:scale-105 p-1 rounded-full hover:bg-white/50"
                           >
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill={filled ? "#0891b2" : "none"} stroke={filled ? "#0891b2" : "#cbd5e1"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill={filled ? '#0891b2' : 'none'} stroke={filled ? '#0891b2' : '#cbd5e1'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                               <path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 19.897 4.665 24 6 15.595 0 9.748l8.332-1.73z" />
                             </svg>
                           </button>
@@ -216,7 +239,12 @@ const ReviewForm = () => {
 
             {/* Footer Note */}
             <div className="mt-8 pt-6 border-t border-gray-100 text-center">
-              
+              <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Your feedback is secure and helps us serve you better
+              </p>
             </div>
           </div>
         </div>
