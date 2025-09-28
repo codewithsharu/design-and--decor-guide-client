@@ -43,6 +43,7 @@ import ServicesById from "./pages/servicesbyid";
 
 // Import the ContactUs page from pages/contactus.jsx
 import ContactUsPage from "./pages/contactus";
+import ReviewForm from "./pages/ReviewForm";
 
 const App = () => {
   return (
@@ -84,6 +85,7 @@ const App = () => {
             {/* Add route for ContactUs page from pages/contactus.jsx */}
             <Route path="/contactus" element={<ContactUsPage />} />
             <Route path="/fullgallery" element={<FullGallery />} />
+            <Route path="/reviewform" element={<ReviewForm />} />
           </Route>
 
           {/* Admin Routes - Fixed */}

@@ -67,43 +67,236 @@ const ArrowRight = ({ ...props }) => (
   </button>
 );
 
-// Use dummy images from unsplash for more realistic avatars
-const reviews = [
+// Fallback reviews data
+const fallbackReviews = [
   {
     text: "FusionWheel’s intuitive interface and outstanding support helped us launch our new store in just .",
     name: "Don Toliver",
-    role: "CEO & Managing Director",
     rating: 5.0,
     img: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     text: "We’ve tested several platforms before, but none matched the flexibility and performance of FusionWheel.",
     name: "Omah Lay",
-    role: "CEO & Managing Director",
     rating: 5.0,
     img: "https://randomuser.me/api/portraits/men/45.jpg",
   },
   {
     text: "The seamless integration and beautiful UI made our transition effortless. Our customers love the new experience, and so do we!",
     name: "Jane Doe",
-    role: "Head of Product",
     rating: 4.5,
     img: "https://randomuser.me/api/portraits/women/65.jpg",
   },
   {
     text: "Support is top-notch and the features are exactly what we needed. FusionWheel is a game changer for our business.",
     name: "Alex Smith",
-    role: "Operations Manager",
     rating: 5.0,
     img: "https://randomuser.me/api/portraits/men/76.jpg",
   },
 ];
 
+// API URL for fetching reviews from Google Apps Script
+const REVIEWS_API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLij2hNyi7IPgkTixmjrz7I0PPq8i6azyWz75zsoOP-SFbQf3W0pSlLS6Ru-52CH9GfRWyLAccWb3G05x-zr_RYHQq9qLrDHT6pvSvkOrfbhLbLkmqMinN-DLjntgfNg30GNgh0YfdAYBrIzvw7zAHe16anDQJW1hJpMQUzZOooBKgZ_BCToIrSnMtJV6YS_4q-8YBptI5RqXA1U_nBHcRNB9q-L6HqVHC0lp0u-2_S2ZZpfK35XN5zVattluV8MlzEJsiVtpg41bt2bqLDgvND9n9oq9KcvmbJIY-o7&lib=MTojK4tQdk3ulSP_cYrpZmJC96vCjkTSA";
+
+// Static images to be used for avatars (kept local/static per requirement)
+const staticImages = [
+  '/src/assets/gallery/turnkey1.png',
+  '/src/assets/gallery/turnkey2.png',
+  '/src/assets/gallery/com -1.jpg',
+  '/src/assets/gallery/com -2.jpg',
+  '/src/assets/gallery/off 1.jpg',
+  '/src/assets/gallery/off 2.jpg',
+];
+
 export default function Reviews() {
   const [current, setCurrent] = useState(0);
+  // Initialize reviews with static images combined with default reviews
+  const [reviews, setReviews] = useState(
+    fallbackReviews.map((review, index) => ({
+      ...review,
+      img: staticImages[index % staticImages.length],
+    }))
+  );
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [fetchStatus, setFetchStatus] = useState(null); // 'ok' | 'error' | null
+  const [fetchMessage, setFetchMessage] = useState('');
+  const [rawApiResponse, setRawApiResponse] = useState(null);
 
   // For SSR safety, fallback to 1 on first render
   const [showCount, setShowCount] = useState(1);
+
+  // Fetch reviews from API and combine with static images
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setLoading(true);
+        setFetchStatus(null);
+        setFetchMessage('');
+        const response = await fetch(REVIEWS_API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        let data = await response.json();
+
+        // Capture raw response and log for debugging
+        console.info('Reviews API response:', data);
+        setRawApiResponse(data);
+
+        // Helper: try to coerce a value into an array of review-like objects
+        const tryExtractArray = (val) => {
+          if (!val && val !== 0) return [];
+          if (Array.isArray(val)) return val;
+          if (typeof val === 'string') {
+            // Sometimes the API returns a JSON string
+            try {
+              const parsed = JSON.parse(val);
+              if (Array.isArray(parsed)) return parsed;
+              val = parsed;
+            } catch (e) {
+              return [];
+            }
+          }
+          if (typeof val === 'object') {
+            if (Array.isArray(val.reviews)) return val.reviews;
+            if (Array.isArray(val.data)) return val.data;
+            if (Array.isArray(val.items)) return val.items;
+            if (Array.isArray(val.records)) return val.records;
+            const arr = Object.values(val).find((v) => Array.isArray(v));
+            if (arr) return arr;
+          }
+          return [];
+        };
+
+        let apiReviews = tryExtractArray(data);
+
+        // If still empty, and the raw data looks like a sequence of JSON objects without an array wrapper,
+        // try extracting {} groups from the string and parse them individually. This handles payloads like
+        // '{...}, {...}, {...}' coming from some endpoints.
+        if (apiReviews.length === 0) {
+          try {
+            const asString = typeof data === 'string' ? data : JSON.stringify(data);
+            const objMatches = asString.match(/\{[^}]*\}/g);
+            if (objMatches && objMatches.length) {
+              const parsedObjs = objMatches.map((m) => {
+                try {
+                  return JSON.parse(m);
+                } catch (e) {
+                  // fallback: try to convert single quotes to double quotes then parse
+                  try {
+                    const fixed = m.replace(/\"/g, '\\"').replace(/\'/g, '"');
+                    return JSON.parse(fixed);
+                  } catch (err) {
+                    return null;
+                  }
+                }
+              }).filter(Boolean);
+              if (parsedObjs.length) apiReviews = parsedObjs;
+            }
+          } catch (e) {
+            // ignore extraction errors
+          }
+        }
+
+        // If nothing found, recursively scan fields for stringified arrays
+        if (apiReviews.length === 0 && data && typeof data === 'object') {
+          const scanForJsonArray = (obj) => {
+            if (!obj || typeof obj !== 'object') return null;
+            for (const [k, v] of Object.entries(obj)) {
+              if (Array.isArray(v)) return v;
+              if (typeof v === 'string') {
+                try {
+                  const parsed = JSON.parse(v);
+                  if (Array.isArray(parsed)) return parsed;
+                  if (typeof parsed === 'object') {
+                    const nested = scanForJsonArray(parsed);
+                    if (nested) return nested;
+                  }
+                } catch (e) {
+                  // not JSON
+                }
+              } else if (typeof v === 'object') {
+                const nested = scanForJsonArray(v);
+                if (nested) return nested;
+              }
+            }
+            return null;
+          };
+          const found = scanForJsonArray(data);
+          if (found) apiReviews = found;
+        }
+
+        const parseRatingValue = (r) => {
+          if (r === undefined || r === null || r === '') return NaN;
+          if (typeof r === 'number') return r;
+          if (typeof r === 'string') {
+            const s = r.trim();
+            if (/^\d+(\.\d+)?$/.test(s)) return parseFloat(s);
+            const slash = s.match(/^(\d+(?:\.\d+)?)[\s]\/[\s](\d+(?:\.\d+)?)$/);
+            if (slash) {
+              const num = parseFloat(slash[1]);
+              const den = parseFloat(slash[2]);
+              if (den > 0) return (num / den) * 5;
+            }
+            const stars = (s.match(/[★*]/g) || []).length;
+            if (stars) return Math.min(stars, 5);
+            const found = s.match(/(\d+(?:\.\d+)?)/);
+            if (found) return parseFloat(found[1]);
+          }
+          return NaN;
+        };
+
+        if (apiReviews.length > 0) {
+          const reviewsWithImages = apiReviews.map((review, index) => {
+            if (!review || (typeof review !== 'object')) return null;
+            // Accept both camelCase and TitleCase keys (e.g., "Name", "Review", "Rating")
+            const text = (
+              review.text || review.comment || review.review || review.Review || review.message || review.body || review.Body || ''
+            ).toString();
+            const name = (
+              review.name || review.Name || review.customer || review.reviewer || review.author || review.username || `Customer ${index + 1}`
+            );
+            let rating = parseRatingValue(
+              review.rating ?? review.Rating ?? review.stars ?? review.score ?? review.rating_value ?? review.rate ?? review.rate_value
+            );
+            if (!Number.isFinite(rating) || isNaN(rating)) rating = 5.0;
+            return {
+              text,
+              name,
+              rating: Math.round(rating * 10) / 10,
+              img: staticImages[index % staticImages.length],
+            };
+          }).filter(Boolean).filter(r => r.text.trim() !== '');
+
+          if (reviewsWithImages.length > 0) {
+            setReviews(reviewsWithImages);
+            setError(null);
+            setFetchStatus('ok');
+            setFetchMessage(`${reviewsWithImages.length} review(s) loaded from API`);
+          } else {
+            console.warn('Reviews fetch returned no usable items, falling back to defaults.');
+            setFetchStatus('error');
+            setFetchMessage('API returned no usable review items');
+          }
+        } else {
+          console.warn('Reviews API returned no array-like data; response logged above.');
+          setFetchStatus('error');
+          setFetchMessage('API returned no array-like data');
+        }
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+        setError('Using default reviews - API unavailable');
+        setFetchStatus('error');
+        setFetchMessage(err.message || String(err));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  // For SSR safety, fallback to 1 on first render
 
   // Responsive: show 1 on mobile, 2 on md+
   useEffect(() => {
@@ -210,6 +403,20 @@ export default function Reviews() {
         <div className="mt-2 flex justify-center">
           <span className="inline-block w-24 h-1 rounded bg-sky-400"></span>
         </div>
+        {/* Visible fetch status for debugging */}
+        <div className="mt-4">
+          {loading ? (
+            <div className="text-sm text-gray-500">Loading reviews from API...</div>
+          ) : fetchStatus === 'error' ? (
+            <div className="text-sm text-red-600">{fetchMessage || 'Failed to load reviews from API. Using defaults.'}</div>
+          ) : null}
+        </div>
+        {fetchStatus === 'error' && rawApiResponse && (
+          <details className="mt-4 text-left mx-auto max-w-2xl bg-gray-50 p-3 rounded">
+            <summary className="cursor-pointer font-medium">Show raw API response (copy and paste here)</summary>
+            <pre className="whitespace-pre-wrap text-xs mt-2 max-h-64 overflow-auto">{JSON.stringify(rawApiResponse, null, 2)}</pre>
+          </details>
+        )}
       </div>
       <div className="max-w-6xl mx-auto">
         <div
@@ -243,27 +450,41 @@ export default function Reviews() {
                   src={review.img}
                   alt={review.name}
                   className="w-14 h-14 rounded-full border-2 border-sky-200 shadow"
+                  onError={(e) => {
+                    // Fallback to a default avatar if image fails to load
+                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=38bdf8&color=fff&size=56`;
+                  }}
                 />
                 <div>
                   <p className="font-semibold text-gray-900">{review.name}</p>
-                  <p className="text-sm text-gray-500">{review.role}</p>
+                  <div className="flex items-center gap-1 text-sky-400 mt-1">
+                    {Array.from({ length: 5 }).map((_, i) => {
+                      const fullCount = Math.floor(review.rating);
+                      const hasHalf = review.rating % 1 !== 0;
+                      const isFull = i < fullCount;
+                      const isHalf = hasHalf && i === fullCount;
+
+                      if (isFull) {
+                        return <Star key={i} size={20} fill="#38bdf8" />;
+                      }
+
+                      if (isHalf) {
+                        return (
+                          <div key={i} className="relative inline-block" style={{ width: 20, height: 20 }}>
+                            <Star size={20} fill="#e5e7eb" />
+                            <div style={{ position: "absolute", top: 0, left: 0, width: "50%", overflow: "hidden" }}>
+                              <Star size={20} fill="#38bdf8" />
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      // empty star (present but uncolored)
+                      return <Star key={i} size={20} fill="#e5e7eb" />;
+                    })}
+                    <span className="ml-2 text-gray-500 text-sm font-medium">{review.rating}</span>
+                  </div>
                 </div>
-                {/* <div className="ml-auto flex items-center gap-1 text-sky-400">
-                  {Array.from({ length: Math.floor(review.rating) }).map((_, i) => (
-                    <Star key={i} size={18} fill="#38bdf8" />
-                  ))}
-                  {review.rating % 1 !== 0 && (
-                    <span className="relative" style={{ width: 18, display: "inline-block" }}>
-                      <span style={{ position: "absolute", width: "50%", overflow: "hidden", left: 0, top: 0 }}>
-                        <Star size={18} fill="#38bdf8" />
-                      </span>
-                      <span style={{ position: "absolute", width: "50%", overflow: "hidden", right: 0, top: 0 }}>
-                        <Star size={18} fill="#e5e7eb" />
-                      </span>
-                    </span>
-                  )}
-                  <span className="ml-2 text-gray-500 text-sm font-medium">{review.rating} / 5</span>
-                </div> */}
               </div>
             </div>
           ))}
