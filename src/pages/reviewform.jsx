@@ -1,261 +1,324 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { Star, Send, CheckCircle, Sparkles, Home, Award } from 'lucide-react';
 
-const SCRIPT_POST_URL = "https://script.google.com/macros/s/AKfycbwTXe3-nP96bG2hPcGEwdIUvLd1wKPGFctVERoRiss8lAhy3O6b5B5zXpMUjBQRpJQv-w/exec";
-
-const ReviewForm = () => {
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [showToast, setShowToast] = useState(false);
-
-  const [rating, setRating] = useState(0);
+export default function InteriorReviewForm() {
+  const SCRIPT_POST_URL = "https://script.google.com/macros/s/AKfycbwTXe3-nP96bG2hPcGEwdIUvLd1wKPGFctVERoRiss8lAhy3O6b5B5zXpMUjBQRpJQv-w/exec";
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    rating: 0
+  });
   const [hoverRating, setHoverRating] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [focusedField, setFocusedField] = useState('');
 
-  // Controlled fields for polished UI and validation
-  const [nameValue, setNameValue] = useState("");
-  const [reviewValue, setReviewValue] = useState("");
-  const maxChars = 800;
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage(""); // Clear previous message at the start of a new submission
-    setMessage("⏳ Submitting...");
-
-    const formData = new FormData();
-    formData.append("name", nameValue.trim());        // lowercase 'name'
-    formData.append("review", reviewValue.trim());    // lowercase 'review' 
-    formData.append("rating", String(rating));        // lowercase 'rating'
-
-    try {
-      const res = await fetch(SCRIPT_POST_URL, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-      }
-
-      // Parse the JSON response
-      const responseText = await res.text();
-      let responseData;
+  const handleSubmit = async () => {
+    if (formData.name && formData.description && formData.rating > 0) {
+      setIsAnimating(true);
       
+      const formSubmissionData = new FormData();
+      formSubmissionData.append("name", formData.name.trim());
+      formSubmissionData.append("review", formData.description.trim());
+      formSubmissionData.append("rating", String(formData.rating));
+
       try {
-        responseData = JSON.parse(responseText);
-      } catch (parseError) {
-        // If response is not JSON, treat as success if we got a response
-        console.log("Response:", responseText);
-        responseData = { success: true, message: "Review submitted successfully" };
-      }
+        const res = await fetch(SCRIPT_POST_URL, {
+          method: "POST",
+          body: formSubmissionData,
+        });
 
-      if (responseData.success) {
-        setMessage("✅ Review submitted successfully!");
-        setShowToast(true);
-        setNameValue("");
-        setReviewValue("");
-        setRating(0);
-        setHoverRating(0);
-        // hide toast after a moment
-        setTimeout(() => setShowToast(false), 3500);
-      } else {
-        throw new Error(responseData.error || "Submission failed");
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+
+        const responseText = await res.text();
+        let responseData;
+        try {
+          responseData = JSON.parse(responseText);
+        } catch (parseError) {
+          console.log("Response:", responseText);
+          responseData = { success: true, message: "Review submitted successfully" };
+        }
+
+        if (responseData.success) {
+          setTimeout(() => {
+            setSubmitted(true);
+            setIsAnimating(false);
+          }, 800);
+        } else {
+          throw new Error(responseData.error || "Submission failed");
+        }
+      } catch (err) {
+        console.error("Error submitting review:", err);
+        alert(`Error submitting review: ${err.message}`); // Simple error display for now
+        setIsAnimating(false);
       }
-      
-    } catch (err) {
-      console.error("Error submitting review:", err);
-      
-      // More specific error messages
-      if (err.name === 'TypeError' && err.message.includes('fetch')) {
-        setMessage("❌ Network error. Please check your internet connection and try again.");
-      } else if (err.message.includes('CORS')) {
-        setMessage("❌ CORS error. Please contact support to enable CORS on the server.");
-      } else if (err.message.includes('404')) {
-        setMessage("❌ Service not found. Please contact support.");
-      } else if (err.message.includes('500')) {
-        setMessage("❌ Server error. Please try again later.");
-      } else {
-        setMessage(`❌ Error submitting review: ${err.message}`);
-      }
-    } finally {
-      setLoading(false);
-      setTimeout(() => setMessage(""), 6000); // Keep error messages visible longer
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-4 px-2 sm:px-3 lg:px-4">
-      <div className="max-w-md mx-auto">
-        <br /><br /><br /><br />
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200/50 backdrop-blur-sm overflow-hidden">
-          {/* Header Section */}
-          <div className="bg-gradient-to-r from-[#8a1a36] via-[#a32b4d] to-[#bd3c64] px-4 py-5 text-center">
-            <div className="flex items-center justify-center mb-1">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
-                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
-              </div>
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({ name: '', description: '', rating: 0 });
+    setHoverRating(0);
+  };
+
+  const getRatingText = (rating) => {
+    const texts = [
+      '',
+      'Needs Improvement',
+      'Below Average',
+      'Good Experience',
+      'Excellent Work',
+      'Outstanding!'
+    ];
+    return texts[rating] || '';
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-rose-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-2xl">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-16 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-rose-900 to-blue-600"></div>
+            
+            <div className="mb-8 relative inline-block">
+              <div className="absolute inset-0 bg-green-100 rounded-full animate-ping opacity-75"></div>
+              <CheckCircle className="w-28 h-28 text-green-500 mx-auto relative animate-[scaleIn_0.6s_ease-out]" />
             </div>
-            <h2 className="text-white text-xl sm:text-2xl font-bold mb-1">Share Your Experience</h2>
-            <p className="text-blue-100 text-sm font-medium">Your feedback helps us create stunning spaces that inspire and delight</p>
+            
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-rose-900 via-rose-700 to-blue-600 bg-clip-text text-transparent">
+              Thank You!
+            </h2>
+            <p className="text-xl text-gray-700 mb-3 font-medium">Your review has been submitted</p>
+            <p className="text-gray-600 mb-10 max-w-md mx-auto">
+              We truly value your feedback and will use it to continue delivering exceptional interior design experiences.
+            </p>
+            
+            <div className="flex gap-3 justify-center mb-8">
+              <Award className="w-6 h-6 text-rose-900" />
+              <Award className="w-6 h-6 text-blue-600" />
+              <Award className="w-6 h-6 text-rose-900" />
+            </div>
+            
+            <button
+              onClick={handleReset}
+              className="bg-gradient-to-r from-rose-900 to-rose-700 text-white px-10 py-4 rounded-full font-bold text-lg hover:from-rose-800 hover:to-rose-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-1"
+            >
+              Submit Another Review
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-rose-50 flex flex-col pt-8 md:pt-16 items-center p-4">
+     <br /><br /><br /><br />
+      <div className="w-full max-w-md sm:max-w-xl">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {/* Header Section */}
+          <div className="bg-gradient-to-r from-rose-900 via-rose-800 to-blue-900 p-6 text-white text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 opacity-10">
+              <Home className="w-36 h-36" />
+            </div>
+            <div className="relative z-10">
+              <div className="inline-block bg-white/20 backdrop-blur-sm p-2 rounded-lg mb-3">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-2xl mb-2">Share Your Experience</h1>
+              <p className="text-blue-100 text-sm max-w-xs mx-auto hidden sm:block">
+                Your feedback helps us create stunning spaces that inspire and delight
+              </p>
+            </div>
           </div>
 
           {/* Form Section */}
-          <div className="p-4 sm:p-5">
-            <form id="reviewForm" onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-0.5">
-                <label htmlFor="name" className="block text-xs font-semibold text-gray-800 mb-1">
-                  <span className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+          <div className="p-6">
+            <div className="space-y-6">
+              {/* Name & Email Row */}
+              <div className="grid grid-cols-1 gap-4">
+                <div className="relative">
+                  <label className="block text-xs font-bold text-gray-700 mb-2 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-rose-900 rounded-full"></span>
                     Your Name
-                  </span>
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  placeholder="John Anderson"
-                  className="w-full border-2 border-gray-200 rounded-md px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-100 transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white shadow-sm text-sm"
-                  type="text"
-                  required
-                  aria-required="true"
-                  value={nameValue}
-                  onChange={(e) => setNameValue(e.target.value)}
-                />
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onFocus={() => setFocusedField('name')}
+                    onBlur={() => setFocusedField('')}
+                    className={`w-full px-4 py-3 rounded-lg border-2 ${
+                      focusedField === 'name' 
+                        ? 'border-blue-600 ring-2 ring-blue-100' 
+                        : 'border-gray-200'
+                    } outline-none transition-all duration-300 text-gray-800 text-sm bg-gray-50 hover:bg-white`}
+                    placeholder="John Anderson"
+                    required
+                  />
+                </div>
+
+                {/* Removed Email Field */}
+                {/* 
+                <div className="relative">
+                  <label className="block text-xs font-bold text-gray-700 mb-2 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField('')}
+                    className={`w-full px-4 py-3 rounded-lg border-2 ${
+                      focusedField === 'email' 
+                        ? 'border-rose-900 ring-2 ring-rose-100' 
+                        : 'border-gray-200'
+                    } outline-none transition-all duration-300 text-gray-800 text-sm bg-gray-50 hover:bg-white`}
+                    placeholder="john@example.com"
+                  />
+                </div>
+                */}
               </div>
 
-              <div className="space-y-0.5">
-                <label htmlFor="review" className="block text-xs font-semibold text-gray-800 mb-1.5">
-                  <span className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                    Your Detailed Review
-                  </span>
+              {/* Rating Section */}
+              <div className="bg-gradient-to-br from-rose-50 via-blue-50 to-white p-5 rounded-xl border border-gray-100 shadow-inner">
+                <label className="block text-xs font-bold text-gray-700 mb-3 text-center flex items-center justify-center gap-1.5">
+                  <Award className="w-4 h-4 text-rose-900" />
+                  Rate Your Experience
+                </label>
+                <div className="flex items-center justify-center gap-1.5 mb-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      onClick={() => setFormData({ ...formData, rating: star })}
+                      onMouseEnter={() => setHoverRating(star)}
+                      onMouseLeave={() => setHoverRating(0)}
+                      className="transform transition-all duration-200 hover:scale-105 focus:outline-none group relative"
+                    >
+                      <Star
+                        className={`w-6 h-6 transition-all duration-300 ${
+                          star <= (hoverRating || formData.rating)
+                            ? 'fill-yellow-400 text-yellow-500 drop-shadow-md'
+                            : 'text-gray-300 group-hover:text-gray-400'
+                        }`}
+                      />
+                      {star <= (hoverRating || formData.rating) && (
+                        <div className="absolute inset-0 bg-yellow-400 rounded-full blur-sm opacity-30 animate-pulse"></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+                {(hoverRating || formData.rating) > 0 && (
+                  <div className="text-center">
+                    <p className="text-base font-bold bg-gradient-to-r from-rose-900 to-blue-600 bg-clip-text text-transparent animate-[fadeIn_0.3s_ease-out]">
+                      {getRatingText(hoverRating || formData.rating)}
+                    </p>
+                    <div className="flex gap-1 justify-center mt-2">
+                      {Array.from({ length: hoverRating || formData.rating }).map((_, i) => (
+                        <div key={i} className="w-2 h-2 bg-rose-900 rounded-full"></div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Review Text Area */}
+              <div className="relative">
+                <label className="block text-xs font-bold text-gray-700 mb-2 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                  Your Detailed Review
                 </label>
                 <textarea
-                  id="review"
-                  name="review"
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  onFocus={() => setFocusedField('description')}
+                  onBlur={() => setFocusedField('')}
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${
+                    focusedField === 'description' 
+                      ? 'border-rose-900 ring-2 ring-rose-100' 
+                      : 'border-gray-200'
+                  } outline-none transition-all duration-300 text-gray-800 text-sm min-h-32 resize-none bg-gray-50 hover:bg-white`}
                   placeholder="Tell us about your experience with our interior design services. What did you love? What could we improve?"
-                  className="w-full border-2 border-gray-200 rounded-md px-3 py-2.5 h-28 resize-y text-gray-800 placeholder-gray-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-100 transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white shadow-sm text-sm"
                   required
-                  aria-required="true"
-                  value={reviewValue}
-                  onChange={(e) => setReviewValue(e.target.value)}
-                  maxLength={maxChars}
                 />
-                <div className="flex justify-between items-center mt-2">
-                  <div className="text-xs text-gray-500">Be specific and honest to help others</div>
-                  <div className="text-sm font-medium text-gray-600">
-                    <span className={reviewValue.length > maxChars * 0.9 ? 'text-orange-600' : 'text-gray-500'}>
-                      {reviewValue.length}
-                    </span>
-                    <span className="text-gray-400">/{maxChars}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-4 border border-gray-200">
-                <label className="block text-xs font-semibold text-gray-800 mb-2">
-                  <span className="flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    Rate Your Experience
-                  </span>
-                </label>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="flex gap-1">
-                      {Array.from({ length: 5 }).map((_, i) => {
-                        const starIndex = i + 1;
-                        const filled = hoverRating ? starIndex <= hoverRating : starIndex <= rating;
-                        return (
-                          <button
-                            key={i}
-                            type="button"
-                            onClick={() => setRating(starIndex)}
-                            onMouseEnter={() => setHoverRating(starIndex)}
-                            onMouseLeave={() => setHoverRating(0)}
-                            aria-pressed={starIndex <= rating}
-                            title={`${starIndex} star${starIndex > 1 ? 's' : ''}`}
-                            className="focus:outline-none transform transition-all duration-200 hover:scale-105 active:scale-95 p-0 rounded-full hover:bg-white/50"
-                          >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill={filled ? '#ef4444' : 'none'} stroke={filled ? '#ef4444' : '#e0e0e0'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 19.897 4.665 24 6 15.595 0 9.748l8.332-1.73z" />
-                            </svg>
-                          </button>
-                        );
-                      })}
-                    </div>
-                    <div className="ml-3 text-lg font-semibold text-gray-700">
-                      {rating ? (
-                        <span className="flex items-center gap-2">
-                          <span className="text-sky-600">{rating}</span>
-                          <span className="text-gray-400">/</span>
-                          <span className="text-gray-500">5</span>
-                        </span>
-                      ) : (
-                        <span className="text-gray-400">Tap to rate</span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-5">
-                <p className="text-xs text-gray-500 mb-3 flex items-center justify-center gap-1.5">
-                  <svg className="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 15.27L16.18 19l-1.64-7.03L19 7.24l-7.19-.61L10 0 8.19 6.63 1 7.24l5.46 4.73L4.82 19z"/>
-                  </svg>
+                <p className="text-xs text-gray-500 mt-2 flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3" />
                   Share details about design quality, service, creativity, and overall satisfaction
                 </p>
-                <button 
-                  className="w-full bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold py-2.5 px-5 rounded-md shadow-sm hover:shadow-md transform transition-all duration-300 hover:scale-[1.005] disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm" 
-                  type="submit" 
-                  disabled={loading || rating === 0 || !nameValue.trim() || !reviewValue.trim()}
-                >
-                  <span>{loading ? 'Submitting Your Review...' : 'Submit Your Review'}</span>
-                  {loading ? (
-                    <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                    </svg>
-                  ) : (
-                    // Send icon, right side
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22 2L11 13" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22 2L15 22L11 13L2 9L22 2Z" />
-                    </svg>
-                  )}
-                </button>
               </div>
-            </form>
 
-            {/* Message Display */}
-            {message && (
-              <div className={`mt-4 p-2.5 rounded-md text-center font-medium ${
-                message.includes('✅') 
-                  ? 'bg-green-50 text-green-700 border border-green-200' 
-                  : message.includes('❌') 
-                    ? 'bg-red-50 text-red-700 border border-red-200'
-                    : 'bg-blue-50 text-blue-700 border border-blue-200'
-              }`}>
-                {message}
+              {/* Submit Button */}
+              <button
+                onClick={handleSubmit}
+                disabled={!formData.name || !formData.description || formData.rating === 0}
+                className={`w-full py-3 rounded-lg font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden ${
+                  formData.name && formData.description && formData.rating > 0
+                    ? 'bg-gradient-to-r from-rose-900 via-rose-800 to-blue-900 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.005] hover:-translate-y-0.5'
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                } ${isAnimating ? 'animate-pulse' : ''}`}
+              >
+                {isAnimating ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    Submit Your Review
+                  </>
+                )}
+                {formData.name && formData.description && formData.rating > 0 && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-[shimmer_2s_infinite]"></div>
+                )}
+              </button>
+            </div>
+
+            <div className="mt-5 text-center">
+              <div className="flex items-center justify-center gap-1.5 text-xs text-gray-500">
+                <div className="h-px w-8 bg-gradient-to-r from-transparent to-gray-300"></div>
+                <span>Your feedback shapes our future designs</span>
+                <div className="h-px w-8 bg-gradient-to-r from-gray-300 to-transparent"></div>
               </div>
-            )}
-
-            {/* Footer Note */}
-            <div className="mt-5 pt-3 border-t border-gray-100 text-center">
-              <p className="text-xs text-gray-500 flex items-center justify-center gap-1.5">
-                <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                Your feedback shapes our future designs
-              </p>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            transform: scale(0) rotate(-180deg);
+          }
+          to {
+            transform: scale(1) rotate(0deg);
+          }
+        }
+        
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
     </div>
   );
-};
-
-export default ReviewForm;
+}
