@@ -67,55 +67,17 @@ const ArrowRight = ({ ...props }) => (
   </button>
 );
 
-// Fallback reviews data
-const fallbackReviews = [
-  {
-    text: "FusionWheel’s intuitive interface and outstanding support helped us launch our new store in just .",
-    name: "Don Toliver",
-    rating: 5.0,
-    img: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    text: "We’ve tested several platforms before, but none matched the flexibility and performance of FusionWheel.",
-    name: "Omah Lay",
-    rating: 5.0,
-    img: "https://randomuser.me/api/portraits/men/45.jpg",
-  },
-  {
-    text: "The seamless integration and beautiful UI made our transition effortless. Our customers love the new experience, and so do we!",
-    name: "Jane Doe",
-    rating: 4.5,
-    img: "https://randomuser.me/api/portraits/women/65.jpg",
-  },
-  {
-    text: "Support is top-notch and the features are exactly what we needed. FusionWheel is a game changer for our business.",
-    name: "Alex Smith",
-    rating: 5.0,
-    img: "https://randomuser.me/api/portraits/men/76.jpg",
-  },
-];
-
 // API URL for fetching reviews from Google Apps Script
 const REVIEWS_API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLij2hNyi7IPgkTixmjrz7I0PPq8i6azyWz75zsoOP-SFbQf3W0pSlLS6Ru-52CH9GfRWyLAccWb3G05x-zr_RYHQq9qLrDHT6pvSvkOrfbhLbLkmqMinN-DLjntgfNg30GNgh0YfdAYBrIzvw7zAHe16anDQJW1hJpMQUzZOooBKgZ_BCToIrSnMtJV6YS_4q-8YBptI5RqXA1U_nBHcRNB9q-L6HqVHC0lp0u-2_S2ZZpfK35XN5zVattluV8MlzEJsiVtpg41bt2bqLDgvND9n9oq9KcvmbJIY-o7&lib=MTojK4tQdk3ulSP_cYrpZmJC96vCjkTSA";
 
 // Static images to be used for avatars (kept local/static per requirement)
-const staticImages = [
-  '/src/assets/gallery/turnkey1.png',
-  '/src/assets/gallery/turnkey2.png',
-  '/src/assets/gallery/com -1.jpg',
-  '/src/assets/gallery/com -2.jpg',
-  '/src/assets/gallery/off 1.jpg',
-  '/src/assets/gallery/off 2.jpg',
-];
+
 
 export default function Reviews() {
   const [current, setCurrent] = useState(0);
   // Initialize reviews with static images combined with default reviews
   const [reviews, setReviews] = useState(
-    fallbackReviews.map((review, index) => ({
-      ...review,
-      img: staticImages[index % staticImages.length],
-    }))
+    []
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -143,87 +105,16 @@ export default function Reviews() {
         console.info('Reviews API response:', data);
         setRawApiResponse(data);
 
-        // Helper: try to coerce a value into an array of review-like objects
-        const tryExtractArray = (val) => {
-          if (!val && val !== 0) return [];
-          if (Array.isArray(val)) return val;
-          if (typeof val === 'string') {
-            // Sometimes the API returns a JSON string
-            try {
-              const parsed = JSON.parse(val);
-              if (Array.isArray(parsed)) return parsed;
-              val = parsed;
-            } catch (e) {
-              return [];
-            }
-          }
-          if (typeof val === 'object') {
-            if (Array.isArray(val.reviews)) return val.reviews;
-            if (Array.isArray(val.data)) return val.data;
-            if (Array.isArray(val.items)) return val.items;
-            if (Array.isArray(val.records)) return val.records;
-            const arr = Object.values(val).find((v) => Array.isArray(v));
-            if (arr) return arr;
-          }
-          return [];
-        };
-
-        let apiReviews = tryExtractArray(data);
-
-        // If still empty, and the raw data looks like a sequence of JSON objects without an array wrapper,
-        // try extracting {} groups from the string and parse them individually. This handles payloads like
-        // '{...}, {...}, {...}' coming from some endpoints.
-        if (apiReviews.length === 0) {
-          try {
-            const asString = typeof data === 'string' ? data : JSON.stringify(data);
-            const objMatches = asString.match(/\{[^}]*\}/g);
-            if (objMatches && objMatches.length) {
-              const parsedObjs = objMatches.map((m) => {
-                try {
-                  return JSON.parse(m);
-                } catch (e) {
-                  // fallback: try to convert single quotes to double quotes then parse
-                  try {
-                    const fixed = m.replace(/\"/g, '\\"').replace(/\'/g, '"');
-                    return JSON.parse(fixed);
-                  } catch (err) {
-                    return null;
-                  }
-                }
-              }).filter(Boolean);
-              if (parsedObjs.length) apiReviews = parsedObjs;
-            }
-          } catch (e) {
-            // ignore extraction errors
-          }
+        let apiReviews = [];
+        if (Array.isArray(data)) {
+          apiReviews = data;
+        } else if (typeof data === 'object' && data !== null) {
+          apiReviews = data.reviews || data.data || data.items || data.records || [];
         }
 
-        // If nothing found, recursively scan fields for stringified arrays
-        if (apiReviews.length === 0 && data && typeof data === 'object') {
-          const scanForJsonArray = (obj) => {
-            if (!obj || typeof obj !== 'object') return null;
-            for (const [k, v] of Object.entries(obj)) {
-              if (Array.isArray(v)) return v;
-              if (typeof v === 'string') {
-                try {
-                  const parsed = JSON.parse(v);
-                  if (Array.isArray(parsed)) return parsed;
-                  if (typeof parsed === 'object') {
-                    const nested = scanForJsonArray(parsed);
-                    if (nested) return nested;
-                  }
-                } catch (e) {
-                  // not JSON
-                }
-              } else if (typeof v === 'object') {
-                const nested = scanForJsonArray(v);
-                if (nested) return nested;
-              }
-            }
-            return null;
-          };
-          const found = scanForJsonArray(data);
-          if (found) apiReviews = found;
+        // Ensure apiReviews is an array after initial extraction attempts
+        if (!Array.isArray(apiReviews)) {
+          apiReviews = [];
         }
 
         const parseRatingValue = (r) => {
@@ -264,12 +155,13 @@ export default function Reviews() {
               text,
               name,
               rating: Math.round(rating * 10) / 10,
-              img: staticImages[index % staticImages.length],
+              img: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=38bdf8&color=fff&size=56`,
             };
           }).filter(Boolean).filter(r => r.text.trim() !== '');
 
           if (reviewsWithImages.length > 0) {
             setReviews(reviewsWithImages);
+            setCurrent(0); // Reset current index when reviews are updated
             setError(null);
             setFetchStatus('ok');
             setFetchMessage(`${reviewsWithImages.length} review(s) loaded from API`);
@@ -317,11 +209,13 @@ export default function Reviews() {
       setCurrent((prev) => (prev + 1) % reviews.length);
     }, 3000);
     return () => clearInterval(intervalRef.current);
-  }, [showCount]);
+  }, [showCount, reviews.length]);
 
   // Calculate which reviews to show
   let visibleReviews;
-  if (showCount === 1) {
+  if (reviews.length === 0) {
+    visibleReviews = [];
+  } else if (showCount === 1) {
     visibleReviews = [reviews[current]];
   } else {
     // Show two at a time, wrap if needed
@@ -330,6 +224,9 @@ export default function Reviews() {
       reviews[(current + 1) % reviews.length],
     ];
   }
+
+  console.log('Current reviews:', reviews);
+  console.log('Visible reviews:', visibleReviews);
 
   // Navigation handlers
   const prevReview = () => {
@@ -419,76 +316,85 @@ export default function Reviews() {
         )}
       </div>
       <div className="max-w-6xl mx-auto">
-        <div
-          className={
-            "flex gap-8 items-stretch justify-center relative " +
-            (showCount === 1
-              ? "flex-col items-center"
-              : "md:grid md:grid-cols-2 md:gap-8")
-          }
-        >
-          {visibleReviews.map((review, index) => (
-            <div
-              key={index + current}
-              className="relative bg-white rounded-3xl p-8 shadow-lg border border-sky-100 text-left transition-transform hover:-translate-y-1 hover:shadow-2xl w-full max-w-xs md:max-w-none mx-auto flex flex-col"
-              style={{
-                minHeight: "370px",
-                aspectRatio: showCount === 1 ? "1 / 1" : undefined,
-              }}
-            >
-              <div className="absolute -top-6 left-8">
-                <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
-                  <circle cx="24" cy="24" r="24" fill="#38bdf8" fillOpacity="0.12" />
-                  <text x="50%" y="60%" textAnchor="middle" fontSize="32" fill="#ef4444" fontWeight="bold" fontFamily="serif">“</text>
-                </svg>
-              </div>
-              <p className="text-lg text-gray-700 mb-8 mt-2 italic leading-relaxed">
-                {review.text}
-              </p>
-              <div className="flex items-center gap-4 mt-auto">
-                <img
-                  src={review.img}
-                  alt={review.name}
-                  className="w-14 h-14 rounded-full border-2 border-sky-200 shadow"
-                  onError={(e) => {
-                    // Fallback to a default avatar if image fails to load
-                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=38bdf8&color=fff&size=56`;
+        {loading && reviews.length === 0 ? (
+          <div className="text-center text-gray-500 text-lg">Loading reviews...</div>
+        ) : reviews.length === 0 ? (
+          <div className="text-center text-gray-500 text-lg">No reviews available.</div>
+        ) : (
+          <div
+            className={
+              "flex gap-8 items-stretch justify-center relative " +
+              (showCount === 1
+                ? "flex-col items-center"
+                : "md:grid md:grid-cols-2 md:gap-8")
+            }
+          >
+            {visibleReviews.map((review, index) => {
+              if (!review) return null; // Safeguard against undefined reviews
+              return (
+                <div
+                  key={index + current}
+                  className="relative bg-white rounded-3xl p-8 shadow-lg border border-sky-100 text-left transition-transform hover:-translate-y-1 hover:shadow-2xl w-full max-w-xs md:max-w-none mx-auto flex flex-col"
+                  style={{
+                    minHeight: "370px",
+                    aspectRatio: showCount === 1 ? "1 / 1" : undefined,
                   }}
-                />
-                <div>
-                  <p className="font-semibold text-gray-900">{review.name}</p>
-                  <div className="flex items-center gap-1 text-sky-400 mt-1">
-                    {Array.from({ length: 5 }).map((_, i) => {
-                      const fullCount = Math.floor(review.rating);
-                      const hasHalf = review.rating % 1 !== 0;
-                      const isFull = i < fullCount;
-                      const isHalf = hasHalf && i === fullCount;
+                >
+                  <div className="absolute -top-6 left-8">
+                    <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
+                      <circle cx="24" cy="24" r="24" fill="#38bdf8" fillOpacity="0.12" />
+                      <text x="50%" y="60%" textAnchor="middle" fontSize="32" fill="#ef4444" fontWeight="bold" fontFamily="serif">“</text>
+                    </svg>
+                  </div>
+                  <p className="text-lg text-gray-700 mb-8 mt-2 italic leading-relaxed">
+                    {review.text}
+                  </p>
+                  <div className="flex items-center gap-4 mt-auto">
+                    <img
+                      src={review.img}
+                      alt={review.name}
+                      className="w-14 h-14 rounded-full border-2 border-sky-200 shadow"
+                      onError={(e) => {
+                        // Fallback to a default avatar if image fails to load
+                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=38bdf8&color=fff&size=56`;
+                      }}
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900">{review.name}</p>
+                      <div className="flex items-center gap-1 text-sky-400 mt-1">
+                        {Array.from({ length: 5 }).map((_, i) => {
+                          const fullCount = Math.floor(review.rating);
+                          const hasHalf = review.rating % 1 !== 0;
+                          const isFull = i < fullCount;
+                          const isHalf = hasHalf && i === fullCount;
 
-                      if (isFull) {
-                        return <Star key={i} size={20} fill="#38bdf8" />;
-                      }
+                          if (isFull) {
+                            return <Star key={i} size={20} fill="#38bdf8" />;
+                          }
 
-                      if (isHalf) {
-                        return (
-                          <div key={i} className="relative inline-block" style={{ width: 20, height: 20 }}>
-                            <Star size={20} fill="#e5e7eb" />
-                            <div style={{ position: "absolute", top: 0, left: 0, width: "50%", overflow: "hidden" }}>
-                              <Star size={20} fill="#38bdf8" />
-                            </div>
-                          </div>
-                        );
-                      }
+                          if (isHalf) {
+                            return (
+                              <div key={i} className="relative inline-block" style={{ width: 20, height: 20 }}>
+                                <Star size={20} fill="#e5e7eb" />
+                                <div style={{ position: "absolute", top: 0, left: 0, width: "50%", overflow: "hidden" }}>
+                                  <Star size={20} fill="#38bdf8" />
+                                </div>
+                              </div>
+                            );
+                          }
 
-                      // empty star (present but uncolored)
-                      return <Star key={i} size={20} fill="#e5e7eb" />;
-                    })}
-                    <span className="ml-2 text-gray-500 text-sm font-medium">{review.rating}</span>
+                          // empty star (present but uncolored)
+                          return <Star key={i} size={20} fill="#e5e7eb" />;
+                        })}
+                        <span className="ml-2 text-gray-500 text-sm font-medium">{review.rating}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
         {/* Arrows below the cards, centered */}
         <div className="flex justify-center gap-4 mt-8">
           <ArrowLeft
