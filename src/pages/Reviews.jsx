@@ -151,13 +151,17 @@ export default function Reviews() {
               review.rating ?? review.Rating ?? review.stars ?? review.score ?? review.rating_value ?? review.rate ?? review.rate_value
             );
             if (!Number.isFinite(rating) || isNaN(rating)) rating = 5.0;
+            const status = (review.status || review.Status || 'No').toString(); // Extract status, default to 'No'
             return {
               text,
               name,
               rating: Math.round(rating * 10) / 10,
               img: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=38bdf8&color=fff&size=56`,
+              status,
             };
-          }).filter(Boolean).filter(r => r.text.trim() !== '');
+          }).filter(Boolean).filter(r => r.text.trim() !== '').filter(r => r.status === 'Yes'); // Filter by status 'Yes'
+
+          console.info('Filtered reviews for display:', reviewsWithImages); // Log filtered reviews
 
           if (reviewsWithImages.length > 0) {
             setReviews(reviewsWithImages);
