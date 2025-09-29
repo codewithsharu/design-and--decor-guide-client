@@ -14,6 +14,7 @@ import dulux from "../assets/dulux.png";
 import wipro from "../assets/wipro.png";
 import johnson from "../assets/johnson.png";
 import merino from "../assets/merino.png";
+import founder from "../assets/founder.png";
 
 
 const AboutUs = () => {
@@ -439,7 +440,7 @@ const AboutUs = () => {
             <div className="flex justify-center lg:justify-start order-2 lg:order-1">
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" 
+                  src={founder} 
                   alt="Chinna Babu K, Founder & CEO" 
                   className="w-80 h-96 object-cover rounded-2xl shadow-2xl"
                 />
