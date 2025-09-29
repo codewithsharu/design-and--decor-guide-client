@@ -87,7 +87,7 @@ const App = () => {
             <Route path="/contactus" element={<ContactUsPage />} />
             <Route path="/fullgallery" element={<FullGallery />} />
             <Route path="/reviewform" element={<ReviewForm />} />
-            <Route path="/reviewmanagement" element={<ReviewManagement />} />
+            <Route path="/ddgadmin" element={<ReviewManagement />} />
             
           </Route>
 
