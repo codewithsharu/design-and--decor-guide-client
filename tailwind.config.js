@@ -8,6 +8,9 @@ export default {
     extend: {
       colors:{
         "rabit-red":"#ea2e0e"
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
       }
     },
   },

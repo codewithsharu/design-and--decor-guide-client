@@ -19,9 +19,9 @@ const AdminLogin = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 p-4 font-poppins">
       <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all duration-300 hover:scale-105">
-        <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-8">Admin Login</h2>
+        <h2 className="text-3xl  text-gray-900 text-center mb-8">Admin Login</h2>
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username</label>
