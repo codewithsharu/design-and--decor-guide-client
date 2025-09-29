@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiEye, FiEdit2, FiTrash2, FiCheck, FiX, FiStar, FiRefreshCw } from 'react-icons/fi';
+import { FiEye, FiEdit2, FiTrash2, FiCheck, FiX, FiStar, FiRefreshCw, FiDownloadCloud } from 'react-icons/fi';
 
 const REVIEWS_API_URL = "https://script.google.com/macros/s/AKfycbxCSvD1bxyO1-pzIL5nMkyA8l_x05h2qSnAFDRjTGOLvrxlEY8AuUX1gHdVnAEy28E8DQ/exec";
 
@@ -77,6 +77,38 @@ const ReviewManagement = () => {
   useEffect(() => {
     localStorage.setItem('isAdminLoggedIn', isLoggedIn);
   }, [isLoggedIn]);
+
+  // Function to download reviews as CSV
+  const downloadCSV = () => {
+    if (reviews.length === 0) {
+      alert('No reviews to download.');
+      return;
+    }
+
+    const headers = ["RowIndex", "TimeStamp", "Name", "Review", "Rating", "Status"];
+    const csvRows = [];
+
+    // Add headers
+    csvRows.push(headers.join(','));
+
+    // Add data rows
+    reviews.forEach(review => {
+      const row = headers.map(header => {
+        const value = review[header === "RowIndex" ? "rowIndex" : header === "TimeStamp" ? "TimeStamp" : header === "Name" ? "Name" : header === "Review" ? "Review" : header === "Rating" ? "Rating" : header === "Status" ? "Status" : ''] || '';
+        return `"${String(value).replace(/"/g, '""')}"`; // Escape double quotes and wrap in quotes
+      });
+      csvRows.push(row.join(','));
+    });
+
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'reviews.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   // Fetch all reviews (admin mode)
   const fetchReviews = async () => {
@@ -178,6 +210,8 @@ const ReviewManagement = () => {
     if (!confirm('Are you sure you want to delete this review?')) return;
 
     try {
+      setUpdating(true);
+      setLoadingRow(review.rowIndex);
       const formData = new FormData();
       formData.append('action', 'delete');
       formData.append('rowIndex', review.rowIndex);
@@ -199,12 +233,17 @@ const ReviewManagement = () => {
     } catch (err) {
       console.error('Error deleting review:', err);
       alert('Failed to delete review');
+    } finally {
+      setUpdating(false);
+      setLoadingRow(null);
     }
   };
 
   // Edit review
   const updateReview = async (review, updates) => {
     try {
+      setUpdating(true);
+      setLoadingRow(review.rowIndex);
       const formData = new FormData();
       formData.append('action', 'update');
       formData.append('rowIndex', review.rowIndex);
@@ -235,6 +274,9 @@ const ReviewManagement = () => {
     } catch (err) {
       console.error('Error updating review:', err);
       alert('Failed to update review');
+    } finally {
+      setUpdating(false);
+      setLoadingRow(null);
     }
   };
 
@@ -293,15 +335,7 @@ const ReviewManagement = () => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Review Management</h1>
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => {
-              setIsLoggedIn(false);
-              localStorage.removeItem('isAdminLoggedIn'); // Clear login state on logout
-            }}
-            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-          >
-            Logout
-          </button>
+         
           <button
             onClick={fetchReviews}
             disabled={loading}
@@ -309,6 +343,39 @@ const ReviewManagement = () => {
           >
             <FiRefreshCw className={loading ? 'animate-spin' : ''} />
             Refresh
+          </button>
+          <button
+            onClick={downloadCSV}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
+            <FiDownloadCloud size={16} />
+            Download CSV
+          </button>
+          <button
+            onClick={() => {
+              setIsLoggedIn(false);
+              localStorage.removeItem('isAdminLoggedIn'); // Clear login state on logout
+            }}
+            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+            title="Logout"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="mr-1"
+              width={18}
+              height={18}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 3v9m6.364-6.364a9 9 0 11-12.728 0"
+              />
+            </svg>
+            <span>Logout</span>
           </button>
         </div>
       </div>
@@ -415,7 +482,14 @@ const ReviewManagement = () => {
                         className="text-red-600 hover:text-red-900 p-1 hover:bg-red-50 rounded"
                         title="Delete Review"
                       >
-                        <FiTrash2 size={16} />
+                        {loadingRow === review.rowIndex ? (
+                          <svg className="animate-spin h-4 w-4 text-red-600" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                          </svg>
+                        ) : (
+                          <FiTrash2 size={16} />
+                        )}
                       </button>
                     </div>
                   </td>
