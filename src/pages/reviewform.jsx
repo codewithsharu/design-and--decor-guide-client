@@ -83,28 +83,27 @@ const ReviewForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-4 px-2 sm:px-3 lg:px-4">
+      <div className="max-w-lg mx-auto">
         <br /><br /><br /><br />
-        <div className="bg-white rounded-3xl shadow-2xl border border-slate-200/50 backdrop-blur-sm overflow-hidden">
+        <div className="bg-white rounded-xl shadow-lg border border-slate-200/50 backdrop-blur-sm overflow-hidden">
           {/* Header Section */}
-          <div className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 px-8 py-12 text-center">
-            <div className="flex items-center justify-center mb-4">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 px-5 py-7 text-center">
+            <div className="flex items-center justify-center mb-2">
+              <div className="bg-white/20 backdrop-blur-sm rounded-full p-1.5">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                 </svg>
               </div>
             </div>
-            <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Share Your Review</h1>
-            <p className="text-blue-100 text-lg font-medium">Your feedback helps us deliver exceptional service</p>
+             <p className="text-blue-100 text-sm font-medium">Your feedback helps us deliver exceptional service</p>
           </div>
 
           {/* Form Section */}
-          <div className="p-8 sm:p-12">
-            <form id="reviewForm" onSubmit={handleSubmit} className="space-y-8">
-              <div className="space-y-2">
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-3">
+          <div className="p-5 sm:p-6">
+            <form id="reviewForm" onSubmit={handleSubmit} className="space-y-5">
+              <div className="space-y-0.5">
+                <label htmlFor="name" className="block text-xs font-semibold text-gray-800 mb-1.5">
                   <span className="flex items-center gap-2">
                     <svg className="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -116,7 +115,7 @@ const ReviewForm = () => {
                   id="name"
                   name="name"
                   placeholder="Enter your full name"
-                  className="w-full border-2 border-gray-200 rounded-xl px-5 py-4 text-gray-800 placeholder-gray-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white shadow-sm"
+                  className="w-full border-2 border-gray-200 rounded-md px-3 py-2.5 text-gray-800 placeholder-gray-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-100 transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white shadow-sm text-sm"
                   type="text"
                   required
                   aria-required="true"
@@ -125,8 +124,8 @@ const ReviewForm = () => {
                 />
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="review" className="block text-sm font-semibold text-gray-800 mb-3">
+              <div className="space-y-0.5">
+                <label htmlFor="review" className="block text-xs font-semibold text-gray-800 mb-1.5">
                   <span className="flex items-center gap-2">
                     <svg className="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
@@ -138,7 +137,7 @@ const ReviewForm = () => {
                   id="review"
                   name="review"
                   placeholder="Share your experience with us... What did you like? How can we improve?"
-                  className="w-full border-2 border-gray-200 rounded-xl px-5 py-4 h-40 resize-y text-gray-800 placeholder-gray-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white shadow-sm"
+                  className="w-full border-2 border-gray-200 rounded-md px-3 py-2.5 h-28 resize-y text-gray-800 placeholder-gray-400 focus:border-sky-500 focus:ring-1 focus:ring-sky-100 transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white shadow-sm text-sm"
                   required
                   aria-required="true"
                   value={reviewValue}
@@ -157,8 +156,8 @@ const ReviewForm = () => {
               </div>
 
               <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-6 border border-gray-200">
-                <label className="block text-sm font-semibold text-gray-800 mb-4">
-                  <span className="flex items-center gap-2">
+                <label className="block text-xs font-semibold text-gray-800 mb-2.5">
+                  <span className="flex items-center gap-1.5">
                     <svg className="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                     </svg>
@@ -180,9 +179,9 @@ const ReviewForm = () => {
                             onMouseLeave={() => setHoverRating(0)}
                             aria-pressed={starIndex <= rating}
                             title={`${starIndex} star${starIndex > 1 ? 's' : ''}`}
-                            className="focus:outline-none transform transition-all duration-200 hover:scale-125 active:scale-105 p-1 rounded-full hover:bg-white/50"
+                            className="focus:outline-none transform transition-all duration-200 hover:scale-105 active:scale-95 p-0 rounded-full hover:bg-white/50"
                           >
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill={filled ? '#0891b2' : 'none'} stroke={filled ? '#0891b2' : '#cbd5e1'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill={filled ? '#0891b2' : 'none'} stroke={filled ? '#0891b2' : '#cbd5e1'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                               <path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 19.897 4.665 24 6 15.595 0 9.748l8.332-1.73z" />
                             </svg>
                           </button>
@@ -206,7 +205,7 @@ const ReviewForm = () => {
 
               <div className="pt-6">
                 <button 
-                  className="w-full bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3 text-lg" 
+                  className="w-full bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-bold py-2.5 px-5 rounded-md shadow-sm hover:shadow-md transform transition-all duration-300 hover:scale-[1.005] disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm" 
                   type="submit" 
                   disabled={loading || rating === 0 || !nameValue.trim() || !reviewValue.trim()}
                 >
@@ -227,7 +226,7 @@ const ReviewForm = () => {
 
             {/* Message Display */}
             {message && (
-              <div className={`mt-6 p-4 rounded-xl text-center font-medium ${
+              <div className={`mt-4 p-2.5 rounded-md text-center font-medium ${
                 message.includes('✅') 
                   ? 'bg-green-50 text-green-700 border border-green-200' 
                   : message.includes('❌') 
@@ -239,9 +238,9 @@ const ReviewForm = () => {
             )}
 
             {/* Footer Note */}
-            <div className="mt-8 pt-6 border-t border-gray-100 text-center">
-              <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mt-5 pt-3 border-t border-gray-100 text-center">
+              <p className="text-xs text-gray-500 flex items-center justify-center gap-1.5">
+                <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
                 Your feedback is secure and helps us serve you better
