@@ -12,6 +12,7 @@ export default function InteriorReviewForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [focusedField, setFocusedField] = useState('');
+  const maxChars = 200; // Define max characters for the review
 
   const handleSubmit = async () => {
     if (formData.name && formData.description && formData.rating > 0) {
@@ -244,11 +245,20 @@ export default function InteriorReviewForm() {
                   } outline-none transition-all duration-300 text-gray-800 text-sm min-h-32 resize-none bg-gray-50 hover:bg-white`}
                   placeholder="Tell us about your experience with our interior design services. What did you love? What could we improve?"
                   required
+                  maxLength={maxChars} // Apply max length
                 />
-                <p className="text-xs text-gray-500 mt-2 flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3" />
-                  Share details about design quality, service, creativity, and overall satisfaction
-                </p>
+                <div className="flex justify-between items-center mt-2">
+                  <p className="text-xs text-gray-500 flex items-center gap-1.5">
+                    <Sparkles className="w-3 h-3" />
+                    Share details about design quality, service, creativity, and overall satisfaction
+                  </p>
+                  <p className="text-xs font-medium text-gray-600">
+                    <span className={formData.description.length > maxChars * 0.9 ? 'text-red-500' : 'text-gray-500'}>
+                      {formData.description.length}
+                    </span>
+                    <span className="text-gray-400">/{maxChars}</span>
+                  </p>
+                </div>
               </div>
 
               {/* Submit Button */}

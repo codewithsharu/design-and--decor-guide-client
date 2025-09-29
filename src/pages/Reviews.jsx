@@ -152,11 +152,15 @@ export default function Reviews() {
             );
             if (!Number.isFinite(rating) || isNaN(rating)) rating = 5.0;
             const status = (review.status || review.Status || 'No').toString(); // Extract status, default to 'No'
+
+            // Generate DiceBear avatar using the reviewer's name as a seed
+            const avatarImg = `https://api.dicebear.com/9.x/personas/svg?seed=${encodeURIComponent(name)}&backgroundType=solid&backgroundColor=transparent`;
+
             return {
               text,
               name,
               rating: Math.round(rating * 10) / 10,
-              img: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=38bdf8&color=fff&size=56`,
+              img: avatarImg, // Use the generated DiceBear avatar
               status,
             };
           }).filter(Boolean).filter(r => r.text.trim() !== '').filter(r => r.status === 'Yes'); // Filter by status 'Yes'
@@ -207,11 +211,17 @@ export default function Reviews() {
   // Auto-scroll every 3 seconds
   const intervalRef = useRef();
   useEffect(() => {
-    // Clear any previous interval
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % reviews.length);
-    }, 3000);
+    const startAutoScroll = () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % reviews.length);
+      }, 5000); // Increased interval to 5 seconds
+    };
+
+    if (reviews.length > 1) {
+      startAutoScroll();
+    }
+    
     return () => clearInterval(intervalRef.current);
   }, [showCount, reviews.length]);
 
@@ -234,14 +244,20 @@ export default function Reviews() {
 
   // Navigation handlers
   const prevReview = () => {
+    clearInterval(intervalRef.current); // Clear auto-scroll on manual interaction
     setCurrent((prev) =>
       prev === 0 ? reviews.length - 1 : prev - 1
     );
+    // Optionally restart auto-scroll after a delay, or let the user manually navigate
+    // For now, let's just clear it.
   };
   const nextReview = () => {
+    clearInterval(intervalRef.current); // Clear auto-scroll on manual interaction
     setCurrent((prev) =>
       (prev + 1) % reviews.length
     );
+    // Optionally restart auto-scroll after a delay, or let the user manually navigate
+    // For now, let's just clear it.
   };
 
   return (
@@ -296,6 +312,9 @@ export default function Reviews() {
               font-size: 16px;
               padding: 10px 16px;
             }
+            .text-lg {
+              font-size: 1rem; /* Smaller font size for mobile */
+            }
           }
         `}</style>
         <p className="text-lg text-gray-500">
@@ -340,7 +359,7 @@ export default function Reviews() {
                   key={index + current}
                   className="relative bg-white rounded-3xl p-8 shadow-lg border border-sky-100 text-left transition-transform hover:-translate-y-1 hover:shadow-2xl w-full max-w-xs md:max-w-none mx-auto flex flex-col"
                   style={{
-                    minHeight: "370px",
+                    minHeight: "300px", // Reduced minHeight
                     aspectRatio: showCount === 1 ? "1 / 1" : undefined,
                   }}
                 >
@@ -350,17 +369,17 @@ export default function Reviews() {
                       <text x="50%" y="60%" textAnchor="middle" fontSize="32" fill="#ef4444" fontWeight="bold" fontFamily="serif">“</text>
                     </svg>
                   </div>
-                  <p className="text-lg text-gray-700 mb-8 mt-2 italic leading-relaxed">
+                  <p className="text-lg text-gray-700 mb-8 mt-2 italic leading-relaxed overflow-y-auto custom-scrollbar">
                     {review.text}
                   </p>
                   <div className="flex items-center gap-4 mt-auto">
                     <img
-                      src={review.img}
+                      src={review.img} // Use the assigned avatarImg from the review object
                       alt={review.name}
                       className="w-14 h-14 rounded-full border-2 border-sky-200 shadow"
                       onError={(e) => {
-                        // Fallback to a default avatar if image fails to load
-                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=38bdf8&color=fff&size=56`;
+                        // Fallback to a generic UI-avatar if the DiceBear avatar fails to load
+                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=e0e0e0&color=333&size=56`;
                       }}
                     />
                     <div>
@@ -411,6 +430,33 @@ export default function Reviews() {
           />
         </div>
       </div>
+      <style jsx>{`
+        /* Custom scrollbar for Webkit browsers */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 0px; /* Hide scrollbar */
+          background: transparent; /* Make scrollbar track transparent */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent; /* Make scrollbar track transparent */
+          border-radius: 2px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: transparent; /* Make scrollbar thumb transparent */
+          border-radius: 2px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: transparent; /* Make scrollbar thumb transparent on hover */
+        }
+
+        /* Custom scrollbar for Firefox */
+        .custom-scrollbar {
+          scrollbar-width: none; /* Hide scrollbar in Firefox */
+          scrollbar-color: transparent transparent; /* Make scrollbar transparent in Firefox */
+        }
+      `}</style>
     </div>
   );
 }
